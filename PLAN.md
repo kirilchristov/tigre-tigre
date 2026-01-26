@@ -46,15 +46,15 @@ A sleek, animated marketing website for **Tigre Tigre** chili crunch brand.
 - [x] Call-to-action section
 - [x] Contact/Footer section
 
-### Phase 5: Animations with GSAP (Medium-Hard) ✅ In Progress
-- [ ] Install GSAP and ScrollTrigger
-- [ ] Hero entrance animations
-- [ ] Scroll-triggered section reveals
-- [ ] Smooth parallax effects
-- [ ] Micro-interactions (buttons, hovers)
-- [ ] Page transition effects (optional)
+### Phase 5: Animations with GSAP (Medium-Hard) ✅ Complete
+- [x] Install GSAP and ScrollTrigger
+- [x] Hero entrance animations
+- [x] Scroll-triggered section reveals
+- [x] Smooth parallax effects (hook ready)
+- [x] Micro-interactions (buttons, hovers) - via Tailwind transitions
+- [ ] Page transition effects (optional - skipped)
 
-### Phase 6: Stripe Integration (Medium)
+### Phase 6: Stripe Integration (Medium) ✅ In Progress
 - [ ] Create Stripe account and get API keys
 - [ ] Set up environment variables
 - [ ] Create payment link buttons/components

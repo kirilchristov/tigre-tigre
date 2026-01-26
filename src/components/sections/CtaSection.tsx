@@ -1,14 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { useScrollReveal } from '@/hooks/useGsap'
 
 export function CtaSection() {
   const { t } = useTranslation()
+  const imageRef = useScrollReveal<HTMLDivElement>()
+  const contentRef = useScrollReveal<HTMLDivElement>()
 
   return (
     <section id="shop" className="py-24 md:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6">
         {/* Product Image with Blended Edges */}
         <div
+          ref={imageRef}
           className="flex justify-center mb-12 relative"
           style={{
             background:
@@ -42,7 +46,7 @@ export function CtaSection() {
         </div>
 
         {/* Content */}
-        <div className="text-center">
+        <div ref={contentRef} className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('cta.title')}</h2>
           <p className="max-w-xl mx-auto text-lg text-muted-foreground mb-8">
             {t('cta.description')}

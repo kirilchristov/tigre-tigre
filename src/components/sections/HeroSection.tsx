@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { useHeroAnimation } from '@/hooks/useGsap'
 
 export function HeroSection() {
   const { t } = useTranslation()
+  const contentRef = useHeroAnimation<HTMLDivElement>()
 
   return (
     <section className="relative min-h-[150vh] flex flex-col items-center justify-start pt-32 px-6 overflow-hidden">
@@ -31,7 +33,10 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/3 z-10 text-center">
+      <div
+        ref={contentRef}
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/3 z-10 text-center"
+      >
         <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">{t('hero.title')}</h1>
         <p className="text-xl md:text-2xl text-foreground mb-8">{t('hero.subtitle')}</p>
         <div className="flex justify-center gap-4">
