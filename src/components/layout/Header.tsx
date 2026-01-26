@@ -18,15 +18,22 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="text-xl font-bold tracking-tight">
+          <a
+            href="#"
+            className="text-lg sm:text-xl font-bold tracking-tight min-h-[44px] flex items-center"
+          >
             tigre tigre
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav
+            className="hidden md:flex items-center gap-8"
+            role="navigation"
+            aria-label="Main navigation"
+          >
             {navItems.map((item) => (
               <a
                 key={item.key}
@@ -52,6 +59,8 @@ export function Header() {
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
             >
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -61,23 +70,28 @@ export function Header() {
 
       {/* Mobile Navigation */}
       <div
+        id="mobile-menu"
         className={cn(
           'md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300',
           isMenuOpen ? 'max-h-64' : 'max-h-0'
         )}
       >
-        <nav className="flex flex-col px-6 py-4 gap-4">
+        <nav
+          className="flex flex-col px-6 py-4 gap-4"
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
           {navItems.map((item) => (
             <a
               key={item.key}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
               {t(`nav.${item.key}`)}
             </a>
           ))}
-          <Button size="sm" className="w-full mt-2">
+          <Button size="sm" className="w-full mt-2 min-h-[44px]">
             {t('hero.shopNow')}
           </Button>
         </nav>

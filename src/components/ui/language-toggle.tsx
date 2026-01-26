@@ -10,7 +10,13 @@ export function LanguageToggle() {
   }
 
   return (
-    <Button variant="ghost" size="sm" onClick={toggleLanguage} className="font-medium">
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={toggleLanguage}
+      className="font-medium"
+      aria-label={i18n.language === 'en' ? 'Switch to Bulgarian' : 'Switch to English'}
+    >
       {i18n.language === 'en' ? 'BG' : 'EN'}
     </Button>
   )

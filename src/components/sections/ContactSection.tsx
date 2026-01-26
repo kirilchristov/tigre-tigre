@@ -13,7 +13,8 @@ export function ContactSection() {
         <p className="text-lg text-muted-foreground mb-4">{t('contact.description')}</p>
         <a
           href={`mailto:${t('contact.email')}`}
-          className="text-xl font-medium hover:underline underline-offset-4"
+          className="text-xl font-medium hover:underline underline-offset-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-foreground rounded"
+          aria-label={`Send email to ${t('contact.email')}`}
         >
           {t('contact.email')}
         </a>
