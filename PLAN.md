@@ -90,6 +90,19 @@ A sleek, animated marketing website for **Tigre Tigre** chili crunch brand.
 - [x] Set up vercel analytics (optional)
 - [ ] Set up google analytics (later)
 
+### Phase 9: Code Quality & Bug Fixes (Medium-Hard) ⏳ Pending
+
+- [x] Fix GSAP ScrollTrigger memory leak cleanup logic
+- [x] Add error boundary component for crash prevention
+- [ ] Create centralized Image fallback component
+- [ ] Fix accessibility issues (alt text, semantic HTML, ARIA labels)
+- [ ] Add translation key validation at build time
+- [ ] Create .env configuration for secrets and Stripe links
+- [ ] Add 404/error page fallback handling
+- [ ] Add Web Vitals performance tracking
+- [ ] Create sitemap.xml and robots.txt files
+- [ ] Clean up package.json (sharp dependency review)
+
 ---
 
 ## Future Considerations (Backend Phase)
