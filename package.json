@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run validate:translations && tsc -b && vite build",
+    "build": "node ./scripts/validate-translations.mjs && tsc -b && vite build",
     "lint": "eslint .",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\"",
     "preview": "vite preview",
-    "validate:translations": "node scripts/validate-translations.mjs"
+    "validate:translations": "node ./scripts/validate-translations.mjs"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
