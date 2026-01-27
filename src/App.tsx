@@ -21,11 +21,13 @@ const ContactSection = lazy(() =>
 )
 
 function App() {
-  // Check if we're on the production domain (not staging)
-  const isProduction = window.location.hostname === 'tigre-tigre.com'
+  // Show splash page ONLY on production domains (not staging or localhost)
+  const hostname = window.location.hostname
+  const isProductionDomain = hostname === 'tigre-tigre.com' || hostname === 'www.tigre-tigre.com'
+  console.log('Hostname:', hostname)
 
   // Show splash page on production domain
-  if (isProduction) {
+  if (isProductionDomain) {
     return <SplashPage />
   }
 
