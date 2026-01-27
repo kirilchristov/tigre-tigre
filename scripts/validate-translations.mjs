@@ -49,9 +49,9 @@ function flattenObject(obj, prefix = '') {
 function validateTranslations() {
   log('\n🔍 Validating translation files...', COLORS.cyan)
 
-  const publicLocalesPath = join(__dirname, '..', 'public', 'locales')
-  const enPath = join(publicLocalesPath, 'en', 'translation.json')
-  const bgPath = join(publicLocalesPath, 'bg', 'translation.json')
+  const srcLocalesPath = join(__dirname, '..', 'src', 'locales')
+  const enPath = join(srcLocalesPath, 'en', 'translation.json')
+  const bgPath = join(srcLocalesPath, 'bg', 'translation.json')
 
   // Load translation files
   const enTranslations = loadJSON(enPath)

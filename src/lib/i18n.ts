@@ -9,18 +9,19 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: 'en',
-    supportedLngs: ['en', 'bg'],
+    fallbackLng: 'bg',
+    supportedLngs: ['bg', 'en'],
     debug: false,
     interpolation: {
       escapeValue: false,
     },
     resources: {
-      en: { translation: en },
       bg: { translation: bg },
+      en: { translation: en },
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['querystring', 'localStorage', 'navigator'],
+      lookupQuerystring: 'lang',
       caches: ['localStorage'],
     },
   })

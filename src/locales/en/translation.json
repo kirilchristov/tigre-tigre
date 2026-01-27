@@ -65,5 +65,18 @@
   },
   "footer": {
     "copyright": "© 2026 Tigre Tigre. All rights reserved."
+  },
+  "error": {
+    "boundary": {
+      "title": "Something went wrong",
+      "unknown": "An unexpected error occurred",
+      "reload": "Reload Page",
+      "persist": "If the problem persists, please contact support."
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "button": "Back to Home"
   }
 }
