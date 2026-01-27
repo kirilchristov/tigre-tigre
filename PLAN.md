@@ -96,7 +96,7 @@ A sleek, animated marketing website for **Tigre Tigre** chili crunch brand.
 - [x] Add error boundary component for crash prevention
 - [x] Create centralized Image fallback component
 - [ ] Fix accessibility issues (alt text, semantic HTML, ARIA labels)
-- [ ] Add translation key validation at build time
+- [x] Add translation key validation at build time
 - [ ] Create .env configuration for secrets and Stripe links
 - [ ] Add 404/error page fallback handling
 - [ ] Add Web Vitals performance tracking
