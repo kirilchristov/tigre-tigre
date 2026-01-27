@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { useScrollReveal } from '@/hooks/useGsap'
 
 export function CtaSection() {
   const { t } = useTranslation()
   const imageRef = useScrollReveal<HTMLDivElement>()
   const contentRef = useScrollReveal<HTMLDivElement>()
-  const [imageLoading, setImageLoading] = useState(true)
-  const [imageError, setImageError] = useState(false)
 
   return (
     <section id="shop" className="py-24 md:py-32 border-t border-border">
@@ -22,11 +20,6 @@ export function CtaSection() {
               'radial-gradient(ellipse 100% 100% at 50% 50%, white 0%, white 60%, transparent 100%)',
           }}
         >
-          {imageLoading && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full max-w-7xl h-[400px] bg-muted animate-pulse rounded" />
-            </div>
-          )}
           <div
             style={{
               maskImage:
@@ -37,31 +30,21 @@ export function CtaSection() {
               WebkitMaskComposite: 'source-in',
             }}
           >
-            <picture>
-              <source
-                srcSet="/images/product-sm.webp 400w, /images/product-md.webp 600w, /images/product-lg.webp 800w, /images/product-xl.webp 1280w"
-                sizes="(max-width: 768px) 100vw, 1280px"
-                type="image/webp"
-              />
-              <img
-                src="/images/product-xl.jpg"
-                alt="Tigre Tigre Chili Crunch"
-                className="w-full max-w-7xl h-auto transition-opacity duration-300"
-                style={{ opacity: imageLoading ? 0 : 1 }}
-                loading="lazy"
-                onLoad={() => setImageLoading(false)}
-                onError={() => {
-                  setImageLoading(false)
-                  setImageError(true)
-                }}
-              />
-            </picture>
+            <ImageWithFallback
+              src="/images/product-xl.jpg"
+              alt="Tigre Tigre Chili Crunch"
+              sources={[
+                {
+                  srcSet:
+                    '/images/product-sm.webp 400w, /images/product-md.webp 600w, /images/product-lg.webp 800w, /images/product-xl.webp 1280w',
+                  sizes: '(max-width: 768px) 100vw, 1280px',
+                  type: 'image/webp',
+                },
+              ]}
+              className="w-full max-w-7xl h-auto"
+              loading="lazy"
+            />
           </div>
-          {imageError && (
-            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-              Image unavailable
-            </div>
-          )}
         </div>
 
         {/* Content */}

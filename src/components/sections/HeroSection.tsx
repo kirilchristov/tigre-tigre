@@ -1,12 +1,11 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { useHeroAnimation } from '@/hooks/useGsap'
 
 export function HeroSection() {
   const { t } = useTranslation()
   const contentRef = useHeroAnimation<HTMLDivElement>()
-  const [imageLoading, setImageLoading] = useState(true)
 
   return (
     <section
@@ -22,22 +21,22 @@ export function HeroSection() {
             'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 90%)',
         }}
       >
-        {imageLoading && <div className="absolute inset-0 bg-muted animate-pulse" />}
-        <picture>
-          <source
-            srcSet="/images/hero-sm.webp 640w, /images/hero-md.webp 1024w, /images/hero-lg.webp 1920w"
-            sizes="100vw"
-            type="image/webp"
-          />
-          <img
-            src="/images/hero-lg.jpg"
-            alt=""
-            className="w-full h-full object-cover object-center transition-opacity duration-500"
-            style={{ opacity: imageLoading ? 0 : 1 }}
-            loading="eager"
-            onLoad={() => setImageLoading(false)}
-          />
-        </picture>
+        <ImageWithFallback
+          src="/images/hero-lg.jpg"
+          alt=""
+          sources={[
+            {
+              srcSet:
+                '/images/hero-sm.webp 640w, /images/hero-md.webp 1024w, /images/hero-lg.webp 1920w',
+              sizes: '100vw',
+              type: 'image/webp',
+            },
+          ]}
+          className="w-full h-full object-cover object-center"
+          containerClassName="absolute inset-0"
+          loading="eager"
+          showErrorMessage={false}
+        />
       </div>
 
       {/* Content */}
