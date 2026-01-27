@@ -42,12 +42,14 @@ npm run preview
 ## 🌐 Deployment to Vercel
 
 ### Prerequisites
+
 - A GitHub account
 - A Vercel account (sign up at [vercel.com](https://vercel.com))
 
 ### Steps
 
 1. **Push your code to GitHub** (if not already done):
+
    ```bash
    git remote add origin https://github.com/YOUR_USERNAME/tigre-tigre.git
    git push -u origin main
