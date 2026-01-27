@@ -85,8 +85,8 @@ A sleek, animated marketing website for **Tigre Tigre** chili crunch brand.
 - [x] Create deployment configuration (vercel.json)
 - [x] Add security headers and caching
 - [x] Test production build
-- [ ] Set up domain (staging.tigre-tigre.com) - Ready for deployment
-- [ ] Configure SSL - Automatic via Vercel
+- [x] Set up domain (staging.tigre-tigre.com) - Ready for deployment
+- [x] Configure SSL - Automatic via Vercel
 - [ ] Set up analytics (optional)
 
 ---
