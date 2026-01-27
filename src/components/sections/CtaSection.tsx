@@ -9,12 +9,12 @@ export function CtaSection() {
   const contentRef = useScrollReveal<HTMLDivElement>()
 
   return (
-    <section id="shop" className="py-24 md:py-32 border-t border-border">
+    <section id="shop" className="pb-8 md:pb-16 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Product Image with Blended Edges */}
         <div
           ref={imageRef}
-          className="flex justify-center mb-12 relative"
+          className="flex justify-center relative"
           style={{
             background:
               'radial-gradient(ellipse 100% 100% at 50% 50%, white 0%, white 60%, transparent 100%)',
@@ -31,13 +31,13 @@ export function CtaSection() {
             }}
           >
             <ImageWithFallback
-              src="/images/product-xl.jpg"
+              src="/images/mocks/mock-lg.jpg"
               alt="Tigre Tigre Chili Crunch"
               sources={[
                 {
                   srcSet:
-                    '/images/product-sm.webp 400w, /images/product-md.webp 600w, /images/product-lg.webp 800w, /images/product-xl.webp 1280w',
-                  sizes: '(max-width: 768px) 100vw, 1280px',
+                    '/images/mocks/mock-sm.webp 640w, /images/mocks/mock-md.webp 1024w, /images/mocks/mock-lg.webp 1496w',
+                  sizes: '(max-width: 768px) 100vw, 1496px',
                   type: 'image/webp',
                 },
               ]}
@@ -49,10 +49,6 @@ export function CtaSection() {
 
         {/* Content */}
         <div ref={contentRef} className="text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{t('cta.title')}</h2>
-          <p className="max-w-xl mx-auto text-base sm:text-lg text-muted-foreground mb-8 px-4">
-            {t('cta.description')}
-          </p>
           <Button
             size="lg"
             className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px] w-full sm:w-auto"

@@ -25,12 +25,12 @@ const ContactSection = lazy(() =>
 function HomePage() {
   return (
     <Layout>
-      <HeroSection />
+      <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
+        <HeroSection />
         <AboutSection />
         <FeaturesSection />
         <TestimonialsSection />
-        <CtaSection />
         <ContactSection />
       </Suspense>
     </Layout>
