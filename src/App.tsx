@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Layout } from '@/components/layout'
 import { HeroSection } from '@/components/sections'
+import { SplashPage } from '@/components/SplashPage'
 
 // Lazy load sections below the fold for better performance
 const AboutSection = lazy(() =>
@@ -20,6 +21,15 @@ const ContactSection = lazy(() =>
 )
 
 function App() {
+  // Check if we're on the production domain (not staging)
+  const isProduction = window.location.hostname === 'tigre-tigre.com'
+
+  // Show splash page on production domain
+  if (isProduction) {
+    return <SplashPage />
+  }
+
+  // Show full site on staging domain
   return (
     <Layout>
       <HeroSection />
