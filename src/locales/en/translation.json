@@ -12,11 +12,18 @@
     "learnMore": "Learn More"
   },
   "about": {
-    "title": "Our Story",
-    "description": "Born from a passion for bold flavors and quality ingredients, Tigre Tigre brings you an exceptional chili crunch that transforms every meal into an unforgettable experience."
+    "title": "shamelessly delicious",
+    "paragraphs": [
+      "tigre tigre is not for first dates.\nNot for lunch with colleagues.\nNot for people who ask 'is it spicy?'.",
+      "Our oil is greasy. For real.\nThe garlic is dangerous.\nThe heat doesn't ask.",
+      "tigre tigre is for when there's no one to impress.\nExcept yourself.",
+      "We don't care what you put us on.\nOnly if you think about us after.",
+      "Our mission is simple: to be missed.",
+      "tigre tigre\nShamelessly delicious."
+    ]
   },
   "features": {
-    "title": "Why Tigre Tigre",
+    "title": "Why tigre tigre",
     "items": {
       "crispy": {
         "title": "Extra Crispy",
@@ -62,7 +69,7 @@
     "email": "hello@tigre-tigre.com"
   },
   "footer": {
-    "copyright": "© 2026 Tigre Tigre. All rights reserved."
+    "copyright": "© 2026 tigre tigre. All rights reserved."
   },
   "error": {
     "boundary": {

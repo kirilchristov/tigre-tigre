@@ -1,8 +1,8 @@
-# Tigre Tigre - Project Implementation Plan
+# tigre tigre - Project Implementation Plan
 
 ## Project Overview
 
-A sleek, animated marketing website for **Tigre Tigre** chili crunch brand.
+A sleek, animated marketing website for **tigre tigre** chili crunch brand.
 
 **Website:** tigre-tigre.com
 **Stack:** React + Vite + shadcn/ui + GSAP + Stripe Payment Links

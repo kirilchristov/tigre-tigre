@@ -7,10 +7,25 @@ export function AboutSection() {
   const ref = useScrollReveal<HTMLDivElement>()
 
   return (
-    <Section id="about" className="py-24 md:py-32 text-center border-t border-border">
-      <div ref={ref}>
-        <h2 className="text-4xl md:text-6xl font-bold mb-6">{t('about.title')}</h2>
-        <p className="max-w-2xl mx-auto text-lg text-muted-foreground">{t('about.description')}</p>
+    <Section id="about" className="py-24 md:py-32 bg-white border-t border-border">
+      <div ref={ref} className="max-w-4xl mx-auto text-center">
+        <h2
+          className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-black lowercase"
+          style={{ fontFamily: 'Arial, sans-serif' }}
+        >
+          {t('about.title')}
+        </h2>
+        <div className="space-y-6 text-black" style={{ fontFamily: 'Arial, sans-serif' }}>
+          {(t('about.paragraphs', { returnObjects: true }) as string[]).map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-xl md:text-2xl lg:text-3xl font-bold leading-relaxed"
+              style={{ whiteSpace: 'break-spaces', textAlign: 'left' }}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </div>
     </Section>
   )

@@ -32,7 +32,7 @@ export function CtaSection() {
           >
             <ImageWithFallback
               src="/images/mocks/mock-lg.jpg"
-              alt="Tigre Tigre Chili Crunch"
+              alt="tigre tigre Chili Crunch"
               sources={[
                 {
                   srcSet:

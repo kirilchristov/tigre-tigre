@@ -27,8 +27,8 @@ function HomePage() {
     <Layout>
       <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
-        <HeroSection />
         <AboutSection />
+        <HeroSection />
         <FeaturesSection />
         <TestimonialsSection />
         <ContactSection />

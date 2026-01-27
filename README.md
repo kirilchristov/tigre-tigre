@@ -1,6 +1,6 @@
-# Tigre Tigre - Premium Chili Crunch Website
+# tigre tigre - Premium Chili Crunch Website
 
-A sleek, animated marketing website for Tigre Tigre chili crunch brand built with React, Vite, and GSAP.
+A sleek, animated marketing website for tigre tigre chili crunch brand built with React, Vite, and GSAP.
 
 ## 🚀 Tech Stack
 
