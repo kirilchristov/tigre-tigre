@@ -11,27 +11,29 @@ export function useScrollReveal<T extends HTMLElement>() {
     const element = ref.current
     if (!element) return
 
-    gsap.fromTo(
-      element,
-      {
-        opacity: 0,
-        y: 60,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          y: 60,
         },
-      }
-    )
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+    })
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ctx.revert() // Properly cleanup all animations and ScrollTriggers in this context
     }
   }, [])
 
@@ -47,21 +49,27 @@ export function useHeroAnimation<T extends HTMLElement>() {
 
     const children = element.children
 
-    gsap.fromTo(
-      children,
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        stagger: 0.15,
-        delay: 0.2,
-      }
-    )
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        children,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.15,
+          delay: 0.2,
+        }
+      )
+    })
+
+    return () => {
+      ctx.revert()
+    }
   }, [])
 
   return ref
@@ -74,19 +82,21 @@ export function useParallax<T extends HTMLElement>(speed: number = 0.5) {
     const element = ref.current
     if (!element) return
 
-    gsap.to(element, {
-      yPercent: speed * 100,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: element,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
-      },
+    const ctx = gsap.context(() => {
+      gsap.to(element, {
+        yPercent: speed * 100,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ctx.revert()
     }
   }, [speed])
 
@@ -102,28 +112,30 @@ export function useStaggerReveal<T extends HTMLElement>() {
 
     const children = element.children
 
-    gsap.fromTo(
-      children,
-      {
-        opacity: 0,
-        y: 40,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        children,
+        {
+          opacity: 0,
+          y: 40,
         },
-      }
-    )
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+    })
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ctx.revert()
     }
   }, [])
 
