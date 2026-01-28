@@ -23,7 +23,6 @@ const TextScroller: React.FC<TextScrollerProps> = ({
   pauseOnHover = true,
   className,
   textClassName,
-  separator = '•',
 }) => {
   const textItems = texts.map((text) => ({
     text,
