@@ -50,12 +50,15 @@ const MarqueeWrapper: React.FC<MarqueeWrapperProps> = ({
       className={cn('overflow-hidden', className)}
     >
       {items.map((item, index) => (
-        <div key={index} className={cn('mx-4 flex items-center justify-center', itemClassName)}>
+        <div
+          key={index}
+          className={cn('mx-4 flex items-center justify-center h-full', itemClassName)}
+        >
           {item.src ? (
             <img
               src={item.src}
               alt={item.alt || `Marquee item ${index + 1}`}
-              className={cn('h-auto max-h-24 w-auto object-contain', imageClassName)}
+              className={imageClassName || 'h-auto max-h-24 w-auto object-contain'}
             />
           ) : (
             <span

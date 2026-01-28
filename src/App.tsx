@@ -22,12 +22,27 @@ const ContactSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.ContactSection }))
 )
 
+const BannerScrollerSection = lazy(() =>
+  import('./components/BannerScroller').then((mod) => ({ default: mod.default }))
+)
+
+const TextScrollerSection = lazy(() =>
+  import('./components/TextScroller').then((mod) => ({ default: mod.default }))
+)
+
 function HomePage() {
   return (
     <Layout>
       <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
+        <TextScrollerSection
+          texts={['безсрамно вкусно', 'безсрамно вкусно', 'безсрамно вкусно']}
+          speed={60}
+          direction="right"
+          textClassName="text-6xl font-black text-red-600"
+        />
         <AboutSection />
+        <BannerScrollerSection />
         <HeroSection />
         <FeaturesSection />
         <TestimonialsSection />
