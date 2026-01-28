@@ -1,53 +1,67 @@
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import fs from 'fs'
+import { promisify } from 'util'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const readdir = promisify(fs.readdir)
 
-const inputPath = path.join(__dirname, '../public/images/mocks/mock2.webp')
-const outputDir = path.join(__dirname, '../public/images/mocks')
+// Change the path for every image folder
+const inputDir = path.join(__dirname, '../public/banners')
+const outputDir = path.join(__dirname, '../public/banners')
 
 const sizes = [
-  { name: 'mock-sm', width: 640 },
-  { name: 'mock-md', width: 1024 },
-  { name: 'mock-lg', width: 1920 },
+  { suffix: 'sm', width: 640 },
+  { suffix: 'md', width: 1024 },
+  { suffix: 'lg', width: 1920 },
+  { suffix: 'xl', width: 2480 },
 ]
 
 async function optimizeImage() {
-  console.log('Processing image...')
+  console.log('Processing images...')
 
-  for (const size of sizes) {
-    const outputPath = path.join(outputDir, `${size.name}.webp`)
+  // Read all files from the input directory
+  const files = await readdir(inputDir)
+  const imageFiles = files.filter(
+    (file) =>
+      file.match(/\.(png|jpg|jpeg|webp)$/i) &&
+      !file.includes('-sm') &&
+      !file.includes('-md') &&
+      !file.includes('-lg') &&
+      !file.includes('-xl')
+  )
 
-    await sharp(inputPath)
-      .resize(size.width, null, {
-        withoutEnlargement: true,
-        fit: 'inside',
-      })
-      .webp({ quality: 80 })
-      .toFile(outputPath)
+  for (const file of imageFiles) {
+    const inputPath = path.join(inputDir, file)
+    const baseName = path.basename(file, path.extname(file))
 
-    const stats = await sharp(outputPath).metadata()
-    const fs = await import('fs')
-    const fileSize = fs.statSync(outputPath).size
+    console.log(`\nProcessing ${file}...`)
 
-    console.log(
-      `Created ${size.name}.webp: ${stats.width}x${stats.height}, ${(fileSize / 1024).toFixed(0)}KB`
-    )
+    for (const size of sizes) {
+      const tempPath = path.join(outputDir, `temp-${baseName}-${size.suffix}.webp`)
+
+      await sharp(inputPath)
+        .resize(size.width, null, {
+          withoutEnlargement: true,
+          fit: 'inside',
+        })
+        .webp({ quality: 80 })
+        .toFile(tempPath)
+
+      const stats = await sharp(tempPath).metadata()
+      const outputPath = path.join(outputDir, `${baseName}-${stats.width}x${stats.height}.webp`)
+
+      // Rename temp file to final name with dimensions
+      fs.renameSync(tempPath, outputPath)
+
+      const fileSize = fs.statSync(outputPath).size
+
+      console.log(
+        `  Created ${baseName}-${stats.width}x${stats.height}.webp: ${(fileSize / 1024).toFixed(0)}KB`
+      )
+    }
   }
-
-  // Also create a JPEG fallback for older browsers
-  const fallbackPath = path.join(outputDir, 'mock-lg.jpg')
-  await sharp(inputPath)
-    .resize(1920, null, { withoutEnlargement: true, fit: 'inside' })
-    .jpeg({ quality: 80 })
-    .toFile(fallbackPath)
-
-  const fs = await import('fs')
-  const fallbackSize = fs.statSync(fallbackPath).size
-  console.log(`Created mock-lg.jpg (fallback): ${(fallbackSize / 1024).toFixed(0)}KB`)
-
-  console.log('\nDone! Images saved to public/images/mocks/')
 }
 
 optimizeImage().catch(console.error)
