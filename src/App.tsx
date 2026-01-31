@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
-import { HeroSection } from '@/components/sections'
+
 import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
@@ -30,12 +30,21 @@ const SubHeroTextRollerSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.SubHeroTextRollerSection }))
 )
 
+const FirstTigerSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
+)
+
+const HeroSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.HeroSection }))
+)
+
 function HomePage() {
   return (
     <Layout>
       <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
         <SubHeroTextRollerSection />
+        <FirstTigerSection />
         <AboutSection />
         <BannerScrollerSection />
         <HeroSection />

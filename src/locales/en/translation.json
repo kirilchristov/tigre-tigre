@@ -1,4 +1,6 @@
 {
+  "title": "tigre tigre",
+  "tagline": "shamelessly delicious",
   "nav": {
     "home": "Home",
     "about": "About",
@@ -15,12 +17,29 @@
   "about": {
     "title": "shamelessly delicious",
     "paragraphs": [
-      "tigre tigre is not for first dates.\nNot for lunch with colleagues.\nNot for people who ask 'is it spicy?'.",
-      "Our oil is greasy. For real.\nThe garlic is dangerous.\nThe heat doesn't ask.",
-      "tigre tigre is for when there's no one to impress.\nExcept yourself.",
-      "We don't care what you put us on.\nOnly if you think about us after.",
-      "Our mission is simple: to be missed.",
-      "tigre tigre\nShamelessly delicious."
+      "tigre tigre is for when there's no one to impress.\nAnd when you're the hardest person to impress.\n",
+      "Our oil is greasy. For real.\nThe garlic is dangerous.\nAnd crunchy.",
+      "Our oil is greasy. For real.\nThe garlic is dangerous.\nAnd crunchy.",
+      "The heat is worthy of ramen soup.\n",
+      "We have no qualms about what you put us on.\nWe only care if you think about us after.",
+      "Our mission is simple: to be missed.\nTo be the nagging thought\nthat you want to satisfy."
+    ]
+  },
+  "firstTiger": {
+    "paragraphs": [
+      "What you're holding is part of the first 1000 jars of tigre tigre.\nWe released them without design, without a pretty label, and without pretensions.",
+      "But this is our most important label.\nThe one with the QR code.\nIt leads you to a feedback form, because even before we think about visuals, we want to be sure of the most important thing – the taste.",
+      "These 1000 jars are limited.\nAfter them, there will be a real label, large production, and fewer apologies.",
+      "But this here is the beginning.\nThe version where taste matters more than packaging and your opinion is part of the product."
+    ]
+  },
+  "howTo": {
+    "title": "How to eat it?",
+    "paragraphs": [
+      "There's no right way.\nThere's your way.",
+      "Put a spoonful on eggs, pasta, noodles, or rice.\nWorks with meat, vegetables, and anything that needs a little heat and you want to give it a lot of character.",
+      "You can mix it in.\nYou can pour it on top.\nYou can eat it straight with bread, if you can't be bothered.",
+      "tigre tigre isn't measured in grams and recipes.\nIt's eaten by eye, by stomach, and without shame."
     ]
   },
   "features": {
