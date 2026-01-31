@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
   // Stripe
-  readonly VITE_STRIPE_PUBLISHABLE_KEY: string
+  readonly VITE_STRIPE_PUBLISHABLE_KEY?: string
   readonly VITE_STRIPE_PAYMENT_LINK_SINGLE: string
   readonly VITE_STRIPE_PAYMENT_LINK_BUNDLE: string
 

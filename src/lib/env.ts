@@ -35,10 +35,6 @@ export function validateEnv() {
   if (import.meta.env.DEV) {
     const warnings: string[] = []
 
-    if (!env.stripe.publishableKey) {
-      warnings.push('VITE_STRIPE_PUBLISHABLE_KEY is not set')
-    }
-
     if (!env.stripe.paymentLinkSingle || env.stripe.paymentLinkSingle === '#') {
       warnings.push('VITE_STRIPE_PAYMENT_LINK_SINGLE is not set')
     }
@@ -51,7 +47,7 @@ export function validateEnv() {
       console.warn(
         '⚠️ Missing environment variables:\n' +
           warnings.map((w) => `  - ${w}`).join('\n') +
-          '\n\nCopy .env.example to .env.local and configure your variables.'
+          '\n\nCopy .env.example to .env and configure your Stripe payment links.'
       )
     }
   }

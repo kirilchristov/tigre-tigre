@@ -48,7 +48,9 @@ export function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
-            <Button size="sm">{t('hero.shopNow')}</Button>
+            <Button size="sm" asChild>
+              <a href="#shop">{t('hero.shopNow')}</a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,8 +93,10 @@ export function Header() {
               {t(`nav.${item.key}`)}
             </a>
           ))}
-          <Button size="sm" className="w-full mt-2 min-h-[44px]">
-            {t('hero.shopNow')}
+          <Button size="sm" className="w-full mt-2 min-h-[44px]" asChild>
+            <a href="#shop" onClick={() => setIsMenuOpen(false)}>
+              {t('hero.shopNow')}
+            </a>
           </Button>
         </nav>
       </div>
