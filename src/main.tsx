@@ -11,6 +11,8 @@ import { validateEnv } from './lib/env'
 // Validate environment variables in development
 validateEnv()
 
+console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, '0.1.0')
+
 // Log version info in staging environment
 if (import.meta.env.MODE === 'staging' || (import.meta.env.DEV && import.meta.env.VITE_STAGING)) {
   console.log('%ctigre tigre App', 'font-weight: bold; font-size: 16px; color: #ff6b00;')
