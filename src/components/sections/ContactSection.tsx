@@ -9,7 +9,7 @@ export function ContactSection() {
   const email = env.contact.email
 
   return (
-    <Section id="contact" className="py-16 text-center border-t border-border">
+    <Section id="contact" className="py-16 text-center border-t border-border bg-muted/30">
       <div ref={ref}>
         <h2 className="text-4xl md:text-5xl font-bold mb-6">{t('contact.title')}</h2>
         <p className="text-lg text-muted-foreground mb-4">{t('contact.description')}</p>

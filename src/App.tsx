@@ -34,6 +34,9 @@ const SubHeroTextRollerSection = lazy(() =>
 const FirstTigerSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
 )
+const HowToEatSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.HowToEatSection }))
+)
 
 // const HeroSection = lazy(() =>
 //   import('@/components/sections').then((mod) => ({ default: mod.HeroSection }))
@@ -42,11 +45,12 @@ const FirstTigerSection = lazy(() =>
 function HomePage() {
   return (
     <Layout>
-      <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
         <SubHeroTextRollerSection />
-        <BannerScrollerSection />
+        <CtaSection />
         <FirstTigerSection />
+        <BannerScrollerSection />
+        <HowToEatSection />
         <ProductCTA />
         <AboutSection />
         {/* <HeroSection /> */}
