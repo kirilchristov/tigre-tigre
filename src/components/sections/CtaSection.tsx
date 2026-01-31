@@ -1,13 +1,9 @@
-import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { useScrollReveal } from '@/hooks/useGsap'
 import { ProductCTA } from '../ProductCTA'
 
 export function CtaSection() {
-  const { t } = useTranslation()
   const imageRef = useScrollReveal<HTMLDivElement>()
-  const contentRef = useScrollReveal<HTMLDivElement>()
 
   return (
     <section id="shop" className="pb-8 md:pb-16 ">
