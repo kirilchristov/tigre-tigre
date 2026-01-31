@@ -49,10 +49,7 @@ export function CtaSection() {
 
         {/* Content */}
         <div ref={contentRef} className="text-center">
-          <Button
-            size="lg"
-            className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px] w-full sm:w-auto"
-          >
+          <Button size="lg" className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px]  sm:w-auto">
             {t('cta.button')}
           </Button>
         </div>

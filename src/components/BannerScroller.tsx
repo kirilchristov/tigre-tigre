@@ -32,7 +32,7 @@ const BannerScroller: React.FC = () => {
         speed={40}
         direction="left"
         gradient={false}
-        pauseOnHover={false}
+        pauseOnHover
         className="h-full"
         itemClassName="mx-0"
         imageClassName="h-[640px] w-auto object-contain"
