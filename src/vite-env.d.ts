@@ -10,6 +10,11 @@ interface ImportMetaEnv {
 
   // Contact
   readonly VITE_CONTACT_EMAIL: string
+
+  // Vercel (auto-injected)
+  readonly VITE_VERCEL_ENV?: 'production' | 'preview' | 'development'
+  readonly VITE_VERCEL_GIT_COMMIT_SHA?: string
+  readonly VITE_STAGING?: string
 }
 
 interface ImportMeta {
