@@ -30,7 +30,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   }
 
   return (
-    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4', className)}>
+    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-6', className)}>
       <div
         className={cn(
           'grid gap-4',
@@ -60,9 +60,8 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             <div>
               <div className="flex items-baseline gap-2">
                 <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
-                  {t('productCTA.single.price')}
+                  {t('productCTA.single.price')} {t('productCTA.currency')}
                 </span>
-                <span className="text-sm text-muted-foreground">{t('productCTA.currency')}</span>
               </div>
               <p className="text-sm text-muted-foreground mt-1">
                 {t('productCTA.single.shipping')}
@@ -111,9 +110,8 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             <div>
               <div className="flex items-baseline gap-2">
                 <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
-                  {t('productCTA.multiple.price')}
+                  {t('productCTA.multiple.price')} {t('productCTA.currency')}
                 </span>
-                <span className="text-sm text-muted-foreground">{t('productCTA.currency')}</span>
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-sm font-bold text-green-600">

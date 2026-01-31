@@ -84,7 +84,7 @@
     "button": "Order Now"
   },
   "productCTA": {
-    "currency": "euro",
+    "currency": "€",
     "single": {
       "title": "Buy 1 Jar",
       "description": "Perfect for trying",
