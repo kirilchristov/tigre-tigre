@@ -26,7 +26,7 @@ const BannerScroller: React.FC = () => {
   ]
 
   return (
-    <div className="w-full h-[640px]">
+    <div className="w-full h-[350px] md:h-[640px]">
       <MarqueeWrapper
         items={banners}
         speed={30}
@@ -35,7 +35,7 @@ const BannerScroller: React.FC = () => {
         pauseOnHover
         className="h-full"
         itemClassName="mx-0"
-        imageClassName="h-[640px] w-auto object-contain"
+        imageClassName="h-[350px] md:h-[640px] w-auto object-contain"
       />
     </div>
   )

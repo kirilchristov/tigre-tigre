@@ -3,7 +3,8 @@
 interface ImportMetaEnv {
   // Stripe
   readonly VITE_STRIPE_PUBLISHABLE_KEY: string
-  readonly VITE_STRIPE_PAYMENT_LINK_URL: string
+  readonly VITE_STRIPE_PAYMENT_LINK_SINGLE: string
+  readonly VITE_STRIPE_PAYMENT_LINK_BUNDLE: string
 
   // Analytics (optional)
   readonly VITE_GA_MEASUREMENT_ID?: string

@@ -20,13 +20,11 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const ref = useScrollReveal<HTMLDivElement>()
 
   const handleBuySingle = () => {
-    // TODO: Implement single jar purchase
-    console.log('Buy single jar')
+    window.location.href = import.meta.env.VITE_STRIPE_PAYMENT_LINK_SINGLE
   }
 
   const handleBuyMultiple = () => {
-    // TODO: Implement multiple jars purchase
-    console.log('Buy multiple jars')
+    window.location.href = import.meta.env.VITE_STRIPE_PAYMENT_LINK_BUNDLE
   }
 
   return (
