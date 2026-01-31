@@ -8,7 +8,7 @@ export function FirstTigerSection() {
   const ref = useScrollReveal<HTMLDivElement>()
 
   return (
-    <Section id="first-tiger" className="py-24 md:py-32 bg-white border-t border-border">
+    <Section id="first-tiger" className="py-16 md:py-16 bg-muted/20">
       <div ref={ref} className="max-w-5xl mx-auto text-center">
         <div className="space-y-6 text-black" style={{ fontFamily: 'Arial, sans-serif' }}>
           {(t('firstTiger.paragraphs', { returnObjects: true }) as string[]).map(

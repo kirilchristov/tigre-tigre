@@ -29,7 +29,7 @@ const BannerScroller: React.FC = () => {
     <div className="w-full h-[640px]">
       <MarqueeWrapper
         items={banners}
-        speed={40}
+        speed={30}
         direction="left"
         gradient={false}
         pauseOnHover

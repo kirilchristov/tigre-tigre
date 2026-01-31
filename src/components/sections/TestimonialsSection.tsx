@@ -10,7 +10,7 @@ export function TestimonialsSection() {
   const gridRef = useStaggerReveal<HTMLDivElement>()
 
   return (
-    <Section className="py-24 md:py-32 border-t border-border bg-muted/30">
+    <Section className="py-16 bg-muted/30">
       <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-center mb-16">
         {t('testimonials.title')}
       </h2>

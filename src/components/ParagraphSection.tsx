@@ -22,7 +22,7 @@ export function ParagraphSection({
   translationKey,
   id,
   showSignature = false,
-  className = 'py-24 md:py-32 bg-white border-t border-border',
+  className = 'py-16 bg-white',
 }: ParagraphSectionProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { useScrollReveal } from '@/hooks/useGsap'
+import { ProductCTA } from '../ProductCTA'
 
 export function CtaSection() {
   const { t } = useTranslation()
@@ -46,13 +47,13 @@ export function CtaSection() {
             />
           </div>
         </div>
-
         {/* Content */}
-        <div ref={contentRef} className="text-center">
+        {/* <div ref={contentRef} className="text-center">
           <Button size="lg" className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px]  sm:w-auto">
             {t('cta.button')}
           </Button>
-        </div>
+        </div> */}
+        <ProductCTA />
       </div>
     </section>
   )

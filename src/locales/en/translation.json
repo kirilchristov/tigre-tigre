@@ -83,6 +83,26 @@
   "cta": {
     "button": "Order Now"
   },
+  "productCTA": {
+    "currency": "euro",
+    "single": {
+      "title": "Buy 1 Jar",
+      "description": "Perfect for trying",
+      "price": "6.99",
+      "shipping": "+ shipping",
+      "button": "Buy Now"
+    },
+    "multiple": {
+      "badge": "Best Value",
+      "title": "Buy 2+ Jars",
+      "description": "Stock up for longer",
+      "price": "13.98+",
+      "shipping": "FREE SHIPPING",
+      "shippingSaved": "+4.99€ shipping",
+      "button": "Buy 2+ Jars"
+    },
+    "trustSignal": "Fast delivery across Bulgaria"
+  },
   "contact": {
     "title": "Get in Touch",
     "description": "Have questions? We'd love to hear from you.",

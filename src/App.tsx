@@ -5,17 +5,18 @@ import { Layout } from '@/components/layout'
 import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
+import { ProductCTA } from './components/ProductCTA'
 
 // Lazy load sections below the fold for better performance
 const AboutSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.AboutSection }))
 )
-const FeaturesSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.FeaturesSection }))
-)
-const TestimonialsSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.TestimonialsSection }))
-)
+// const FeaturesSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.FeaturesSection }))
+// )
+// const TestimonialsSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.TestimonialsSection }))
+// )
 const CtaSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.CtaSection }))
 )
@@ -34,9 +35,9 @@ const FirstTigerSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
 )
 
-const HeroSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.HeroSection }))
-)
+// const HeroSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.HeroSection }))
+// )
 
 function HomePage() {
   return (
@@ -44,12 +45,13 @@ function HomePage() {
       <CtaSection />
       <Suspense fallback={<div className="min-h-screen" />}>
         <SubHeroTextRollerSection />
-        <FirstTigerSection />
-        <AboutSection />
         <BannerScrollerSection />
-        <HeroSection />
-        <FeaturesSection />
-        <TestimonialsSection />
+        <FirstTigerSection />
+        <ProductCTA />
+        <AboutSection />
+        {/* <HeroSection /> */}
+        {/* <FeaturesSection /> */}
+        {/* <TestimonialsSection /> */}
         <ContactSection />
       </Suspense>
     </Layout>

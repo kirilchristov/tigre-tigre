@@ -14,7 +14,7 @@ export function SubHeroTextRollerSection() {
         speed={40}
         direction="left"
         pauseOnHover={true}
-        textClassName="text-3xl font-black text-red-600"
+        textClassName="text-3xl font-black text-brand-600"
       />
     </Section>
   )

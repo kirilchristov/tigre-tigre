@@ -10,7 +10,7 @@ export function FeaturesSection() {
   const gridRef = useStaggerReveal<HTMLDivElement>()
 
   return (
-    <Section className="py-24 md:py-32 border-t border-border">
+    <Section className="py-16">
       <h2 ref={titleRef} className="text-4xl md:text-5xl font-bold text-center mb-16">
         {t('features.title')}
       </h2>
