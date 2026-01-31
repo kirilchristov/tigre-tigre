@@ -4,6 +4,7 @@ import { Layout } from '@/components/layout'
 import { HeroSection } from '@/components/sections'
 import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
+import { QrRedirect } from './components/QRRedirect'
 
 // Lazy load sections below the fold for better performance
 const AboutSection = lazy(() =>
@@ -66,6 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/r/:code" element={<QrRedirect />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
