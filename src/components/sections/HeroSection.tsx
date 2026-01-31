@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
+import { GradientMask, GRADIENT_TYPES } from '@/components/ui/gradient-mask'
 import { useHeroAnimation } from '@/hooks/useGsap'
 
 export function HeroSection() {
@@ -13,14 +14,7 @@ export function HeroSection() {
       aria-label="Hero section"
     >
       {/* Background Image with Fade Effect */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 90%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 90%)',
-        }}
-      >
+      <GradientMask className="absolute inset-0 z-0" type={GRADIENT_TYPES.HORIZONTAL}>
         <ImageWithFallback
           src="/images/hero-lg.jpg"
           alt=""
@@ -37,7 +31,7 @@ export function HeroSection() {
           loading="eager"
           showErrorMessage={false}
         />
-      </div>
+      </GradientMask>
 
       {/* Content */}
       <div
