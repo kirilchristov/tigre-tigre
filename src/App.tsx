@@ -22,13 +22,11 @@ const CtaSection = lazy(() =>
 const ContactSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.ContactSection }))
 )
-
 const BannerScrollerSection = lazy(() =>
-  import('./components/BannerScroller').then((mod) => ({ default: mod.default }))
+  import('@/components/sections').then((mod) => ({ default: mod.BannerScrollerSection }))
 )
-
 const TextScrollerSection = lazy(() =>
-  import('./components/TextScroller').then((mod) => ({ default: mod.default }))
+  import('@/components/sections').then((mod) => ({ default: mod.TextScrollerSection }))
 )
 
 function HomePage() {
