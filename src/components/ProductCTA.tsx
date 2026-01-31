@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useScrollReveal } from '@/hooks/useGsap'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -16,6 +17,7 @@ interface ProductCTAProps {
  */
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
+  const ref = useScrollReveal<HTMLDivElement>()
 
   const handleBuySingle = () => {
     // TODO: Implement single jar purchase
@@ -28,7 +30,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   }
 
   return (
-    <div className={cn('w-full max-w-4xl mx-auto my-4', className)}>
+    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4', className)}>
       <div
         className={cn(
           'grid gap-4',
