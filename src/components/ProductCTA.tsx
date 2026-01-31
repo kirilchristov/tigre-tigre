@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
+import { env } from '@/lib/env'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -20,11 +21,11 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const ref = useScrollReveal<HTMLDivElement>()
 
   const handleBuySingle = () => {
-    window.location.href = import.meta.env.VITE_STRIPE_PAYMENT_LINK_SINGLE
+    window.location.href = env.stripe.paymentLinkSingle
   }
 
   const handleBuyMultiple = () => {
-    window.location.href = import.meta.env.VITE_STRIPE_PAYMENT_LINK_BUNDLE
+    window.location.href = env.stripe.paymentLinkBundle
   }
 
   return (

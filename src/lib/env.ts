@@ -7,7 +7,8 @@ export const env = {
   // Stripe
   stripe: {
     publishableKey: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
-    paymentLinkUrl: import.meta.env.VITE_STRIPE_PAYMENT_LINK_URL || '#',
+    paymentLinkSingle: import.meta.env.VITE_STRIPE_PAYMENT_LINK_SINGLE || '#',
+    paymentLinkBundle: import.meta.env.VITE_STRIPE_PAYMENT_LINK_BUNDLE || '#',
   },
 
   // Analytics
@@ -38,8 +39,12 @@ export function validateEnv() {
       warnings.push('VITE_STRIPE_PUBLISHABLE_KEY is not set')
     }
 
-    if (!env.stripe.paymentLinkUrl || env.stripe.paymentLinkUrl === '#') {
-      warnings.push('VITE_STRIPE_PAYMENT_LINK_URL is not set')
+    if (!env.stripe.paymentLinkSingle || env.stripe.paymentLinkSingle === '#') {
+      warnings.push('VITE_STRIPE_PAYMENT_LINK_SINGLE is not set')
+    }
+
+    if (!env.stripe.paymentLinkBundle || env.stripe.paymentLinkBundle === '#') {
+      warnings.push('VITE_STRIPE_PAYMENT_LINK_BUNDLE is not set')
     }
 
     if (warnings.length > 0) {
