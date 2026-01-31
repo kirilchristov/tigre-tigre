@@ -4,12 +4,22 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "vite",
+
+  "redirects": [
+    {
+      "source": "/r/:code",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
+
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
+
   "headers": [
     {
       "source": "/(.*)",
