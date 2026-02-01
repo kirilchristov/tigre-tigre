@@ -18,6 +18,7 @@ export function CtaSection() {
           }}
         >
           <div
+            className="w-full min-h-[50vw] md:min-h-[400px]"
             style={{
               maskImage:
                 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -39,7 +40,8 @@ export function CtaSection() {
                 },
               ]}
               className="w-full max-w-7xl h-auto"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
             />
           </div>
         </div>

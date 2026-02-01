@@ -11,6 +11,9 @@ import { ProductCTA } from './components/ProductCTA'
 const AboutSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.AboutSection }))
 )
+const AboutScrollHighlightSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.AboutScrollHighlightSection }))
+)
 // const FeaturesSection = lazy(() =>
 //   import('@/components/sections').then((mod) => ({ default: mod.FeaturesSection }))
 // )
@@ -52,6 +55,7 @@ function HomePage() {
         <BannerScrollerSection />
         <HowToEatSection />
         <ProductCTA />
+        <AboutScrollHighlightSection />
         <AboutSection />
         {/* <HeroSection /> */}
         {/* <FeaturesSection /> */}

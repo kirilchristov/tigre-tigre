@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Arial', 'sans-serif'],
+        mono: ['"Geist Mono"', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',

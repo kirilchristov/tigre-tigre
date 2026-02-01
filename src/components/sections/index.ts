@@ -1,5 +1,6 @@
 export { HeroSection } from './HeroSection'
 export { AboutSection } from './AboutSection'
+export { AboutScrollHighlightSection } from './AboutScrollHighlightSection'
 export { FeaturesSection } from './FeaturesSection'
 export { TestimonialsSection } from './TestimonialsSection'
 export { CtaSection } from './CtaSection'
