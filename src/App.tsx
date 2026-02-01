@@ -8,9 +8,9 @@ import { QrRedirect } from './components/QRRedirect'
 import { ProductCTA } from './components/ProductCTA'
 
 // Lazy load sections below the fold for better performance
-const AboutSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.AboutSection }))
-)
+// const AboutSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.AboutSection }))
+// )
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.AboutScrollHighlightSection }))
 )
@@ -34,11 +34,17 @@ const SubHeroTextRollerSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.SubHeroTextRollerSection }))
 )
 
-const FirstTigerSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
+// const FirstTigerSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
+// )
+const FirstTigerScrollHighlightSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.FirstTigerScrollHighlightSection }))
 )
-const HowToEatSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.HowToEatSection }))
+// const HowToEatSection = lazy(() =>
+//   import('@/components/sections').then((mod) => ({ default: mod.HowToEatSection }))
+// )
+const HowToEatScrollHighlightSection = lazy(() =>
+  import('@/components/sections').then((mod) => ({ default: mod.HowToEatScrollHighlightSection }))
 )
 
 // const HeroSection = lazy(() =>
@@ -49,14 +55,14 @@ function HomePage() {
   return (
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
-        <SubHeroTextRollerSection />
         <CtaSection />
-        <FirstTigerSection />
+        <SubHeroTextRollerSection />
+        <FirstTigerScrollHighlightSection />
         <BannerScrollerSection />
-        <HowToEatSection />
+        <HowToEatScrollHighlightSection />
         <ProductCTA />
         <AboutScrollHighlightSection />
-        <AboutSection />
+        {/* <AboutSection /> */}
         {/* <HeroSection /> */}
         {/* <FeaturesSection /> */}
         {/* <TestimonialsSection /> */}
