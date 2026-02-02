@@ -11,8 +11,9 @@ export function Header() {
 
   const navItems = [
     { key: 'home', href: '#' },
-    { key: 'about', href: '#about' },
-    { key: 'shop', href: '#shop' },
+    { key: 'firstTiger', href: '#first-tiger-highlight' },
+    { key: 'howTo', href: '#howto-highlight' },
+    { key: 'about', href: '#about-highlight' },
     { key: 'contact', href: '#contact' },
   ]
 
@@ -38,7 +39,7 @@ export function Header() {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {t(`nav.${item.key}`)}
               </a>
@@ -87,7 +88,7 @@ export function Header() {
             <a
               key={item.key}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
+              className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
               {t(`nav.${item.key}`)}

@@ -3,8 +3,9 @@
   "tagline": "shamelessly delicious",
   "nav": {
     "home": "Home",
+    "firstTiger": "First 1000",
+    "howTo": "How to Eat",
     "about": "About",
-    "shop": "Shop",
     "contact": "Contact"
   },
   "hero": {
@@ -28,7 +29,7 @@
   "aboutHighlight": {
     "title": "shamelessly delicious",
     "paragraphs": [
-      "[marker]tigre tigre[/marker] is for when there's no one to [underline]impress[/underline].\nAnd when you're the hardest person to impress.",
+      "[marker][brand]tigre tigre[/brand][/marker] is for when there's no one to [underline]impress[/underline].\nAnd when you're the hardest person to impress.",
       "Our oil is [marker]greasy[/marker]. For real.\nThe garlic is [circle]dangerous[/circle].\nAnd [underline]crunchy[/underline].",
       "The [marker]heat[/marker] is worthy of ramen soup.",
       "We have no qualms about what you put us on.\nWe only care if you think about us after.",
@@ -45,7 +46,7 @@
   },
   "firstTigerHighlight": {
     "paragraphs": [
-      "What you're holding is part of the [marker]first 1000 jars[/marker] of tigre tigre.\nWe released them without design, without a pretty label, and without [underline]pretensions[/underline].",
+      "What you're holding is part of the [marker]first 1000 jars[/marker] of [brand]tigre tigre[/brand].\nWe released them without design, without a pretty label, and without [underline]pretensions[/underline].",
       "But this is our [circle]most important[/circle] label.\nThe one with the QR code.\nIt leads you to a feedback form, because even before we think about visuals, we want to be sure of the most important thing – the [marker]taste[/marker].",
       "These 1000 jars are [underline]limited[/underline].\nAfter them, there will be a real label, large production, and fewer apologies.",
       "But this here is the [circle]beginning[/circle].\nThe version where taste matters more than packaging and [marker]your opinion[/marker] is part of the product."
@@ -66,7 +67,7 @@
       "There's [marker]no right way[/marker].\nThere's [circle]your way[/circle].",
       "Put a spoonful on [underline]eggs[/underline], pasta, noodles, or rice.\nWorks with meat, vegetables, and anything that needs a little [marker]heat[/marker] and you want to give it a lot of [underline]character[/underline].",
       "You can mix it in.\nYou can pour it on top.\nYou can eat it straight with [circle]bread[/circle], if you can't be bothered.",
-      "tigre tigre isn't measured in grams and recipes.\nIt's eaten by eye, by stomach, and [marker]without shame[/marker]."
+      "[brand]tigre tigre[/brand] isn't measured in grams and recipes.\nIt's eaten by eye, by stomach, and [marker]without shame[/marker]."
     ]
   },
   "features": {
@@ -125,7 +126,7 @@
       "description": "Stock up for longer",
       "price": "13.98+",
       "shipping": "FREE SHIPPING",
-      "shippingSaved": "+4.99€ shipping",
+      "shippingSaved": "+2€ shipping",
       "button": "Buy 2+ Jars"
     },
     "trustSignal": "Fast delivery across Bulgaria"

@@ -10,8 +10,8 @@ export type HighlightType = 'marker' | 'circle' | 'underline'
 interface ScrollHighlightTextProps {
   /**
    * The text content with inline markup for highlights.
-   * Supported tags: [marker]text[/marker], [circle]text[/circle], [underline]text[/underline]
-   * Example: "[marker]tigre tigre[/marker] is for when there's no one to [underline]impress[/underline]."
+   * Supported tags: [marker]text[/marker], [circle]text[/circle], [underline]text[/underline], [link:url]text[/link], [brand]text[/brand]
+   * Example: "[marker][brand]tigre tigre[/brand][/marker] is for when there's no one to [underline]impress[/underline]."
    */
   text: string
   /** Additional className for the container */
@@ -21,6 +21,8 @@ interface ScrollHighlightTextProps {
 type ParsedSegment =
   | { type: 'text'; content: string }
   | { type: 'highlight'; content: string; highlightType: HighlightType }
+  | { type: 'link'; content: string; url: string } // 'It leads you to a [link:https://forms.google.com/feedback]feedback form[/link], because...'
+  | { type: 'brand'; content: string }
   | { type: 'break' }
 
 /**
@@ -28,7 +30,7 @@ type ParsedSegment =
  * Words fade in from low opacity as user scrolls, with emphasis words getting
  * different SVG highlight styles (marker, circle, or underline).
  *
- * Use inline markup: [marker]word[/marker], [circle]word[/circle], [underline]word[/underline]
+ * Use inline markup: [marker]word[/marker], [circle]word[/circle], [underline]word[/underline], [link:url]text[/link], [brand]text[/brand]
  */
 export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -43,8 +45,9 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
     const lines = text.split('\n')
 
     lines.forEach((line, lineIndex) => {
-      // Regex to match [marker]...[/marker], [circle]...[/circle], [underline]...[/underline]
-      const tagRegex = /\[(marker|circle|underline)\](.*?)\[\/\1\]/g
+      // Regex to match [marker]...[/marker], [circle]...[/circle], [underline]...[/underline], [link:url]...[/link], [brand]...[/brand]
+      const tagRegex =
+        /\[(marker|circle|underline)\](.*?)\[\/\1\]|\[link:(.*?)\](.*?)\[\/link\]|\[brand\](.*?)\[\/brand\]/g
 
       let lastIndex = 0
       let match
@@ -58,10 +61,21 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
           }
         }
 
-        // Add the highlighted segment
-        const highlightType = match[1] as HighlightType
-        const highlightedText = match[2]
-        result.push({ type: 'highlight', content: highlightedText, highlightType })
+        // Check if it's a link, brand, or highlight
+        if (match[5] !== undefined) {
+          // It's a brand: [brand]text[/brand]
+          result.push({ type: 'brand', content: match[5] })
+        } else if (match[3] !== undefined) {
+          // It's a link: [link:url]text[/link]
+          const url = match[3]
+          const linkText = match[4]
+          result.push({ type: 'link', content: linkText, url })
+        } else {
+          // It's a highlight: [marker/circle/underline]text[/marker/circle/underline]
+          const highlightType = match[1] as HighlightType
+          const highlightedText = match[2]
+          result.push({ type: 'highlight', content: highlightedText, highlightType })
+        }
 
         lastIndex = match.index + match[0].length
       }
@@ -257,6 +271,28 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
   return (
     <div ref={containerRef} className={className}>
       {parsedContent.map((segment, index) => {
+        if (segment.type === 'link') {
+          return (
+            <a
+              key={`link-${index}`}
+              href={segment.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-foreground/80 transition-colors"
+            >
+              {renderWords(segment.content)}
+            </a>
+          )
+        }
+
+        if (segment.type === 'brand') {
+          return (
+            <span key={`brand-${index}`} className="font-sans font-bold">
+              {renderWords(segment.content)}
+            </span>
+          )
+        }
+
         if (segment.type === 'break') {
           return <br key={`br-${index}`} />
         }
