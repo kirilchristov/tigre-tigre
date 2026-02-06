@@ -87,20 +87,20 @@
   "productCTA": {
     "currency": "€",
     "single": {
-      "title": "Купи 1 буркан",
+      "title": "Вземи 1",
       "description": "Идеално за проба",
-      "price": "6.99",
-      "shipping": "+ доставка",
-      "button": "Купи сега"
+      "price": "{{price}}{{currency}}",
+      "shipping": "+{{shippingPrice}}{{currency}} доставка",
+      "button": "Вземи 1"
     },
     "multiple": {
       "badge": "Най-изгодно",
-      "title": "Купи 2+ буркана",
+      "title": "Вземи 2+",
       "description": "Запаси се за по-дълго",
-      "price": "13.98+",
+      "price": "{{price}}{{currency}} всеки",
       "shipping": "БЕЗПЛАТНА ДОСТАВКА",
-      "shippingSaved": "+2€ доставка",
-      "button": "Купи 2+ буркана"
+      "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
+      "button": "Вземи 2+"
     },
     "trustSignal": "Бърза доставка в цяла България"
   },

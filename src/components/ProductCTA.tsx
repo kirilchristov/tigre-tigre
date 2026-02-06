@@ -16,9 +16,14 @@ interface ProductCTAProps {
  * 1. Single jar with shipping cost
  * 2. Multiple jars with free shipping (emphasized as better deal)
  */
+const PRICE = '6.99'
+const SHIPPING_PRICE = '2'
+const CURRENCY = '€'
+
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()
+  const priceVars = { price: PRICE, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
 
   const handleBuySingle = () => {
     window.location.href = env.stripe.paymentLinkSingle
@@ -59,11 +64,11 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             <div>
               <div className="flex items-baseline gap-2">
                 <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
-                  {t('productCTA.single.price')} {t('productCTA.currency')}
+                  {t('productCTA.single.price', priceVars)}
                 </span>
               </div>
               <p className="text-sm text-muted-foreground mt-1">
-                {t('productCTA.single.shipping')}
+                {t('productCTA.single.shipping', priceVars)}
               </p>
             </div>
 
@@ -109,7 +114,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             <div>
               <div className="flex items-baseline gap-2">
                 <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
-                  {t('productCTA.multiple.price')} {t('productCTA.currency')}
+                  {t('productCTA.multiple.price', priceVars)}
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
@@ -117,7 +122,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                   {t('productCTA.multiple.shipping')}
                 </span>
                 <span className="text-xs text-muted-foreground line-through">
-                  {t('productCTA.multiple.shippingSaved')}
+                  {t('productCTA.multiple.shippingSaved', priceVars)}
                 </span>
               </div>
             </div>
