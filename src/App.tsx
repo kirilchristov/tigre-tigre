@@ -7,19 +7,10 @@ import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
 import { ProductCTA } from './components/ProductCTA'
 
-// Lazy load sections below the fold for better performance
-// const AboutSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.AboutSection }))
-// )
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.AboutScrollHighlightSection }))
 )
-// const FeaturesSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.FeaturesSection }))
-// )
-// const TestimonialsSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.TestimonialsSection }))
-// )
+
 const CtaSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.CtaSection }))
 )
@@ -34,15 +25,10 @@ const SubHeroTextRollerSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.SubHeroTextRollerSection }))
 )
 
-// const FirstTigerSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.FirstTigerSection }))
-// )
 const FirstTigerScrollHighlightSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.FirstTigerScrollHighlightSection }))
 )
-// const HowToEatSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.HowToEatSection }))
-// )
+
 const HowToEatScrollHighlightSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.HowToEatScrollHighlightSection }))
 )
@@ -62,10 +48,7 @@ function HomePage() {
         <HowToEatScrollHighlightSection />
         <ProductCTA />
         <AboutScrollHighlightSection />
-        {/* <AboutSection /> */}
         {/* <HeroSection /> */}
-        {/* <FeaturesSection /> */}
-        {/* <TestimonialsSection /> */}
         <ContactSection />
       </Suspense>
     </Layout>

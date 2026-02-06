@@ -19,5 +19,5 @@ export function QrRedirect() {
     return () => window.clearTimeout(timer)
   }, [code, navigate])
 
-  return null // or <div>Redirecting…</div>
+  return null
 }

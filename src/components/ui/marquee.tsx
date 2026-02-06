@@ -48,6 +48,7 @@ const MarqueeWrapper: React.FC<MarqueeWrapperProps> = ({
       pauseOnHover={pauseOnHover}
       pauseOnClick={pauseOnClick}
       className={cn('overflow-hidden', className)}
+      autoFill
     >
       {items.map((item, index) => (
         <div

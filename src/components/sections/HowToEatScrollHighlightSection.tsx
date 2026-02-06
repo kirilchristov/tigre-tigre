@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Section } from '@/components/layout'
 import { ScrollHighlightText } from '@/components/ui/scroll-highlight-text'
-import { BrandSignature } from '../BrandSignature'
 
 export function HowToEatScrollHighlightSection() {
   const { t } = useTranslation()
@@ -24,9 +23,6 @@ export function HowToEatScrollHighlightSection() {
           text={fullText}
           className="font-mono text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-black"
         />
-        <div className="mt-16">
-          <BrandSignature />
-        </div>
       </div>
     </Section>
   )

@@ -9,6 +9,8 @@ interface SectionProps {
   fullWidth?: boolean
   /** Custom max-width class (e.g., 'max-w-4xl', 'max-w-5xl'). Default: 'max-w-7xl' */
   maxWidth?: string
+  /** Custom horizontal padding class. Default: 'px-6' */
+  padding?: string
 }
 
 export function Section({
@@ -23,7 +25,6 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'px-6',
         fullHeight && 'min-h-screen flex flex-col items-center justify-center',
         className
       )}

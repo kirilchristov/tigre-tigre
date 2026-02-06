@@ -15,59 +15,32 @@
     "learnMore": "Learn More",
     "tagline": "shamelessly delicious"
   },
-  "about": {
-    "title": "shamelessly delicious",
-    "paragraphs": [
-      "tigre tigre is for when there's no one to impress.\nAnd when you're the hardest person to impress.\n",
-      "Our oil is greasy. For real.\nThe garlic is dangerous.\nAnd crunchy.",
-      "Our oil is greasy. For real.\nThe garlic is dangerous.\nAnd crunchy.",
-      "The heat is worthy of ramen soup.\n",
-      "We have no qualms about what you put us on.\nWe only care if you think about us after.",
-      "Our mission is simple: to be missed.\nTo be the nagging thought\nthat you want to satisfy."
-    ]
-  },
   "aboutHighlight": {
     "title": "shamelessly delicious",
     "paragraphs": [
-      "[marker][brand]tigre tigre[/brand][/marker] is for when there's no one to [underline]impress[/underline].\nAnd when you're the hardest person to impress.",
-      "Our oil is [marker]greasy[/marker]. For real.\nThe garlic is [circle]dangerous[/circle].\nAnd [underline]crunchy[/underline].",
-      "The [marker]heat[/marker] is worthy of ramen soup.",
-      "We have no qualms about what you put us on.\nWe only care if you think about us after.",
-      "Our mission is simple: to be [circle]missed[/circle].\nTo be the nagging thought that you want to [underline]satisfy[/underline]."
+      "[brand]tigre tigre[/brand] has one mission and it's simple -\nto be the nagging thought you want to satisfy.",
+      "Our oil is greasy. Like, really.\nThe garlic is dangerous and [underline]crunchy[/underline].",
+      "[marker]The heat[/marker] is worthy of tripe soup.",
+      "We have no qualms about what you put us on.\nWe only care if you think about us after."
     ]
   },
-  "firstTiger": {
-    "paragraphs": [
-      "What you're holding is part of the first 1000 jars of tigre tigre.\nWe released them without design, without a pretty label, and without pretensions.",
-      "But this is our most important label.\nThe one with the QR code.\nIt leads you to a feedback form, because even before we think about visuals, we want to be sure of the most important thing – the taste.",
-      "These 1000 jars are limited.\nAfter them, there will be a real label, large production, and fewer apologies.",
-      "But this here is the beginning.\nThe version where taste matters more than packaging and your opinion is part of the product."
-    ]
-  },
+
   "firstTigerHighlight": {
     "paragraphs": [
-      "What you're holding is part of the [marker]first 1000 jars[/marker] of [brand]tigre tigre[/brand].\nWe released them without design, without a pretty label, and without [underline]pretensions[/underline].",
-      "But this is our [circle]most important[/circle] label.\nThe one with the QR code.\nIt leads you to a feedback form, because even before we think about visuals, we want to be sure of the most important thing – the [marker]taste[/marker].",
-      "These 1000 jars are [underline]limited[/underline].\nAfter them, there will be a real label, large production, and fewer apologies.",
-      "But this here is the [circle]beginning[/circle].\nThe version where taste matters more than packaging and [marker]your opinion[/marker] is part of the product."
+      "These are the first 1000 jars of [brand]tigre tigre[/brand].\nWe released them without design, without a pretty label, and without [underline]pretensions[/underline].",
+      "But this is [circle]our most important[/circle] label.\nThe one with the QR code.\nIt leads you to a feedback form, because even before we think about visuals, we want to be sure of the most important thing – the [marker]taste[/marker].",
+      "After them, there will be a real label, large production,\nand fewer apologies.",
+      "But this here is the beginning.\nThe version where taste matters more than packaging and [marker]your opinion[/marker] is part of the product."
     ]
   },
-  "howTo": {
-    "title": "How to eat it?",
-    "paragraphs": [
-      "There's no right way.\nThere's your way.",
-      "Put a spoonful on eggs, pasta, noodles, or rice.\nWorks with meat, vegetables, and anything that needs a little heat and you want to give it a lot of character.",
-      "You can mix it in.\nYou can pour it on top.\nYou can eat it straight with bread, if you can't be bothered.",
-      "tigre tigre isn't measured in grams and recipes.\nIt's eaten by eye, by stomach, and without shame."
-    ]
-  },
+
   "howToHighlight": {
     "title": "How to eat it?",
     "paragraphs": [
-      "There's [marker]no right way[/marker].\nThere's [circle]your way[/circle].",
-      "Put a spoonful on [underline]eggs[/underline], pasta, noodles, or rice.\nWorks with meat, vegetables, and anything that needs a little [marker]heat[/marker] and you want to give it a lot of [underline]character[/underline].",
-      "You can mix it in.\nYou can pour it on top.\nYou can eat it straight with [circle]bread[/circle], if you can't be bothered.",
-      "[brand]tigre tigre[/brand] isn't measured in grams and recipes.\nIt's eaten by eye, by stomach, and [marker]without shame[/marker]."
+      "There's no right way.\nThere's [circle]your way[/circle].",
+      "Put a spoonful on [underline]eggs[/underline], pasta, noodles, or rice.\nWorks with meat, vegetables, and anything that needs a little [marker]heat[/marker]\nand you want to give it a lot of [underline]character[/underline].",
+      "You can mix it in.\nYou can pour it on top.\nYou can eat it straight with [underline]bread[/underline].",
+      "[brand]tigre tigre[/brand] isn't measured in grams and recipes.\nIt's eaten by eye, by gut, and [marker]without shame[/marker]."
     ]
   },
   "features": {

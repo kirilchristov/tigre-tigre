@@ -1,11 +1,15 @@
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
-import { GradientMask } from '@/components/ui/gradient-mask'
+import { GRADIENT_TYPES, GradientMask } from '@/components/ui/gradient-mask'
 
 export function SplashPage() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       {/* Background Image with Blended Edges */}
-      <GradientMask className="absolute inset-0 z-0">
+      <GradientMask
+        type={GRADIENT_TYPES.RADIAL}
+        className="absolute inset-0"
+        innerClassName="absolute inset-0"
+      >
         <ImageWithFallback
           src="/images/hero-lg.jpg"
           alt=""
@@ -18,7 +22,7 @@ export function SplashPage() {
             },
           ]}
           className="w-full h-full object-cover object-center"
-          containerClassName="absolute inset-0"
+          containerClassName="w-full h-full"
           loading="eager"
           showErrorMessage={false}
         />

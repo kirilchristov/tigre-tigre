@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+// import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { GradientMask, GRADIENT_TYPES } from '@/components/ui/gradient-mask'
 import { useHeroAnimation } from '@/hooks/useGsap'
@@ -10,11 +10,15 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative  flex flex-col items-center justify-start pt-32 px-4 sm:px-6 overflow-hidden"
+      className="relative  flex flex-col items-center justify-start pt-32 px-4 sm:px-6 overflow-hidden h-full"
       aria-label="Hero section"
     >
       {/* Background Image with Fade Effect */}
-      <GradientMask className="absolute inset-0 z-0" type={GRADIENT_TYPES.HORIZONTAL}>
+      <GradientMask
+        type={GRADIENT_TYPES.RADIAL}
+        className="absolute inset-0"
+        innerClassName="absolute inset-0"
+      >
         <ImageWithFallback
           src="/images/hero-lg.jpg"
           alt=""
@@ -27,7 +31,7 @@ export function HeroSection() {
             },
           ]}
           className="w-full h-full object-cover object-center"
-          containerClassName="absolute inset-0"
+          containerClassName="w-full h-full"
           loading="eager"
           showErrorMessage={false}
         />
@@ -42,14 +46,14 @@ export function HeroSection() {
           {t('hero.title')}
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-foreground mb-8">{t('hero.subtitle')}</p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        {/* <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button size="lg" className="min-h-[48px]">
             {t('hero.shopNow')}
           </Button>
           <Button variant="outline" size="lg" className="min-h-[48px]">
             {t('hero.learnMore')}
           </Button>
-        </div>
+        </div> */}
       </div>
     </section>
   )

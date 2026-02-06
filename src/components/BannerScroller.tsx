@@ -4,24 +4,24 @@ import MarqueeWrapper from './ui/marquee'
 const BannerScroller: React.FC = () => {
   const banners = [
     {
-      src: '/banners/banner1-640x905.webp',
+      src: '/banners/TIGRE_TIGRE_BANNER_1-640x905.webp',
       alt: 'Banner 1',
     },
     {
-      src: '/banners/banner2-640x905.webp',
+      src: '/banners/TIGRE_TIGRE_BANNER_2-640x905.webp',
       alt: 'Banner 2',
     },
     {
-      src: '/banners/banner5-640x905.webp',
-      alt: 'Banner 5',
-    },
-    {
-      src: '/banners/banner3-640x905.webp',
+      src: '/banners/TIGRE_TIGRE_BANNER_5-640x905.webp',
       alt: 'Banner 3',
     },
     {
-      src: '/banners/banner4-640x905.webp',
+      src: '/banners/TIGRE_TIGRE_BANNER_3-640x905.webp',
       alt: 'Banner 4',
+    },
+    {
+      src: '/banners/TIGRE_TIGRE_BANNER_4-640x905.webp',
+      alt: 'Banner 5',
     },
   ]
 

@@ -18,7 +18,6 @@ export function CtaSection() {
           }}
         >
           <div
-            className="w-full min-h-[50vw] md:min-h-[400px]"
             style={{
               maskImage:
                 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
@@ -40,17 +39,10 @@ export function CtaSection() {
                 },
               ]}
               className="w-full max-w-7xl h-auto"
-              loading="eager"
-              fetchPriority="high"
+              loading="lazy"
             />
           </div>
         </div>
-        {/* Content */}
-        {/* <div ref={contentRef} className="text-center">
-          <Button size="lg" className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px]  sm:w-auto">
-            {t('cta.button')}
-          </Button>
-        </div> */}
         <ProductCTA />
       </div>
     </section>
