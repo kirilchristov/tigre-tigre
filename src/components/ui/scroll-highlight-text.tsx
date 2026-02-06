@@ -108,26 +108,37 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
           trigger: container,
           start: 'top 80%',
           end: 'bottom 20%',
-          scrub: 1,
+          scrub: 1.5,
         },
       })
 
-      // Animate words to full opacity
+      // Animate all words to full opacity at once
       tl.to(words, {
         opacity: 1,
         duration: 0.5,
         ease: 'power2.out',
-        stagger: 0.015,
       })
 
       // Animate SVG highlights with strokeDashoffset
+      // Animate them sequentially based on their order, spread across the scroll
       if (svgs.length > 0) {
-        svgs.forEach((svg) => {
+        svgs.forEach((svg, svgIndex) => {
           const path = svg.querySelector('path')
           if (path) {
-            // Calculate when this SVG should animate based on its position
-            const wordIndex = parseInt(svg.dataset.wordIndex || '0', 10)
-            const progress = wordIndex / words.length
+            // Calculate actual path length for proper draw animation
+            const pathLength = path.getTotalLength()
+
+            // Set initial state for drawing effect
+            gsap.set(path, {
+              strokeDasharray: pathLength,
+              strokeDashoffset: pathLength,
+            })
+
+            // Spread SVGs evenly across the timeline, starting at 20% and ending at 70%
+            const startOffset = 0.3
+            const endOffset = 0.95
+            const range = endOffset - startOffset
+            const progress = startOffset + (svgIndex / Math.max(svgs.length - 1, 1)) * range
 
             tl.to(
               svg,
@@ -142,7 +153,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
               path,
               {
                 strokeDashoffset: 0,
-                duration: 0.2,
+                duration: 0.4,
                 ease: 'power2.out',
               },
               progress
@@ -176,7 +187,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
             }}
             data-word-index={wordIndex}
             className={`${baseClass} top-[0.1em] mix-blend-multiply`}
-            style={{ width, height: '1.2em' }}
+            style={{ width, height: '1.2em', opacity: 0 }}
           />
         )
       case 'circle':
@@ -187,7 +198,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
             }}
             data-word-index={wordIndex}
             className={`${baseClass} bottom-0`}
-            style={{ width }}
+            style={{ width, opacity: 0 }}
           />
         )
       case 'underline':
@@ -198,7 +209,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
             }}
             data-word-index={wordIndex}
             className={`${baseClass} bottom-0`}
-            style={{ width }}
+            style={{ width, opacity: 0 }}
           />
         )
       default:

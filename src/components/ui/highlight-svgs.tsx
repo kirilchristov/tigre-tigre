@@ -25,8 +25,6 @@ export const HighlightMarker = forwardRef<SVGSVGElement, HighlightSVGProps>(
         d="M0.68306 28C44.7761 25.8 73.3363 22.3 237.683 21"
         stroke="currentColor"
         strokeWidth="36"
-        strokeDasharray="1000"
-        strokeDashoffset="1000"
       />
     </svg>
   )
@@ -53,8 +51,6 @@ export const HighlightCircle = forwardRef<SVGSVGElement, HighlightSVGProps>(
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeDasharray="1000"
-        strokeDashoffset="1000"
       />
     </svg>
   )
@@ -80,8 +76,6 @@ export const HighlightUnderline = forwardRef<SVGSVGElement, HighlightSVGProps>(
         d="M0.141418 3.97803C7.14142 2.97803 280.641 6.97803 308.641 0.978027"
         stroke="currentColor"
         strokeWidth="3"
-        strokeDasharray="1000"
-        strokeDashoffset="1000"
       />
     </svg>
   )
