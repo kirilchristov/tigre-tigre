@@ -12,7 +12,7 @@ export function FirstTigerScrollHighlightSection() {
 
   return (
     <Section id="first-tiger-highlight" className="py-24 bg-white ">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-4">
         <ScrollHighlightText
           text={fullText}
           className="font-mono text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-black"

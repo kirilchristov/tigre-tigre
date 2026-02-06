@@ -29,7 +29,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   }
 
   return (
-    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-6', className)}>
+    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4', className)}>
       <div
         className={cn(
           'grid gap-4',

@@ -35,7 +35,7 @@ export function ParagraphSection({
       <div ref={ref} className="max-w-4xl mx-auto text-center">
         {title && (
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-black lowercase"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-12 text-black lowercase"
             style={{ fontFamily: 'Arial, sans-serif' }}
           >
             {title}
@@ -45,7 +45,7 @@ export function ParagraphSection({
           {paragraphs.map((paragraph, index) => (
             <p
               key={index}
-              className="text-xl md:text-2xl lg:text-3xl font-bold leading-relaxed"
+              className="text-base sm:text-lg md:text-2xl lg:text-3xl font-bold leading-relaxed"
               style={{ whiteSpace: 'break-spaces', textAlign: 'left' }}
             >
               {paragraph}

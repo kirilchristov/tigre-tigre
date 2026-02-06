@@ -13,7 +13,7 @@ export function HowToEatScrollHighlightSection() {
 
   return (
     <Section id="howto-highlight" className="py-24 bg-white ">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-4">
         {title && (
           <h2 className="font-mono text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-black lowercase text-center">
             {title}

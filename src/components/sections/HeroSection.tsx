@@ -10,7 +10,7 @@ export function HeroSection() {
 
   return (
     <section
-      className="relative  flex flex-col items-center justify-start pt-32 px-4 sm:px-6 overflow-hidden h-full"
+      className="relative  flex flex-col items-center justify-start pt-32 px-4 sm:px-4 overflow-hidden h-full"
       aria-label="Hero section"
     >
       {/* Background Image with Fade Effect */}

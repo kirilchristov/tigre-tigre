@@ -7,7 +7,7 @@ export function CtaSection() {
 
   return (
     <section id="shop">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-4">
         {/* Product Image with Blended Edges */}
         <div
           ref={imageRef}

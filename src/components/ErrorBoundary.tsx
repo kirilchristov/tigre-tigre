@@ -63,7 +63,7 @@ function ErrorFallback({ error }: { error: Error | null }) {
         <div className="space-y-3">
           <button
             onClick={handleReload}
-            className="w-full bg-white text-black px-6 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors"
+            className="w-full bg-white text-black px-4 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors"
           >
             {t('error.boundary.reload', 'Reload Page')}
           </button>

@@ -13,7 +13,7 @@ export function Footer() {
 
   return (
     <footer className="py-12 border-t border-border bg-background/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <a href="#" className="text-lg sm:text-xl font-bold tracking-tight">
@@ -34,9 +34,7 @@ export function Footer() {
           </nav>
 
           {/* Copyright */}
-          <p className="text-base text-muted-foreground font-mono">
-            {t('footer.copyright')}
-          </p>
+          <p className="text-base text-muted-foreground font-mono">{t('footer.copyright')}</p>
         </div>
       </div>
     </footer>

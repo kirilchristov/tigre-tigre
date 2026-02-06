@@ -9,7 +9,7 @@ interface SectionProps {
   fullWidth?: boolean
   /** Custom max-width class (e.g., 'max-w-4xl', 'max-w-5xl'). Default: 'max-w-7xl' */
   maxWidth?: string
-  /** Custom horizontal padding class. Default: 'px-6' */
+  /** Custom horizontal padding class. Default: 'px-4' */
   padding?: string
 }
 
