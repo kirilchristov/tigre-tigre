@@ -39,7 +39,7 @@ export function Header() {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors font-mono"
               >
                 {t(`nav.${item.key}`)}
               </a>
@@ -49,9 +49,6 @@ export function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
             <LanguageToggle />
-            <Button size="sm" asChild>
-              <a href="#shop">{t('hero.shopNow')}</a>
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,7 +73,7 @@ export function Header() {
         id="mobile-menu"
         className={cn(
           'md:hidden border-t border-border bg-background overflow-hidden transition-all duration-300',
-          isMenuOpen ? 'max-h-64' : 'max-h-0'
+          isMenuOpen ? 'max-h-screen' : 'max-h-0'
         )}
       >
         <nav
@@ -88,17 +85,17 @@ export function Header() {
             <a
               key={item.key}
               href={item.href}
-              className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
+              className="font-mono text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
               {t(`nav.${item.key}`)}
             </a>
           ))}
-          <Button size="sm" className="w-full mt-2 min-h-[44px]" asChild>
+          {/* <Button size="sm" className="w-full mt-2 min-h-[44px]" asChild>
             <a href="#shop" onClick={() => setIsMenuOpen(false)}>
               {t('hero.shopNow')}
             </a>
-          </Button>
+          </Button> */}
         </nav>
       </div>
     </header>
