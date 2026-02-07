@@ -34,7 +34,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   }
 
   return (
-    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4', className)}>
+    <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4 font-mono', className)}>
       <div
         className={cn(
           'grid gap-4',
@@ -44,16 +44,13 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         {/* Single Jar Option */}
         <div
           className={cn(
-            'relative rounded-lg border-2 border-border bg-white p-6 transition-all hover:border-foreground/20',
+            'relative bg-white transition-all hover:bg-muted/30',
             compact ? 'p-4' : 'p-6'
           )}
         >
           <div className="space-y-4">
             <div>
-              <h3
-                className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}
-                style={{ fontFamily: 'Arial, sans-serif' }}
-              >
+              <h3 className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.single.title')}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
@@ -86,24 +83,20 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         {/* Multiple Jars Option (Emphasized) */}
         <div
           className={cn(
-            'relative rounded-lg border-2 border-foreground bg-white transition-all hover:shadow-lg',
-            compact ? 'p-4' : 'p-6',
-            'shadow-md'
+            'relative border-t-2 border-foreground bg-muted/30 transition-all',
+            compact ? 'p-4' : 'p-6'
           )}
         >
           {/* Best Value Badge */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span className="bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+            <span className="bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
               {t('productCTA.multiple.badge')}
             </span>
           </div>
 
           <div className="space-y-4">
             <div>
-              <h3
-                className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}
-                style={{ fontFamily: 'Arial, sans-serif' }}
-              >
+              <h3 className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.multiple.title')}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
@@ -118,11 +111,11 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-sm font-bold text-green-600">
-                  {t('productCTA.multiple.shipping')}
-                </span>
                 <span className="text-xs text-muted-foreground line-through">
                   {t('productCTA.multiple.shippingSaved', priceVars)}
+                </span>
+                <span className="text-sm font-bold text-brand-600">
+                  {t('productCTA.multiple.shipping')}
                 </span>
               </div>
             </div>
