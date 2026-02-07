@@ -62,9 +62,9 @@ function HomePage() {
       <LazySection>
         <AboutScrollHighlightSection />
       </LazySection>
-      <LazySection>
+      <Suspense fallback={null}>
         <ContactSection />
-      </LazySection>
+      </Suspense>
     </Layout>
   )
 }

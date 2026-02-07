@@ -97,7 +97,7 @@
       "badge": "Best Value",
       "title": "Get 2+",
       "description": "Stock up for longer",
-      "price": "{{price}}{{currency}} each",
+      "price": "{{price}}{{currency}}",
       "shipping": "FREE SHIPPING",
       "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
       "button": "Get 2+"

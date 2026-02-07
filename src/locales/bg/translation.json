@@ -97,7 +97,7 @@
       "badge": "Най-изгодно",
       "title": "Вземи 2+",
       "description": "Запаси се за по-дълго",
-      "price": "{{price}}{{currency}} всеки",
+      "price": "{{price}}{{currency}}",
       "shipping": "БЕЗПЛАТНА ДОСТАВКА",
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
       "button": "Вземи 2+"
