@@ -29,6 +29,7 @@
     --cta-shadow-rest: 0 2px 0 0 hsl(var(--cta-accent) / 0.48);
     --cta-shadow-hover: 0 3px 0 0 hsl(var(--cta-accent) / 0.65);
     --cta-shadow-pressed: 0 1px 0 0 hsl(var(--cta-accent) / 0.55);
+    --about-text: 0 0% 0%;
   }
 
   .dark {
@@ -56,6 +57,7 @@
     --cta-shadow-rest: 0 2px 0 0 hsl(var(--cta-accent) / 0.55);
     --cta-shadow-hover: 0 3px 0 0 hsl(var(--cta-accent) / 0.75);
     --cta-shadow-pressed: 0 1px 0 0 hsl(var(--cta-accent) / 0.62);
+    --about-text: 0 0% 100%;
   }
 }
 

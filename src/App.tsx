@@ -5,7 +5,6 @@ import { Layout } from '@/components/layout'
 import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
-import { ProductCTA } from './components/ProductCTA'
 
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections').then((mod) => ({ default: mod.AboutScrollHighlightSection }))
@@ -46,9 +45,7 @@ function HomePage() {
         <FirstTigerScrollHighlightSection />
         <BannerScrollerSection />
         <HowToEatScrollHighlightSection />
-        <ProductCTA />
         <AboutScrollHighlightSection />
-        {/* <HeroSection /> */}
         <ContactSection />
       </Suspense>
     </Layout>
