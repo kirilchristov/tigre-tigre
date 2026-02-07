@@ -10,9 +10,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-black hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-black active:shadow-[var(--cta-shadow-pressed)]',
+          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-foreground hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-foreground active:shadow-[var(--cta-shadow-pressed)]',
         ctaPrimary:
-          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-black hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-black active:shadow-[var(--cta-shadow-pressed)]',
+          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-foreground hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-foreground active:shadow-[var(--cta-shadow-pressed)]',
         ctaSecondary:
           'border-foreground bg-background text-foreground shadow-none hover:-translate-y-px hover:bg-background hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
         destructive:

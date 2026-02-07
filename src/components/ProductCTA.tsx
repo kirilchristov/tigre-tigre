@@ -44,13 +44,13 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         {/* Single Jar Option */}
         <div
           className={cn(
-            'relative bg-white transition-all hover:bg-muted/30',
+            'relative bg-background transition-all hover:bg-muted/30',
             compact ? 'p-4' : 'p-6'
           )}
         >
           <div className="space-y-4">
             <div>
-              <h3 className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}>
+              <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.single.title')}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
@@ -60,7 +60,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <div>
               <div className="flex items-baseline gap-2">
-                <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
+                <span className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}>
                   {t('productCTA.single.price', priceVars)}
                 </span>
               </div>
@@ -89,14 +89,14 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         >
           {/* Best Value Badge */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span className="bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
+            <span className="bg-brand-600 text-background text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
               {t('productCTA.multiple.badge')}
             </span>
           </div>
 
           <div className="space-y-4">
             <div>
-              <h3 className={cn('font-bold text-black', compact ? 'text-xl' : 'text-2xl')}>
+              <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.multiple.title')}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
@@ -106,7 +106,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <div>
               <div className="flex items-baseline gap-2">
-                <span className={cn('font-bold text-black', compact ? 'text-2xl' : 'text-3xl')}>
+                <span className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}>
                   {t('productCTA.multiple.price', priceVars)}
                 </span>
               </div>

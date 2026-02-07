@@ -45,17 +45,17 @@ function ErrorFallback({ error }: { error: Error | null }) {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center space-y-6">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">Oops!</h1>
-          <p className="text-xl text-gray-400">
+          <p className="text-xl text-muted-foreground">
             {t('error.boundary.title', 'Something went wrong')}
           </p>
         </div>
 
-        <div className="p-4 bg-gray-900 rounded-lg text-left">
-          <p className="text-sm text-gray-400 font-mono break-words">
+        <div className="p-4 bg-muted rounded-[2px] text-left">
+          <p className="text-sm text-muted-foreground font-mono break-words">
             {error?.message || t('error.boundary.unknown', 'An unexpected error occurred')}
           </p>
         </div>
@@ -63,12 +63,12 @@ function ErrorFallback({ error }: { error: Error | null }) {
         <div className="space-y-3">
           <button
             onClick={handleReload}
-            className="w-full bg-white text-black px-4 py-3 rounded-lg font-bold hover:bg-gray-200 transition-colors"
+            className="w-full bg-foreground text-background px-4 py-3 rounded-[2px] font-bold hover:bg-foreground/90 transition-colors"
           >
             {t('error.boundary.reload', 'Reload Page')}
           </button>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             {t('error.boundary.persist', 'If the problem persists, please contact support.')}
           </p>
         </div>

@@ -36,15 +36,15 @@ export function NotFound() {
       <div className="relative z-10 text-center px-4 max-w-2xl">
         <div className="space-y-6">
           <div className="space-y-2">
-            <h1 className="text-6xl sm:text-8xl md:text-9xl font-bold tracking-tight text-white">
+            <h1 className="text-6xl sm:text-8xl md:text-9xl font-bold tracking-tight text-foreground">
               404
             </h1>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               {t('notFound.title')}
             </p>
           </div>
 
-          <p className="text-lg sm:text-xl text-white max-w-md mx-auto">
+          <p className="text-lg sm:text-xl text-foreground max-w-md mx-auto">
             {t('notFound.description')}
           </p>
 
