@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LanguageToggle } from '@/components/ui/language-toggle'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
 
 export function Header() {
@@ -48,11 +49,13 @@ export function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             <LanguageToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
             <LanguageToggle />
             <Button
               variant="ghost"

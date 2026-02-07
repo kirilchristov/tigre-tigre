@@ -42,12 +42,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         )}
       >
         {/* Single Jar Option */}
-        <div
-          className={cn(
-            'relative bg-background transition-all hover:bg-muted/30',
-            compact ? 'p-4' : 'p-6'
-          )}
-        >
+        <div className={cn('relative transition-all hover:bg-muted/30', compact ? 'p-4' : 'p-6')}>
           <div className="space-y-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
@@ -60,7 +55,9 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <div>
               <div className="flex items-baseline gap-2">
-                <span className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}>
+                <span
+                  className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}
+                >
                   {t('productCTA.single.price', priceVars)}
                 </span>
               </div>
@@ -106,7 +103,9 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <div>
               <div className="flex items-baseline gap-2">
-                <span className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}>
+                <span
+                  className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}
+                >
                   {t('productCTA.multiple.price', priceVars)}
                 </span>
               </div>
