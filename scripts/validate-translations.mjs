@@ -3,6 +3,7 @@
 import { readFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { flattenObject } from './utils.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -28,22 +29,6 @@ function loadJSON(filePath) {
     log(`Error reading ${filePath}: ${error.message}`, COLORS.red)
     process.exit(1)
   }
-}
-
-function flattenObject(obj, prefix = '') {
-  const result = {}
-
-  for (const [key, value] of Object.entries(obj)) {
-    const newKey = prefix ? `${prefix}.${key}` : key
-
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      Object.assign(result, flattenObject(value, newKey))
-    } else {
-      result[newKey] = value
-    }
-  }
-
-  return result
 }
 
 function validateTranslations() {
