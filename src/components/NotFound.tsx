@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
-import { GradientMask } from '@/components/ui/gradient-mask'
+import { ColoredOverlay } from './ui/colored-gradient-overlay'
 
 export function NotFound() {
   const { t } = useTranslation()
@@ -13,7 +13,7 @@ export function NotFound() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
       {/* Background Image with Fade Effect */}
-      <GradientMask className="absolute inset-0 z-0">
+      <ColoredOverlay color="hsl(var(--background))" opacity={0.7} className="absolute inset-0">
         <ImageWithFallback
           src="/images/404-lg.jpg"
           alt=""
@@ -30,7 +30,7 @@ export function NotFound() {
           loading="eager"
           showErrorMessage={false}
         />
-      </GradientMask>
+      </ColoredOverlay>
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-2xl">
@@ -49,7 +49,7 @@ export function NotFound() {
           </p>
 
           <Button
-            variant="ctaSecondary"
+            variant="ctaPrimary"
             size="lg"
             onClick={handleGoHome}
             className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px]"

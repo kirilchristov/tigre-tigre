@@ -40,7 +40,6 @@ export function CtaSection() {
               ]}
               className="w-full max-w-7xl h-auto"
               loading="eager"
-              fetchPriority="high"
             />
           </div>
         </div>

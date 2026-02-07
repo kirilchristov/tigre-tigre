@@ -12,9 +12,9 @@ const buttonVariants = cva(
         default:
           'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-foreground hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-foreground active:shadow-[var(--cta-shadow-pressed)]',
         ctaPrimary:
-          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-foreground hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-foreground active:shadow-[var(--cta-shadow-pressed)]',
+          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-brand-600 hover:border-brand-600 hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-brand-700 active:border-brand-700 active:shadow-[var(--cta-shadow-pressed)]',
         ctaSecondary:
-          'border-foreground bg-background text-foreground shadow-none hover:-translate-y-px hover:bg-background hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
+          'border-foreground bg-background text-foreground shadow-none hover:-translate-y-px hover:bg-foreground hover:text-background hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
         destructive:
           'border-destructive bg-destructive text-destructive-foreground shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-destructive/95 hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
         outline:
