@@ -3,7 +3,7 @@ import BannerScroller from '@/components/BannerScroller'
 
 export function BannerScrollerSection() {
   return (
-    <Section maxWidth="none" padding="p-0">
+    <Section maxWidth="none">
       <BannerScroller />
     </Section>
   )

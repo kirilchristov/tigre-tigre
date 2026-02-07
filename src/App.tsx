@@ -7,34 +7,40 @@ import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
 
 const AboutScrollHighlightSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.AboutScrollHighlightSection }))
+  import('@/components/sections/AboutScrollHighlightSection').then((mod) => ({
+    default: mod.AboutScrollHighlightSection,
+  }))
 )
 
 const CtaSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.CtaSection }))
+  import('@/components/sections/CtaSection').then((mod) => ({ default: mod.CtaSection }))
 )
 const ContactSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.ContactSection }))
+  import('@/components/sections/ContactSection').then((mod) => ({ default: mod.ContactSection }))
 )
 const BannerScrollerSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.BannerScrollerSection }))
+  import('@/components/sections/BannerScrollerSection').then((mod) => ({
+    default: mod.BannerScrollerSection,
+  }))
 )
 
 const SubHeroTextRollerSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.SubHeroTextRollerSection }))
+  import('@/components/sections/SubHeroTextRollerSection').then((mod) => ({
+    default: mod.SubHeroTextRollerSection,
+  }))
 )
 
 const FirstTigerScrollHighlightSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.FirstTigerScrollHighlightSection }))
+  import('@/components/sections/FirstTigerScrollHighlightSection').then((mod) => ({
+    default: mod.FirstTigerScrollHighlightSection,
+  }))
 )
 
 const HowToEatScrollHighlightSection = lazy(() =>
-  import('@/components/sections').then((mod) => ({ default: mod.HowToEatScrollHighlightSection }))
+  import('@/components/sections/HowToEatScrollHighlightSection').then((mod) => ({
+    default: mod.HowToEatScrollHighlightSection,
+  }))
 )
-
-// const HeroSection = lazy(() =>
-//   import('@/components/sections').then((mod) => ({ default: mod.HeroSection }))
-// )
 
 function HomePage() {
   return (
