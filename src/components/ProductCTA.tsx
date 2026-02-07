@@ -74,7 +74,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <Button
               onClick={handleBuySingle}
-              variant="outline"
+              variant="ctaSecondary"
               size={compact ? 'default' : 'lg'}
               className="w-full"
             >
@@ -129,8 +129,9 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <Button
               onClick={handleBuyMultiple}
+              variant="ctaPrimary"
               size={compact ? 'default' : 'lg'}
-              className="w-full bg-brand-600 hover:bg-brand-700"
+              className="w-full"
             >
               {t('productCTA.multiple.button')}
             </Button>

@@ -5,27 +5,34 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[2px] border text-base font-semibold tracking-[0.01em] transition-[transform,box-shadow,background-color,border-color,color] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--cta-focus-ring)/0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:translate-y-0 disabled:shadow-none disabled:opacity-45 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+        default:
+          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-black hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-black active:shadow-[var(--cta-shadow-pressed)]',
+        ctaPrimary:
+          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-black hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-black active:shadow-[var(--cta-shadow-pressed)]',
+        ctaSecondary:
+          'border-foreground bg-background text-foreground shadow-none hover:-translate-y-px hover:bg-background hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
+        destructive:
+          'border-destructive bg-destructive text-destructive-foreground shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-destructive/95 hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
+          'border-input bg-background text-foreground shadow-none hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'border-secondary bg-secondary text-secondary-foreground shadow-none hover:bg-secondary/80',
+        ghost: 'border-transparent bg-transparent shadow-none hover:bg-accent hover:text-accent-foreground',
+        link: 'border-transparent bg-transparent text-primary shadow-none underline-offset-4 hover:underline',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 px-3',
-        lg: 'h-10 px-8',
+        default: 'h-10 px-4 py-2',
+        sm: 'h-9 px-3',
+        lg: 'h-11 px-8',
         icon: 'h-9 w-9',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'ctaPrimary',
       size: 'default',
     },
   }

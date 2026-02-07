@@ -24,6 +24,11 @@
     --input: 0 0% 90%;
     --ring: 0 0% 0%;
     --radius: 0.5rem;
+    --cta-accent: 4 81% 56%;
+    --cta-focus-ring: 4 81% 56%;
+    --cta-shadow-rest: 0 2px 0 0 hsl(var(--cta-accent) / 0.48);
+    --cta-shadow-hover: 0 3px 0 0 hsl(var(--cta-accent) / 0.65);
+    --cta-shadow-pressed: 0 1px 0 0 hsl(var(--cta-accent) / 0.55);
   }
 
   .dark {
@@ -46,6 +51,11 @@
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 0 0% 83%;
+    --cta-accent: 4 81% 56%;
+    --cta-focus-ring: 4 81% 56%;
+    --cta-shadow-rest: 0 2px 0 0 hsl(var(--cta-accent) / 0.55);
+    --cta-shadow-hover: 0 3px 0 0 hsl(var(--cta-accent) / 0.75);
+    --cta-shadow-pressed: 0 1px 0 0 hsl(var(--cta-accent) / 0.62);
   }
 }
 

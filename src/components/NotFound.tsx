@@ -49,9 +49,10 @@ export function NotFound() {
           </p>
 
           <Button
+            variant="ctaSecondary"
             size="lg"
             onClick={handleGoHome}
-            className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px] text-white"
+            className="text-lg px-8 sm:px-12 py-6 h-auto min-h-[56px]"
           >
             {t('notFound.button')}
           </Button>
