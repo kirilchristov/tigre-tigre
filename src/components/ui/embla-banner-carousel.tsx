@@ -36,7 +36,7 @@ const EmblaBannerCarousel: React.FC<EmblaBannerCarouselProps> = ({
       AutoScroll({
         speed,
         stopOnInteraction: false,
-        stopOnMouseEnter: true,
+        stopOnMouseEnter: false,
         playOnInit: true,
       }),
     ]

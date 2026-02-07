@@ -57,6 +57,20 @@ export default {
           900: '#892723',
         },
       },
+      keyframes: {
+        'marquee-left': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-right': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+      },
+      animation: {
+        'marquee-left': 'marquee-left var(--marquee-duration, 30s) linear infinite',
+        'marquee-right': 'marquee-right var(--marquee-duration, 30s) linear infinite',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

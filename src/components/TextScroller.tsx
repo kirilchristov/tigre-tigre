@@ -1,48 +1,48 @@
 import React from 'react'
-import MarqueeWrapper from './ui/marquee'
 import { cn } from '@/lib/utils'
 
 interface TextScrollerProps {
   texts: string[]
-  speed?: number
+  /** Animation duration in seconds */
+  duration?: number
   direction?: 'left' | 'right'
-  gradient?: boolean
-  gradientColor?: string
   pauseOnHover?: boolean
   className?: string
   textClassName?: string
-  separator?: string | React.ReactNode
 }
 
 const TextScroller: React.FC<TextScrollerProps> = ({
   texts,
-  speed = 50,
+  duration = 30,
   direction = 'left',
-  gradient = false,
-  gradientColor = 'white',
   pauseOnHover = true,
   className,
   textClassName,
 }) => {
-  const textItems = texts.map((text) => ({
-    text,
-  }))
-
   return (
-    <div className={cn('w-full py-4', className)}>
-      <MarqueeWrapper
-        items={textItems}
-        speed={speed}
-        direction={direction}
-        gradient={gradient}
-        gradientColor={gradientColor}
-        pauseOnHover={pauseOnHover}
-        itemClassName="mx-8 flex items-center gap-8"
-        textClassName={cn(
-          'text-2xl font-bold tracking-wider [font-variant:small-caps]',
-          textClassName
+    <div
+      className={cn('w-full py-4 overflow-hidden', className)}
+      style={{ '--marquee-duration': `${duration}s` } as React.CSSProperties}
+    >
+      <div
+        className={cn(
+          'flex whitespace-nowrap w-max',
+          direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right',
+          pauseOnHover && 'hover:[animation-play-state:paused]'
         )}
-      />
+      >
+        {texts.map((text, index) => (
+          <span
+            key={index}
+            className={cn(
+              'mx-8 text-2xl font-bold tracking-wider [font-variant:small-caps]',
+              textClassName
+            )}
+          >
+            {text}
+          </span>
+        ))}
+      </div>
     </div>
   )
 }
