@@ -107,7 +107,8 @@
   "contact": {
     "title": "Get in Touch",
     "description": "Have questions? We'd love to hear from you.",
-    "email": "hello@tigre-tigre.com"
+    "email": "hello@tigre-tigre.com",
+    "questionnaire": "Have you tried us already? Share your feedback."
   },
   "footer": {
     "copyright": "© {{year}} tigre tigre. All rights reserved."

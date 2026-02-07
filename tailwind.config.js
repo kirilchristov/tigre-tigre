@@ -9,6 +9,7 @@ export default {
         mono: ['"Geist Mono"', 'monospace'],
       },
       colors: {
+        gold: 'hsl(var(--gold))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
