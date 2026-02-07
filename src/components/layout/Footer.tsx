@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 export function Footer() {
   const { t } = useTranslation()
+  const currentYear = new Date().getFullYear()
 
   const navItems = [
     { key: 'home', href: '#' },
@@ -34,7 +35,9 @@ export function Footer() {
           </nav>
 
           {/* Copyright */}
-          <p className="text-base text-muted-foreground font-mono">{t('footer.copyright')}</p>
+          <p className="text-base text-muted-foreground font-mono">
+            {t('footer.copyright', { year: currentYear })}
+          </p>
         </div>
       </div>
     </footer>

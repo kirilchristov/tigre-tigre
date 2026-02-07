@@ -110,7 +110,7 @@
     "email": "hello@tigre-tigre.com"
   },
   "footer": {
-    "copyright": "© 2026 tigre tigre. All rights reserved."
+    "copyright": "© {{year}} tigre tigre. All rights reserved."
   },
   "error": {
     "boundary": {
