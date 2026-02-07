@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+import { LazySection } from '@/components/ui/lazy-section'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
 
@@ -48,12 +49,22 @@ function HomePage() {
       <Suspense fallback={<div className="min-h-screen" />}>
         <CtaSection />
         <SubHeroTextRollerSection />
-        <FirstTigerScrollHighlightSection />
-        <BannerScrollerSection />
-        <HowToEatScrollHighlightSection />
-        <AboutScrollHighlightSection />
-        <ContactSection />
       </Suspense>
+      <LazySection>
+        <FirstTigerScrollHighlightSection />
+      </LazySection>
+      <LazySection>
+        <BannerScrollerSection />
+      </LazySection>
+      <LazySection>
+        <HowToEatScrollHighlightSection />
+      </LazySection>
+      <LazySection>
+        <AboutScrollHighlightSection />
+      </LazySection>
+      <LazySection>
+        <ContactSection />
+      </LazySection>
     </Layout>
   )
 }
