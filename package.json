@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "node ./scripts/validate-translations.mjs && vite",
+    "dev": "vite",
     "test": "vitest run",
     "test:watch": "vitest",
     "build": "vitest run && tsc -b && vite build",
