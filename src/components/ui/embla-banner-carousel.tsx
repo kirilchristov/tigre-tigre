@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 
 interface BannerItem {
   src: string
+  srcSet?: string
   alt: string
 }
 
@@ -58,6 +59,8 @@ const EmblaBannerCarousel: React.FC<EmblaBannerCarouselProps> = ({
             <div key={index} className="flex-[0_0_auto] min-w-0">
               <img
                 src={item.src}
+                srcSet={item.srcSet}
+                sizes="(max-width: 768px) 350px, 640px"
                 alt={item.alt}
                 className={cn('w-auto object-contain select-none', imageClassName)}
                 draggable={false}
