@@ -95,12 +95,12 @@
     },
     "multiple": {
       "badge": "Най-изгодно",
-      "title": "Вземи 2+",
+      "title": "Вземи повече",
       "description": "Запаси се за по-дълго",
       "price": "{{price}}{{currency}}",
       "shipping": "БЕЗПЛАТНА ДОСТАВКА",
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи 2+"
+      "button": "Вземи повече"
     },
     "trustSignal": "Бърза доставка в цяла България"
   },

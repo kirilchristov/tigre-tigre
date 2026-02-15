@@ -28,13 +28,13 @@ export function CtaSection() {
             }}
           >
             <ImageWithFallback
-              src="/images/mocks/mock-lg.jpg"
+              src="/images/product-shots/product_no_shadow-1024x1024.webp"
               alt="tigre tigre Chili Crunch"
               sources={[
                 {
                   srcSet:
-                    '/images/mocks/mock-sm.webp 640w, /images/mocks/mock-md.webp 1024w, /images/mocks/mock-lg.webp 1496w',
-                  sizes: '(max-width: 768px) 100vw, 1496px',
+                    '/images/product-shots/product_no_shadow-640x640.webp 640w, /images/product-shots/product_no_shadow-1024x1024.webp 1024w',
+                  sizes: '(max-width: 768px) 100vw, 1024px',
                   type: 'image/webp',
                 },
               ]}

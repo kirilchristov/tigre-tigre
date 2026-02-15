@@ -110,9 +110,9 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-xs text-muted-foreground line-through">
+                {/* <span className="text-xs text-muted-foreground line-through">
                   {t('productCTA.multiple.shippingSaved', priceVars)}
-                </span>
+                </span> */}
                 <span className="text-sm font-bold text-brand-600">
                   {t('productCTA.multiple.shipping')}
                 </span>

@@ -95,12 +95,12 @@
     },
     "multiple": {
       "badge": "Best Value",
-      "title": "Get 2+",
+      "title": "Get More",
       "description": "Stock up for longer",
       "price": "{{price}}{{currency}}",
       "shipping": "FREE SHIPPING",
       "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Get 2+"
+      "button": "Get More"
     },
     "trustSignal": "Fast delivery across Bulgaria"
   },
