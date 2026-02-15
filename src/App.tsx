@@ -3,7 +3,7 @@ import { LazySection } from '@/components/ui/lazy-section'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
 
-import { SplashPage } from '@/components/SplashPage'
+// import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
 
@@ -71,13 +71,13 @@ function HomePage() {
 
 function App() {
   // Show splash page ONLY on production domains (not staging or localhost)
-  const hostname = window.location.hostname
-  const isProductionDomain = hostname === 'tigre-tigre.com' || hostname === 'www.tigre-tigre.com'
+  // const hostname = window.location.hostname
+  // const isProductionDomain = hostname === 'tigre-tigre.com' || hostname === 'www.tigre-tigre.com'
 
   // Show splash page on production domain
-  if (isProductionDomain) {
-    return <SplashPage />
-  }
+  // if (isProductionDomain) {
+  //   return <SplashPage />
+  // }
 
   // Show full site with routing on staging domain and localhost
   return (
