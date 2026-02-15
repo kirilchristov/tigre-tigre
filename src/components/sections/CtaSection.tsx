@@ -9,42 +9,24 @@ export function CtaSection() {
     <section id="shop">
       <div className="max-w-4xl mx-auto px-4 sm:px-4">
         {/* Product Image with Blended Edges */}
-        <div
-          ref={imageRef}
-          className="flex justify-center relative"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 100% at 50% 50%, white 0%, white 60%, transparent 100%)',
-          }}
-        >
-          <div
-            style={{
-              maskImage:
-                'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
-              maskComposite: 'intersect',
-              WebkitMaskImage:
-                'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
-              WebkitMaskComposite: 'source-in',
-            }}
-          >
-            <ImageWithFallback
-              src="/images/product-shots/product_no_shadow-1024x1024.webp"
-              alt="tigre tigre Chili Crunch"
-              sources={[
-                {
-                  srcSet:
-                    '/images/product-shots/product_no_shadow-640x640.webp 640w, /images/product-shots/product_no_shadow-1024x1024.webp 1024w',
-                  sizes: '(max-width: 768px) 100vw, 1024px',
-                  type: 'image/webp',
-                },
-              ]}
-              className="w-full max-w-7xl h-auto"
-              loading="eager"
-            />
-          </div>
+        <div ref={imageRef} className="flex justify-center relative">
+          <ImageWithFallback
+            src="/images/product-shots/product_shadow-1024x1024.webp"
+            alt="tigre tigre Chili Crunch"
+            sources={[
+              {
+                srcSet:
+                  '/images/product-shots/product_shadow-640x640.webp 640w, /images/product-shots/product_shadow-1024x1024.webp 1024w',
+                sizes: '(max-width: 768px) 100vw, 1024px',
+                type: 'image/webp',
+              },
+            ]}
+            className="w-full max-w-7xl h-auto"
+            loading="eager"
+          />
         </div>
-        <ProductCTA />
       </div>
+      <ProductCTA />
     </section>
   )
 }
