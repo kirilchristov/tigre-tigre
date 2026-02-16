@@ -3,6 +3,7 @@
   "tagline": "shamelessly delicious",
   "nav": {
     "home": "Home",
+    "content": "Ingredients",
     "firstTiger": "First 1000",
     "howTo": "How to Eat",
     "about": "About",
@@ -103,6 +104,10 @@
       "button": "Get More"
     },
     "trustSignal": "Fast delivery across Bulgaria to any Speedy office or your doorstep"
+  },
+  "contents": {
+    "title": "ingredients",
+    "ingredients": "sunflower oil, hot red pepper 10%, garlic, roasted onion, fried onion (onion, sustainably sourced palm oil, wheat flour), sea salt, cane sugar, sweet red pepper."
   },
   "contact": {
     "title": "Get in Touch",

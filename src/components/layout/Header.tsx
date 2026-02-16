@@ -14,6 +14,7 @@ export function Header() {
     { key: 'home', href: '#' },
     { key: 'firstTiger', href: '#first-tiger-highlight' },
     { key: 'howTo', href: '#howto-highlight' },
+    { key: 'content', href: '#content' },
     { key: 'about', href: '#about-highlight' },
     { key: 'contact', href: '#contact' },
   ]

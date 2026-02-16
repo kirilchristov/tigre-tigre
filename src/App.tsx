@@ -43,6 +43,12 @@ const HowToEatScrollHighlightSection = lazy(() =>
   }))
 )
 
+const ContentsSection = lazy(() =>
+  import('@/components/sections/ContentsSection').then((mod) => ({
+    default: mod.ContentsSection,
+  }))
+)
+
 function HomePage() {
   return (
     <Layout>
@@ -58,6 +64,9 @@ function HomePage() {
       </LazySection>
       <LazySection>
         <HowToEatScrollHighlightSection />
+      </LazySection>
+      <LazySection>
+        <ContentsSection />
       </LazySection>
       <LazySection>
         <AboutScrollHighlightSection />
