@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tigre Migration Manager"
+  short_description: "Plan and run React-to-Next migration work"
+  default_prompt: "Use $tigre-nextjs-migration-manager to break this migration idea into stories, tickets, and technical docs with a clear execution plan."
