@@ -2,10 +2,12 @@ import { lazy, Suspense } from 'react'
 import { LazySection } from '@/components/ui/lazy-section'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
+import { env } from '@/lib/env'
 
 // import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
+import { ProductCTA } from '@/components/ProductCTA'
 
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections/AboutScrollHighlightSection').then((mod) => ({
@@ -50,10 +52,12 @@ const ContentsSection = lazy(() =>
 )
 
 function HomePage() {
+  const isSoldOut = env.soldOut.enabled
+
   return (
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
-        <CtaSection />
+        <CtaSection isSoldOut={isSoldOut} footer={!isSoldOut && <ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
       <LazySection>
@@ -69,7 +73,15 @@ function HomePage() {
         <ContentsSection />
       </LazySection>
       <LazySection>
-        <AboutScrollHighlightSection />
+        <AboutScrollHighlightSection
+          footer={
+            !isSoldOut && (
+              <div className="pb-4">
+                <ProductCTA />
+              </div>
+            )
+          }
+        />
       </LazySection>
       <Suspense fallback={null}>
         <ContactSection />

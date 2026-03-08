@@ -1,16 +1,20 @@
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Section } from '@/components/layout'
 import { ScrollHighlightText } from '@/components/ui/scroll-highlight-text'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { ColoredOverlay } from '@/components/ui/colored-gradient-overlay'
-import { ProductCTA } from '../ProductCTA'
+
+interface AboutScrollHighlightSectionProps {
+  footer?: ReactNode
+}
 
 /**
  * About section with scroll-triggered text highlighting over a fixed hero image.
  * The background image stays static while the user scrolls.
- * A colored overlay ensures text readability in both light and dark themes.
+ * A colored overlay ensures text readability in both light and dark theme.
  */
-export function AboutScrollHighlightSection() {
+export function AboutScrollHighlightSection({ footer }: AboutScrollHighlightSectionProps) {
   const { t } = useTranslation()
 
   const title = t('aboutHighlight.title', { defaultValue: '' })
@@ -52,9 +56,7 @@ export function AboutScrollHighlightSection() {
           />
         </div>
       </div>
-      <div className="pb-4">
-        <ProductCTA />
-      </div>
+      {footer}
     </Section>
   )
 }
