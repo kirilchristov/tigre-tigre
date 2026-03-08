@@ -46,6 +46,12 @@ npm run preview
 - A GitHub account
 - A Vercel account (sign up at [vercel.com](https://vercel.com))
 
+### Branch/Environment Policy
+
+- `main` branch -> production environment
+- `preview` branch -> staging environment (`staging.tigre-tigre.com`)
+- Keep staging non-indexable by bots/search engines
+
 ### Steps
 
 1. **Push your code to GitHub** (if not already done):
