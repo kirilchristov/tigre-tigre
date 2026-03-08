@@ -10,6 +10,6 @@
 ## In Progress
 
 ## In Review
-- TT-002 Add sold-out state config and UI gating
+- TT-002 Add sold-out state config and UI gating (CTA-only scope)
 
 ## Done
