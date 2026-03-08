@@ -14,3 +14,7 @@
 - Changed: Story + `TT-002` acceptance criteria were updated to match CTA-only scope.
 - Changed: `TT-002` moved to `In Review` under CTA-only scope.
 - Changed: `TT-002` marked `Done` after confirming implemented scope (sold-out flag, CTA suppression, hero sold-out indicator).
+- Added: Embedded Tally waitlist form component for sold-out mode (`WaitlistEmbed`) with no redirect flow.
+- Changed: Added `VITE_WAITLIST_TALLY_EMBED_URL` config and localized BG/EN waitlist copy.
+- Changed: `TT-001` moved to `In Review` pending live Tally URL QA.
+- Verified: `npm run test -- src/lib/__tests__/env.test.ts`, `npm run build`.
