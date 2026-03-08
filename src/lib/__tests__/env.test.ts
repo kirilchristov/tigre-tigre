@@ -16,9 +16,14 @@ describe('env', () => {
     expect(env).toHaveProperty('stripe')
     expect(env).toHaveProperty('analytics')
     expect(env).toHaveProperty('contact')
+    expect(env).toHaveProperty('soldOut')
     expect(env).toHaveProperty('isDev')
     expect(env).toHaveProperty('isProd')
     expect(env).toHaveProperty('mode')
+  })
+
+  it('exposes sold out mode as a boolean', () => {
+    expect(typeof env.soldOut.enabled).toBe('boolean')
   })
 })
 

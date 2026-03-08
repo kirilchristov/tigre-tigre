@@ -2,7 +2,7 @@
 
 - Type: feature
 - Story: STORY-002
-- Status: Backlog
+- Status: In Review
 
 ## Goal
 Introduce a single sold-out state switch and gate homepage sections/entry points based on that state.
