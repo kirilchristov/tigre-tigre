@@ -13,3 +13,4 @@
 - Changed: Scope decision update: sold-out phase is CTA-only; homepage section hiding and nav pruning are explicitly deferred.
 - Changed: Story + `TT-002` acceptance criteria were updated to match CTA-only scope.
 - Changed: `TT-002` moved to `In Review` under CTA-only scope.
+- Changed: `TT-002` marked `Done` after confirming implemented scope (sold-out flag, CTA suppression, hero sold-out indicator).

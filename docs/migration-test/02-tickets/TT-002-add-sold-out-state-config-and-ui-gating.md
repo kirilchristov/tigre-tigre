@@ -2,7 +2,7 @@
 
 - Type: feature
 - Story: STORY-002
-- Status: In Review
+- Status: Done
 
 ## Goal
 Introduce a single sold-out state switch and gate CTA surfaces based on that state.
@@ -13,16 +13,16 @@ Introduce a single sold-out state switch and gate CTA surfaces based on that sta
 3. Show a prominent sold-out indicator in the hero area when sold-out mode is enabled.
 
 ## Definition of Done
-- [ ] Sold-out mode can be toggled via environment config.
-- [ ] Buy CTAs are not rendered in sold-out mode.
-- [ ] Hero sold-out indicator is visible in sold-out mode.
-- [ ] Non-CTA sections remain visible in sold-out mode for this phase.
-- [ ] Existing non-sold-out behavior remains unchanged when the flag is disabled.
+- [x] Sold-out mode can be toggled via environment config.
+- [x] Buy CTAs are not rendered in sold-out mode.
+- [x] Hero sold-out indicator is visible in sold-out mode.
+- [x] Non-CTA sections remain visible in sold-out mode for this phase.
+- [x] Existing non-sold-out behavior remains unchanged when the flag is disabled.
 
 ## Validation
-- [ ] Add/update tests for sold-out config and CTA gating logic.
-- [ ] Manual QA for both flag states (`sold out` and `not sold out`).
-- [ ] `npm run build` passes.
+- [x] Add/update tests for sold-out config and CTA gating logic.
+- [x] Manual QA for both flag states (`sold out` and `not sold out`).
+- [x] `npm run build` passes.
 
 ## Progress Notes
 - Completed: `VITE_SOLD_OUT_MODE` flag added and parsed in `env`.
