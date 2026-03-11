@@ -61,9 +61,11 @@ function HomePage() {
         <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
-      <LazySection>
-        <FirstTigerScrollHighlightSection />
-      </LazySection>
+      {!isSoldOut ? (
+        <LazySection>
+          <FirstTigerScrollHighlightSection />
+        </LazySection>
+      ) : null}
       <LazySection>
         <BannerScrollerSection />
       </LazySection>

@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LanguageToggle } from '@/components/ui/language-toggle'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { env } from '@/lib/env'
 import { cn } from '@/lib/utils'
 
 const defaultNavItems = [
@@ -18,8 +19,11 @@ const defaultNavItems = [
 export function Header() {
   const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const isSoldOut = env.soldOut.enabled
 
-  const navItems = defaultNavItems
+  const navItems = isSoldOut
+    ? defaultNavItems.filter((item) => item.key !== 'firstTiger')
+    : defaultNavItems
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
