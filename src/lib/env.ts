@@ -38,6 +38,7 @@ export const env = {
   soldOut: {
     enabled: parseBooleanFlag(import.meta.env.VITE_SOLD_OUT_MODE),
   },
+
   // Environment checks
   isDev: import.meta.env.DEV,
   isProd: import.meta.env.PROD,

@@ -13,9 +13,37 @@ validateEnv()
 
 console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, '0.1.1')
 
+const isTruthyFlag = (value: string | undefined) => {
+  if (!value) return false
+  const normalized = value.trim().toLowerCase()
+  return normalized === 'true' || normalized === '1'
+}
+
 // Log version info in staging/preview environment
-const isPreview = import.meta.env.VITE_VERCEL_ENV === 'preview' || import.meta.env.VITE_STAGING
+const isPreview =
+  import.meta.env.VITE_VERCEL_ENV === 'preview' || isTruthyFlag(import.meta.env.VITE_STAGING)
 const isDev = import.meta.env.DEV
+const isStagingHost = window.location.hostname === 'staging.tigre-tigre.com'
+const shouldBlockIndexing = isPreview || isStagingHost
+
+if (shouldBlockIndexing) {
+  const robotsContent = 'noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate'
+  const upsertMeta = (name: string, content: string) => {
+    const existing = document.head.querySelector(`meta[name="${name}"]`)
+    if (existing) {
+      existing.setAttribute('content', content)
+      return
+    }
+
+    const meta = document.createElement('meta')
+    meta.setAttribute('name', name)
+    meta.setAttribute('content', content)
+    document.head.appendChild(meta)
+  }
+
+  upsertMeta('robots', robotsContent)
+  upsertMeta('googlebot', robotsContent)
+}
 
 if (isPreview || isDev) {
   console.log('%ctigre tigre App', 'font-weight: bold; font-size: 16px; color: #ff6b00;')

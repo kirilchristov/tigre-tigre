@@ -8,6 +8,7 @@ import { env } from '@/lib/env'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
 import { ProductCTA } from '@/components/ProductCTA'
+import { WaitlistEmbed } from '@/components/WaitlistEmbed'
 
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections/AboutScrollHighlightSection').then((mod) => ({
@@ -57,7 +58,7 @@ function HomePage() {
   return (
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
-        <CtaSection isSoldOut={isSoldOut} footer={!isSoldOut && <ProductCTA />} />
+        <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
       <LazySection>

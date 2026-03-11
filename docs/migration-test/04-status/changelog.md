@@ -7,3 +7,14 @@
 - Changed: Hero product image now displays a prominent red `Sold Out` badge and CTA cards are hidden in sold-out mode.
 - Changed: `TT-002` moved to `In Review`.
 - Verified: `npm run test -- src/lib/__tests__/env.test.ts`, `npm run typecheck`, `npm run build`.
+- Changed: Merged sold-out implementation into `preview` (`13655f0`, merge `82e93bf`) and reviewed ticket alignment.
+- Changed: `TT-002` moved to `In Progress` after review because section/nav gating items are still pending.
+- Verified: `TT-002` partial completion confirmed (`env` flag + hero overlay done; section/nav gating still open).
+- Changed: Scope decision update: sold-out phase is CTA-only; homepage section hiding and nav pruning are explicitly deferred.
+- Changed: Story + `TT-002` acceptance criteria were updated to match CTA-only scope.
+- Changed: `TT-002` moved to `In Review` under CTA-only scope.
+- Changed: `TT-002` marked `Done` after confirming implemented scope (sold-out flag, CTA suppression, hero sold-out indicator).
+- Added: Embedded Tally waitlist form component for sold-out mode (`WaitlistEmbed`) with no redirect flow.
+- Changed: Added `VITE_WAITLIST_TALLY_EMBED_URL` config and localized BG/EN waitlist copy.
+- Changed: `TT-001` moved to `In Review` pending live Tally URL QA.
+- Verified: `npm run test -- src/lib/__tests__/env.test.ts`, `npm run build`.

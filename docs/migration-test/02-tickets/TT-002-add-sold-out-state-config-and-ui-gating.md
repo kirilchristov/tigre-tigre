@@ -2,23 +2,29 @@
 
 - Type: feature
 - Story: STORY-002
-- Status: In Review
+- Status: Done
 
 ## Goal
-Introduce a single sold-out state switch and gate homepage sections/entry points based on that state.
+Introduce a single sold-out state switch and gate CTA surfaces based on that state.
 
 ## Implementation Plan
-1. Extend `src/lib/env.ts` with sold-out configuration values (for example `VITE_SOLD_OUT_MODE` and waitlist target settings).
-2. Update page composition in `src/App.tsx` to hide sold-out-excluded sections (`SubHeroTextRollerSection`, `BannerScrollerSection`, `ContentsSection`) when the flag is enabled.
-3. Update navigation links/anchors so hidden sections are not linked in sold-out mode.
+1. Extend `src/lib/env.ts` with sold-out configuration values (for example `VITE_SOLD_OUT_MODE`).
+2. Update CTA composition so buy surfaces are removed/suppressed in sold-out mode.
+3. Show a prominent sold-out indicator in the hero area when sold-out mode is enabled.
 
 ## Definition of Done
-- [ ] Sold-out mode can be toggled via environment config.
-- [ ] Hidden sections are not rendered in sold-out mode.
-- [ ] Existing sections remain unchanged when sold-out mode is disabled.
-- [ ] Header navigation does not include links to hidden sections in sold-out mode.
+- [x] Sold-out mode can be toggled via environment config.
+- [x] Buy CTAs are not rendered in sold-out mode.
+- [x] Hero sold-out indicator is visible in sold-out mode.
+- [x] Non-CTA sections remain visible in sold-out mode for this phase.
+- [x] Existing non-sold-out behavior remains unchanged when the flag is disabled.
 
 ## Validation
-- [ ] Add/update tests for sold-out config and gated rendering logic.
-- [ ] Manual QA for both flag states (`sold out` and `not sold out`).
-- [ ] `npm run build` passes.
+- [x] Add/update tests for sold-out config and CTA gating logic.
+- [x] Manual QA for both flag states (`sold out` and `not sold out`).
+- [x] `npm run build` passes.
+
+## Progress Notes
+- Completed: `VITE_SOLD_OUT_MODE` flag added and parsed in `env`.
+- Completed: Hero area shows a large `Sold Out` overlay and buy CTA footer is suppressed when sold out.
+- Decision: Section hiding and nav pruning are out of scope for this phase.

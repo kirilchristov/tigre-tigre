@@ -115,6 +115,11 @@
     "email": "hello@tigre-tigre.com",
     "questionnaire": "Have you tried us already? Share your feedback."
   },
+  "waitlist": {
+    "title": "Get notified when we're back",
+    "description": "Drop your email and we'll let you know as soon as the next batch is available.",
+    "iframeTitle": "Waitlist email form"
+  },
   "footer": {
     "copyright": "© {{year}} tigre tigre. All rights reserved."
   },

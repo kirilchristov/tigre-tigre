@@ -2,23 +2,28 @@
 
 - Type: feature
 - Story: STORY-002
-- Status: Backlog
+- Status: In Review
 
 ## Goal
-Replace purchase actions with a waitlist email capture experience when sold-out mode is active.
+Replace purchase actions with an embedded waitlist email capture experience when sold-out mode is active.
 
 ## Implementation Plan
-1. Add sold-out variant rendering inside `src/components/ProductCTA.tsx` (or a dedicated `WaitlistForm` child component).
-2. Build form UX with email input, submit button, and validation (required + email format).
-3. Submit email to configured waitlist endpoint and show loading/success/error states with localized copy.
+1. Add a dedicated embedded waitlist component for sold-out mode.
+2. Render embedded Tally form inline (no redirect) with localized title/description.
+3. Configure form source via environment variable so form URL can be changed without code edits.
 
 ## Definition of Done
-- [ ] Buy CTA buttons are not rendered in sold-out mode.
-- [ ] Waitlist form supports BG and EN labels/messages.
-- [ ] Submit is blocked for invalid email and enabled for valid email.
-- [ ] Successful and failed submissions both show clear user feedback.
+- [x] Buy CTA buttons are not rendered in sold-out mode.
+- [x] Waitlist block supports BG and EN labels/messages.
+- [x] Embedded form is shown inline in sold-out mode (no redirect flow).
+- [ ] Production Tally embed URL is configured and verified end-to-end.
 
 ## Validation
-- [ ] Add/update component tests for sold-out rendering + email validation.
-- [ ] Verify form submission path manually with a valid and invalid email in both locales.
-- [ ] `npm run build` passes.
+- [x] Add/update env coverage for waitlist embed configuration.
+- [ ] Verify Tally submission path manually with a valid and invalid email in both locales.
+- [x] `npm run build` passes.
+
+## Progress Notes
+- Completed: Added `WaitlistEmbed` component and wired it into sold-out CTA slot in `App.tsx`.
+- Completed: Added `VITE_WAITLIST_TALLY_EMBED_URL` env support and BG/EN waitlist copy.
+- Pending: Set real Tally form URL in runtime env and validate real submissions.
