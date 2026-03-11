@@ -6,18 +6,20 @@ import { LanguageToggle } from '@/components/ui/language-toggle'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
 
+const defaultNavItems = [
+  { key: 'home', href: '#' },
+  { key: 'firstTiger', href: '#first-tiger-highlight' },
+  { key: 'howTo', href: '#howto-highlight' },
+  { key: 'content', href: '#content' },
+  { key: 'about', href: '#about-highlight' },
+  { key: 'contact', href: '#contact' },
+]
+
 export function Header() {
   const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const navItems = [
-    { key: 'home', href: '#' },
-    { key: 'firstTiger', href: '#first-tiger-highlight' },
-    { key: 'howTo', href: '#howto-highlight' },
-    { key: 'content', href: '#content' },
-    { key: 'about', href: '#about-highlight' },
-    { key: 'contact', href: '#contact' },
-  ]
+  const navItems = defaultNavItems
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">

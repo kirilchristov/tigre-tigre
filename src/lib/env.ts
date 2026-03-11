@@ -3,6 +3,19 @@
  * Safely access environment variables with type checking and defaults
  */
 
+function parseBooleanFlag(value: unknown): boolean {
+  if (typeof value === 'boolean') {
+    return value
+  }
+
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase()
+    return normalized === 'true' || normalized === '1'
+  }
+
+  return false
+}
+
 export const env = {
   // Stripe
   stripe: {
@@ -21,6 +34,10 @@ export const env = {
     email: import.meta.env.VITE_CONTACT_EMAIL || 'hello@tigre-tigre.com',
   },
 
+  // Feature flags
+  soldOut: {
+    enabled: parseBooleanFlag(import.meta.env.VITE_SOLD_OUT_MODE),
+  },
   // Environment checks
   isDev: import.meta.env.DEV,
   isProd: import.meta.env.PROD,
