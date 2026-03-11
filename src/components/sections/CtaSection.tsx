@@ -17,7 +17,7 @@ export function CtaSection({ isSoldOut = false, footer }: CtaSectionProps) {
         <div ref={imageRef} className="flex justify-center relative">
           {isSoldOut ? (
             <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-              <span className="inline-block text-red-600 border-[6px] border-red-600 px-8 py-3 sm:px-12 sm:py-4 text-5xl sm:text-7xl lg:text-8xl font-black tracking-[0.2em] uppercase -rotate-12 opacity-90">
+              <span className="inline-block whitespace-nowrap text-red-600 border-4 sm:border-[6px] border-red-600 px-4 py-2 sm:px-12 sm:py-4 text-[clamp(1.75rem,10vw,3rem)] sm:text-7xl lg:text-8xl leading-none font-black tracking-[0.14em] sm:tracking-[0.2em] uppercase -rotate-12 opacity-90">
                 Sold Out
               </span>
             </div>
