@@ -1,17 +1,11 @@
 import { useTranslation } from 'react-i18next'
+import { env } from '@/lib/env'
+import { getNavItems } from './nav-items'
 
 export function Footer() {
   const { t } = useTranslation()
   const currentYear = new Date().getFullYear()
-
-  const navItems = [
-    { key: 'home', href: '#' },
-    { key: 'firstTiger', href: '#first-tiger-highlight' },
-    { key: 'howTo', href: '#howto-highlight' },
-    { key: 'content', href: '#content' },
-    { key: 'about', href: '#about-highlight' },
-    { key: 'contact', href: '#contact' },
-  ]
+  const navItems = getNavItems(env.soldOut.enabled)
 
   return (
     <footer className="py-12 border-t border-border bg-background/80">
