@@ -5,11 +5,7 @@ import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
 import { env } from '@/lib/env'
-import {
-  buildShopifyCartPermalink,
-  formatEstimatedTotal,
-  type PurchaseOptionKey,
-} from '@/lib/shopify'
+import { buildShopifyCartPermalink, type PurchaseOptionKey } from '@/lib/shopify'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -24,7 +20,6 @@ interface ProductCTAProps {
  * 2. Bundle option with quantity selection starting from 2
  */
 const PRICE = '6.99'
-const PRICE_VALUE = 6.99
 const SHIPPING_PRICE = '2'
 const CURRENCY = '€'
 const SINGLE_QUANTITY = 1
@@ -93,7 +88,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
       >
         {/* Single Jar Option */}
         <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
-          <div className="space-y-4">
+          <div className="flex h-full flex-col gap-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.single.title')}
@@ -114,22 +109,21 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               <p className="text-sm text-muted-foreground mt-1">
                 {t('productCTA.single.shipping', priceVars)}
               </p>
-              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-3">
-                {t('productCTA.estimatedTotal', {
-                  total: formatEstimatedTotal(PRICE_VALUE, quantities.single),
-                  currency: CURRENCY,
-                })}
-              </p>
             </div>
+
+            <div
+              aria-hidden="true"
+              className="h-10 border border-transparent"
+            />
 
             <Button
               onClick={() => openCheckout('single')}
               variant={purchaseOptions.single.buttonVariant}
               size={compact ? 'default' : 'lg'}
-              className="w-full"
+              className="mt-auto w-full"
               disabled={!purchaseOptions.single.variantId}
             >
-              {t('productCTA.single.button', { quantity: quantities.single })}
+              {t('productCTA.single.button')}
             </Button>
           </div>
         </div>
@@ -148,7 +142,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             </span>
           </div>
 
-          <div className="space-y-4">
+          <div className="flex h-full flex-col gap-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.multiple.title')}
@@ -171,12 +165,6 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                   {t('productCTA.multiple.shipping')}
                 </span>
               </div>
-              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-3">
-                {t('productCTA.estimatedTotal', {
-                  total: formatEstimatedTotal(PRICE_VALUE, quantities.bundle),
-                  currency: CURRENCY,
-                })}
-              </p>
             </div>
 
             <QuantityStepper
@@ -193,10 +181,10 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               onClick={() => openCheckout('bundle')}
               variant={purchaseOptions.bundle.buttonVariant}
               size={compact ? 'default' : 'lg'}
-              className="w-full"
+              className="mt-auto w-full"
               disabled={!purchaseOptions.bundle.variantId}
             >
-              {t('productCTA.multiple.button', { quantity: quantities.bundle })}
+              {t('productCTA.multiple.button')}
             </Button>
           </div>
         </div>
@@ -205,9 +193,6 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
       {/* Trust Signals */}
       <div className="mt-6 text-center text-sm text-muted-foreground">
         <p>{t('productCTA.trustSignal')}</p>
-        <p className="mt-2 text-xs uppercase tracking-[0.16em]">
-          {t('productCTA.shippingDisclaimer')}
-        </p>
       </div>
     </div>
   )

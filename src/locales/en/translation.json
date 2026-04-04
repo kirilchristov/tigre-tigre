@@ -90,14 +90,12 @@
     "quantityLabel": "Quantity",
     "decreaseQuantity": "Decrease quantity",
     "increaseQuantity": "Increase quantity",
-    "estimatedTotal": "Est. total {{total}}{{currency}}",
-    "shippingDisclaimer": "Shipping method and final delivery details are confirmed in checkout.",
     "single": {
       "title": "Get 1",
       "description": "Perfect for trying",
       "price": "{{price}}{{currency}}",
       "shipping": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Checkout {{quantity}}"
+      "button": "Get 1"
     },
     "multiple": {
       "badge": "Best Value",
@@ -106,7 +104,7 @@
       "price": "{{price}}{{currency}}",
       "shipping": "FREE SHIPPING",
       "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Checkout {{quantity}}"
+      "button": "Get More"
     },
     "trustSignal": "Checkout includes BOX NOW locker delivery and payment options."
   },
