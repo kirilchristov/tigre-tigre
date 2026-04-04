@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" id="app-favicon" />
+    <link rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -83,13 +83,7 @@
   </head>
   <body>
     <script>
-      const isDarkTheme = localStorage.theme === 'dark'
-      if (isDarkTheme) document.documentElement.classList.add('dark')
-
-      const favicon = document.getElementById('app-favicon')
-      if (favicon) {
-        favicon.setAttribute('href', isDarkTheme ? '/favicon-dark.svg' : '/favicon-light.svg')
-      }
+      if (localStorage.theme === 'dark') document.documentElement.classList.add('dark')
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

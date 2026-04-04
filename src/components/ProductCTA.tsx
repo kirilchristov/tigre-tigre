@@ -111,10 +111,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               </p>
             </div>
 
-            <div
-              aria-hidden="true"
-              className="h-10 border border-transparent"
-            />
+            <div aria-hidden="true" className="h-10 border border-transparent" />
 
             <Button
               onClick={() => openCheckout('single')}
@@ -129,12 +126,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         </div>
 
         {/* Multiple Jars Option (Emphasized) */}
-        <div
-          className={cn(
-            purchaseOptions.bundle.layoutClassName,
-            compact ? 'p-4' : 'p-6'
-          )}
-        >
+        <div className={cn(purchaseOptions.bundle.layoutClassName, compact ? 'p-4' : 'p-6')}>
           {/* Best Value Badge */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
             <span className="bg-brand-600 text-background text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">

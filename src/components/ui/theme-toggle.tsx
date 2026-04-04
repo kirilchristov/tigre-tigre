@@ -2,14 +2,6 @@ import { useState, useEffect } from 'react'
 import { Sun, Moon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-function syncFavicon(theme: 'light' | 'dark') {
-  const favicon = document.getElementById('app-favicon')
-
-  if (favicon instanceof HTMLLinkElement) {
-    favicon.href = theme === 'dark' ? '/favicon-dark.svg' : '/favicon-light.svg'
-  }
-}
-
 export function ThemeToggle() {
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
@@ -21,7 +13,6 @@ export function ThemeToggle() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     localStorage.setItem('theme', theme)
-    syncFavicon(theme)
   }, [theme])
 
   const toggleTheme = () => {

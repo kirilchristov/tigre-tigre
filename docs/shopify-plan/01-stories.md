@@ -2,16 +2,16 @@
 
 ## STORY-001 Frontend Checkout Entry
 
-- [ ] Replace Stripe-based CTA destinations with Shopify checkout permalinks.
-- [ ] Centralize Shopify storefront and variant configuration.
-- [ ] Generate checkout URLs from bundle selection plus quantity.
-- [ ] Preserve a safe fallback when Shopify variant IDs are missing.
+- [x] Replace Stripe-based CTA destinations with Shopify checkout permalinks.
+- [x] Centralize Shopify storefront and variant configuration.
+- [x] Generate checkout URLs from bundle selection plus quantity.
+- [x] Preserve a safe fallback when Shopify variant IDs are missing.
 
 ## STORY-002 Quantity Selector UX
 
-- [ ] Add a reusable `+ / -` quantity selector component.
-- [ ] Wire quantity state into both purchase cards.
-- [ ] Show visual quantity context and estimated totals without locking final pricing logic.
+- [x] Add a reusable `+ / -` quantity selector component.
+- [x] Wire quantity state into the purchase flow, with `Get 1` fixed at quantity `1` and `Get More` starting at `2`.
+- [x] Show quantity context in the UI without locking final pricing logic.
 - [ ] Keep the UI model extensible for future merchandise.
 
 ## STORY-003 Shopify Storefront Reduction
@@ -30,7 +30,7 @@
 
 ## STORY-005 Shopify Manual Operations
 
-- [ ] Document payment, checkout, shipping, and branding settings to review manually.
-- [ ] Document theme editing steps for settings, CSS, JS, and preview/publish flow.
-- [ ] Document rollback steps for each manual Shopify change type.
-- [ ] Document manual QA after each Shopify-side change.
+- [x] Document payment, checkout, shipping, and branding settings to review manually.
+- [x] Document theme editing steps for settings, CSS, JS, and preview/publish flow.
+- [x] Document rollback steps for each manual Shopify change type.
+- [x] Document manual QA after each Shopify-side change.
