@@ -3,8 +3,7 @@
 interface ImportMetaEnv {
   // Shopify
   readonly VITE_SHOPIFY_STOREFRONT_DOMAIN?: string
-  readonly VITE_SHOPIFY_VARIANT_ID_SINGLE: string
-  readonly VITE_SHOPIFY_VARIANT_ID_BUNDLE: string
+  readonly VITE_SHOPIFY_VARIANT_ID: string
 
   // Analytics (optional)
   readonly VITE_GA_MEASUREMENT_ID?: string

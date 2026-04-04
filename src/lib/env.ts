@@ -35,8 +35,7 @@ export const env = {
   shopify: {
     storefrontDomain:
       parseEnvString(import.meta.env.VITE_SHOPIFY_STOREFRONT_DOMAIN) || 'shop.tigre-tigre.com',
-    variantIdSingle: parseEnvString(import.meta.env.VITE_SHOPIFY_VARIANT_ID_SINGLE),
-    variantIdBundle: parseEnvString(import.meta.env.VITE_SHOPIFY_VARIANT_ID_BUNDLE),
+    variantId: parseEnvString(import.meta.env.VITE_SHOPIFY_VARIANT_ID),
   },
 
   // Analytics
@@ -68,12 +67,8 @@ export function validateEnv() {
   if (import.meta.env.DEV) {
     const warnings: string[] = []
 
-    if (!env.shopify.variantIdSingle) {
-      warnings.push('VITE_SHOPIFY_VARIANT_ID_SINGLE is not set')
-    }
-
-    if (!env.shopify.variantIdBundle) {
-      warnings.push('VITE_SHOPIFY_VARIANT_ID_BUNDLE is not set')
+    if (!env.shopify.variantId) {
+      warnings.push('VITE_SHOPIFY_VARIANT_ID is not set')
     }
 
     if (warnings.length > 0) {

@@ -13,8 +13,7 @@ This project uses environment variables for configuration, particularly for Shop
 2. **Edit `.env.local` with your actual values:**
    ```bash
    VITE_SHOPIFY_STOREFRONT_DOMAIN=shop.tigre-tigre.com
-   VITE_SHOPIFY_VARIANT_ID_SINGLE=56986218955100
-   VITE_SHOPIFY_VARIANT_ID_BUNDLE=56986218955101
+   VITE_SHOPIFY_VARIANT_ID=56986218955100
    ```
 
 ## Environment Files
@@ -28,8 +27,7 @@ This project uses environment variables for configuration, particularly for Shop
 ### Required for Production
 
 - `VITE_SHOPIFY_STOREFRONT_DOMAIN` - Storefront domain used to build direct checkout links
-- `VITE_SHOPIFY_VARIANT_ID_SINGLE` - Shopify variant ID for the single-offer checkout path
-- `VITE_SHOPIFY_VARIANT_ID_BUNDLE` - Shopify variant ID for the bundle-offer checkout path
+- `VITE_SHOPIFY_VARIANT_ID` - Shopify variant ID used by both checkout entry points, with quantity controlling the difference
 
 ### Optional
 

@@ -4,8 +4,7 @@ import { env, validateEnv } from '@/lib/env'
 describe('env', () => {
   it('exposes shopify checkout properties', () => {
     expect(env.shopify).toHaveProperty('storefrontDomain')
-    expect(env.shopify).toHaveProperty('variantIdSingle')
-    expect(env.shopify).toHaveProperty('variantIdBundle')
+    expect(env.shopify).toHaveProperty('variantId')
   })
 
   it('exposes contact email', () => {

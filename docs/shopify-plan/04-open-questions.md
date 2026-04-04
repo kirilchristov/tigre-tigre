@@ -2,8 +2,8 @@
 
 ## Store Facts Needed
 
-- [ ] What are the exact Shopify variant IDs for the initial single and bundle offers?
-- [ ] Is the bundle offer a separate product, a separate variant, or a pricing convention over the same SKU?
+- [ ] Confirm the shared Shopify variant ID used by both CTA paths.
+- [ ] Confirm that the difference between `Get 1` and `Get More` is quantity only, not separate variants.
 - [ ] Which Shopify theme is currently live on `shop.tigre-tigre.com`?
 - [ ] Which storefront/cart pages are currently reachable by customers besides direct checkout links?
 - [ ] Does the current store expose any checkout branding controls beyond the standard baseline?

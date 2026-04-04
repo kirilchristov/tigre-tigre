@@ -20,14 +20,15 @@ interface ProductCTAProps {
 
 /**
  * ProductCTA displays two purchase options:
- * 1. Single jar with quantity selection
- * 2. Bundle option with quantity selection
+ * 1. Single jar fixed to quantity 1
+ * 2. Bundle option with quantity selection starting from 2
  */
 const PRICE = '6.99'
 const PRICE_VALUE = 6.99
 const SHIPPING_PRICE = '2'
 const CURRENCY = '€'
-const DEFAULT_QUANTITY = 1
+const SINGLE_QUANTITY = 1
+const BUNDLE_MIN_QUANTITY = 2
 const MAX_QUANTITY = 12
 
 const purchaseOptions: Record<
@@ -40,12 +41,12 @@ const purchaseOptions: Record<
   }
 > = {
   single: {
-    variantId: env.shopify.variantIdSingle,
+    variantId: env.shopify.variantId,
     buttonVariant: 'ctaSecondary',
     layoutClassName: 'relative transition-all hover:bg-muted/30',
   },
   bundle: {
-    variantId: env.shopify.variantIdBundle,
+    variantId: env.shopify.variantId,
     buttonVariant: 'ctaPrimary',
     layoutClassName: 'relative border-t-2 border-foreground bg-muted/30 transition-all',
     highlighted: true,
@@ -57,8 +58,8 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const ref = useScrollReveal<HTMLDivElement>()
   const priceVars = { price: PRICE, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
   const [quantities, setQuantities] = useState<Record<PurchaseOptionKey, number>>({
-    single: DEFAULT_QUANTITY,
-    bundle: DEFAULT_QUANTITY,
+    single: SINGLE_QUANTITY,
+    bundle: BUNDLE_MIN_QUANTITY,
   })
 
   const setQuantity = (key: PurchaseOptionKey, quantity: number) => {
@@ -121,15 +122,6 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               </p>
             </div>
 
-            <QuantityStepper
-              value={quantities.single}
-              max={MAX_QUANTITY}
-              quantityLabel={t('productCTA.quantityLabel')}
-              decrementLabel={t('productCTA.decreaseQuantity')}
-              incrementLabel={t('productCTA.increaseQuantity')}
-              onChange={(nextQuantity) => setQuantity('single', nextQuantity)}
-            />
-
             <Button
               onClick={() => openCheckout('single')}
               variant={purchaseOptions.single.buttonVariant}
@@ -189,6 +181,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
             <QuantityStepper
               value={quantities.bundle}
+              min={BUNDLE_MIN_QUANTITY}
               max={MAX_QUANTITY}
               quantityLabel={t('productCTA.quantityLabel')}
               decrementLabel={t('productCTA.decreaseQuantity')}
