@@ -1,8 +1,11 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
 import { env } from '@/lib/env'
+import { buildShopifyCartPermalink, type PurchaseOptionKey } from '@/lib/shopify'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -13,24 +16,66 @@ interface ProductCTAProps {
 
 /**
  * ProductCTA displays two purchase options:
- * 1. Single jar with shipping cost
- * 2. Multiple jars with free shipping (emphasized as better deal)
+ * 1. Single jar fixed to quantity 1
+ * 2. Bundle option with quantity selection starting from 2
  */
 const PRICE = '6.99'
 const SHIPPING_PRICE = '2'
 const CURRENCY = '€'
+const SINGLE_QUANTITY = 1
+const BUNDLE_MIN_QUANTITY = 2
+const MAX_QUANTITY = 12
+
+const purchaseOptions: Record<
+  PurchaseOptionKey,
+  {
+    variantId: string
+    buttonVariant: 'ctaPrimary' | 'ctaSecondary'
+    layoutClassName: string
+    highlighted?: boolean
+  }
+> = {
+  single: {
+    variantId: env.shopify.variantId,
+    buttonVariant: 'ctaSecondary',
+    layoutClassName: 'relative transition-all hover:bg-muted/30',
+  },
+  bundle: {
+    variantId: env.shopify.variantId,
+    buttonVariant: 'ctaPrimary',
+    layoutClassName: 'relative border-t-2 border-foreground bg-muted/30 transition-all',
+    highlighted: true,
+  },
+}
 
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()
   const priceVars = { price: PRICE, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
+  const [quantities, setQuantities] = useState<Record<PurchaseOptionKey, number>>({
+    single: SINGLE_QUANTITY,
+    bundle: BUNDLE_MIN_QUANTITY,
+  })
 
-  const handleBuySingle = () => {
-    window.location.href = env.stripe.paymentLinkSingle
+  const setQuantity = (key: PurchaseOptionKey, quantity: number) => {
+    setQuantities((current) => ({
+      ...current,
+      [key]: quantity,
+    }))
   }
 
-  const handleBuyMultiple = () => {
-    window.location.href = env.stripe.paymentLinkBundle
+  const openCheckout = (key: PurchaseOptionKey) => {
+    const checkoutUrl = buildShopifyCartPermalink({
+      storefrontDomain: env.shopify.storefrontDomain,
+      variantId: purchaseOptions[key].variantId,
+      quantity: quantities[key],
+    })
+
+    if (checkoutUrl === '#') {
+      return
+    }
+
+    window.location.href = checkoutUrl
   }
 
   return (
@@ -42,8 +87,8 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         )}
       >
         {/* Single Jar Option */}
-        <div className={cn('relative transition-all hover:bg-muted/30', compact ? 'p-4' : 'p-6')}>
-          <div className="space-y-4">
+        <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
+          <div className="flex h-full flex-col gap-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.single.title')}
@@ -66,11 +111,14 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               </p>
             </div>
 
+            <div aria-hidden="true" className="h-10 border border-transparent" />
+
             <Button
-              onClick={handleBuySingle}
-              variant="ctaSecondary"
+              onClick={() => openCheckout('single')}
+              variant={purchaseOptions.single.buttonVariant}
               size={compact ? 'default' : 'lg'}
-              className="w-full"
+              className="mt-auto w-full"
+              disabled={!purchaseOptions.single.variantId}
             >
               {t('productCTA.single.button')}
             </Button>
@@ -78,12 +126,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         </div>
 
         {/* Multiple Jars Option (Emphasized) */}
-        <div
-          className={cn(
-            'relative border-t-2 border-foreground bg-muted/30 transition-all',
-            compact ? 'p-4' : 'p-6'
-          )}
-        >
+        <div className={cn(purchaseOptions.bundle.layoutClassName, compact ? 'p-4' : 'p-6')}>
           {/* Best Value Badge */}
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
             <span className="bg-brand-600 text-background text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
@@ -91,7 +134,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             </span>
           </div>
 
-          <div className="space-y-4">
+          <div className="flex h-full flex-col gap-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.multiple.title')}
@@ -110,20 +153,28 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
-                {/* <span className="text-xs text-muted-foreground line-through">
-                  {t('productCTA.multiple.shippingSaved', priceVars)}
-                </span> */}
                 <span className="text-sm font-bold text-brand-600">
                   {t('productCTA.multiple.shipping')}
                 </span>
               </div>
             </div>
 
+            <QuantityStepper
+              value={quantities.bundle}
+              min={BUNDLE_MIN_QUANTITY}
+              max={MAX_QUANTITY}
+              quantityLabel={t('productCTA.quantityLabel')}
+              decrementLabel={t('productCTA.decreaseQuantity')}
+              incrementLabel={t('productCTA.increaseQuantity')}
+              onChange={(nextQuantity) => setQuantity('bundle', nextQuantity)}
+            />
+
             <Button
-              onClick={handleBuyMultiple}
-              variant="ctaPrimary"
+              onClick={() => openCheckout('bundle')}
+              variant={purchaseOptions.bundle.buttonVariant}
               size={compact ? 'default' : 'lg'}
-              className="w-full"
+              className="mt-auto w-full"
+              disabled={!purchaseOptions.bundle.variantId}
             >
               {t('productCTA.multiple.button')}
             </Button>

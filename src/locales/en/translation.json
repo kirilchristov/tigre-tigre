@@ -87,12 +87,15 @@
   },
   "productCTA": {
     "currency": "€",
+    "quantityLabel": "Quantity",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
     "single": {
       "title": "Get 1",
       "description": "Perfect for trying",
       "price": "{{price}}{{currency}}",
       "shipping": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Get Now"
+      "button": "Get 1"
     },
     "multiple": {
       "badge": "Best Value",
@@ -103,7 +106,7 @@
       "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
       "button": "Get More"
     },
-    "trustSignal": "Fast delivery across Bulgaria to any Speedy office or your doorstep"
+    "trustSignal": "Checkout includes BOX NOW locker delivery and payment options."
   },
   "contents": {
     "title": "ingredients",

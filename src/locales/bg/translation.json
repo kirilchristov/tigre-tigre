@@ -87,6 +87,9 @@
   },
   "productCTA": {
     "currency": "€",
+    "quantityLabel": "Количество",
+    "decreaseQuantity": "Намали количеството",
+    "increaseQuantity": "Увеличи количеството",
     "single": {
       "title": "Вземи 1",
       "description": "Идеално за проба",
@@ -103,7 +106,7 @@
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
       "button": "Вземи повече"
     },
-    "trustSignal": "Бърза доставка със Speedy в цяла България, до офис или врата"
+    "trustSignal": "Checkout включва BOX NOW locker доставка и опции за плащане."
   },
   "contents": {
     "title": "съдържание",

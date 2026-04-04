@@ -16,12 +16,26 @@ function parseBooleanFlag(value: unknown): boolean {
   return false
 }
 
+function parseEnvString(value: unknown): string {
+  if (typeof value !== 'string') {
+    return ''
+  }
+
+  const normalized = value.trim()
+
+  if (!normalized || normalized.toLowerCase() === 'undefined' || normalized.toLowerCase() === 'null') {
+    return ''
+  }
+
+  return normalized
+}
+
 export const env = {
-  // Stripe
-  stripe: {
-    publishableKey: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
-    paymentLinkSingle: import.meta.env.VITE_STRIPE_PAYMENT_LINK_SINGLE || '#',
-    paymentLinkBundle: import.meta.env.VITE_STRIPE_PAYMENT_LINK_BUNDLE || '#',
+  // Shopify
+  shopify: {
+    storefrontDomain:
+      parseEnvString(import.meta.env.VITE_SHOPIFY_STOREFRONT_DOMAIN) || 'shop.tigre-tigre.com',
+    variantId: parseEnvString(import.meta.env.VITE_SHOPIFY_VARIANT_ID),
   },
 
   // Analytics
@@ -31,7 +45,7 @@ export const env = {
 
   // Contact
   contact: {
-    email: import.meta.env.VITE_CONTACT_EMAIL || 'hello@tigre-tigre.com',
+    email: parseEnvString(import.meta.env.VITE_CONTACT_EMAIL) || 'hello@tigre-tigre.com',
   },
 
   // Feature flags
@@ -53,19 +67,15 @@ export function validateEnv() {
   if (import.meta.env.DEV) {
     const warnings: string[] = []
 
-    if (!env.stripe.paymentLinkSingle || env.stripe.paymentLinkSingle === '#') {
-      warnings.push('VITE_STRIPE_PAYMENT_LINK_SINGLE is not set')
-    }
-
-    if (!env.stripe.paymentLinkBundle || env.stripe.paymentLinkBundle === '#') {
-      warnings.push('VITE_STRIPE_PAYMENT_LINK_BUNDLE is not set')
+    if (!env.shopify.variantId) {
+      warnings.push('VITE_SHOPIFY_VARIANT_ID is not set')
     }
 
     if (warnings.length > 0) {
       console.warn(
         '⚠️ Missing environment variables:\n' +
           warnings.map((w) => `  - ${w}`).join('\n') +
-          '\n\nCopy .env.example to .env and configure your Stripe payment links.'
+          '\n\nCopy .env.example to .env and configure your Shopify variant IDs.'
       )
     }
   }
