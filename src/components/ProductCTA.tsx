@@ -1,8 +1,15 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
 import { env } from '@/lib/env'
+import {
+  buildShopifyCartPermalink,
+  formatEstimatedTotal,
+  type PurchaseOptionKey,
+} from '@/lib/shopify'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -13,24 +20,66 @@ interface ProductCTAProps {
 
 /**
  * ProductCTA displays two purchase options:
- * 1. Single jar with shipping cost
- * 2. Multiple jars with free shipping (emphasized as better deal)
+ * 1. Single jar with quantity selection
+ * 2. Bundle option with quantity selection
  */
 const PRICE = '6.99'
+const PRICE_VALUE = 6.99
 const SHIPPING_PRICE = '2'
 const CURRENCY = '€'
+const DEFAULT_QUANTITY = 1
+const MAX_QUANTITY = 12
+
+const purchaseOptions: Record<
+  PurchaseOptionKey,
+  {
+    variantId: string
+    buttonVariant: 'ctaPrimary' | 'ctaSecondary'
+    layoutClassName: string
+    highlighted?: boolean
+  }
+> = {
+  single: {
+    variantId: env.shopify.variantIdSingle,
+    buttonVariant: 'ctaSecondary',
+    layoutClassName: 'relative transition-all hover:bg-muted/30',
+  },
+  bundle: {
+    variantId: env.shopify.variantIdBundle,
+    buttonVariant: 'ctaPrimary',
+    layoutClassName: 'relative border-t-2 border-foreground bg-muted/30 transition-all',
+    highlighted: true,
+  },
+}
 
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()
   const priceVars = { price: PRICE, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
+  const [quantities, setQuantities] = useState<Record<PurchaseOptionKey, number>>({
+    single: DEFAULT_QUANTITY,
+    bundle: DEFAULT_QUANTITY,
+  })
 
-  const handleBuySingle = () => {
-    window.location.href = env.stripe.paymentLinkSingle
+  const setQuantity = (key: PurchaseOptionKey, quantity: number) => {
+    setQuantities((current) => ({
+      ...current,
+      [key]: quantity,
+    }))
   }
 
-  const handleBuyMultiple = () => {
-    window.location.href = env.stripe.paymentLinkBundle
+  const openCheckout = (key: PurchaseOptionKey) => {
+    const checkoutUrl = buildShopifyCartPermalink({
+      storefrontDomain: env.shopify.storefrontDomain,
+      variantId: purchaseOptions[key].variantId,
+      quantity: quantities[key],
+    })
+
+    if (checkoutUrl === '#') {
+      return
+    }
+
+    window.location.href = checkoutUrl
   }
 
   return (
@@ -42,7 +91,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         )}
       >
         {/* Single Jar Option */}
-        <div className={cn('relative transition-all hover:bg-muted/30', compact ? 'p-4' : 'p-6')}>
+        <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
           <div className="space-y-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
@@ -64,15 +113,31 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               <p className="text-sm text-muted-foreground mt-1">
                 {t('productCTA.single.shipping', priceVars)}
               </p>
+              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-3">
+                {t('productCTA.estimatedTotal', {
+                  total: formatEstimatedTotal(PRICE_VALUE, quantities.single),
+                  currency: CURRENCY,
+                })}
+              </p>
             </div>
 
+            <QuantityStepper
+              value={quantities.single}
+              max={MAX_QUANTITY}
+              quantityLabel={t('productCTA.quantityLabel')}
+              decrementLabel={t('productCTA.decreaseQuantity')}
+              incrementLabel={t('productCTA.increaseQuantity')}
+              onChange={(nextQuantity) => setQuantity('single', nextQuantity)}
+            />
+
             <Button
-              onClick={handleBuySingle}
-              variant="ctaSecondary"
+              onClick={() => openCheckout('single')}
+              variant={purchaseOptions.single.buttonVariant}
               size={compact ? 'default' : 'lg'}
               className="w-full"
+              disabled={!purchaseOptions.single.variantId}
             >
-              {t('productCTA.single.button')}
+              {t('productCTA.single.button', { quantity: quantities.single })}
             </Button>
           </div>
         </div>
@@ -80,7 +145,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
         {/* Multiple Jars Option (Emphasized) */}
         <div
           className={cn(
-            'relative border-t-2 border-foreground bg-muted/30 transition-all',
+            purchaseOptions.bundle.layoutClassName,
             compact ? 'p-4' : 'p-6'
           )}
         >
@@ -110,22 +175,35 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">
-                {/* <span className="text-xs text-muted-foreground line-through">
-                  {t('productCTA.multiple.shippingSaved', priceVars)}
-                </span> */}
                 <span className="text-sm font-bold text-brand-600">
                   {t('productCTA.multiple.shipping')}
                 </span>
               </div>
+              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground mt-3">
+                {t('productCTA.estimatedTotal', {
+                  total: formatEstimatedTotal(PRICE_VALUE, quantities.bundle),
+                  currency: CURRENCY,
+                })}
+              </p>
             </div>
 
+            <QuantityStepper
+              value={quantities.bundle}
+              max={MAX_QUANTITY}
+              quantityLabel={t('productCTA.quantityLabel')}
+              decrementLabel={t('productCTA.decreaseQuantity')}
+              incrementLabel={t('productCTA.increaseQuantity')}
+              onChange={(nextQuantity) => setQuantity('bundle', nextQuantity)}
+            />
+
             <Button
-              onClick={handleBuyMultiple}
-              variant="ctaPrimary"
+              onClick={() => openCheckout('bundle')}
+              variant={purchaseOptions.bundle.buttonVariant}
               size={compact ? 'default' : 'lg'}
               className="w-full"
+              disabled={!purchaseOptions.bundle.variantId}
             >
-              {t('productCTA.multiple.button')}
+              {t('productCTA.multiple.button', { quantity: quantities.bundle })}
             </Button>
           </div>
         </div>
@@ -134,6 +212,9 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
       {/* Trust Signals */}
       <div className="mt-6 text-center text-sm text-muted-foreground">
         <p>{t('productCTA.trustSignal')}</p>
+        <p className="mt-2 text-xs uppercase tracking-[0.16em]">
+          {t('productCTA.shippingDisclaimer')}
+        </p>
       </div>
     </div>
   )

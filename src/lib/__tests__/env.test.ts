@@ -2,9 +2,10 @@ import { describe, it, expect } from 'vitest'
 import { env, validateEnv } from '@/lib/env'
 
 describe('env', () => {
-  it('exposes stripe payment link properties', () => {
-    expect(env.stripe).toHaveProperty('paymentLinkSingle')
-    expect(env.stripe).toHaveProperty('paymentLinkBundle')
+  it('exposes shopify checkout properties', () => {
+    expect(env.shopify).toHaveProperty('storefrontDomain')
+    expect(env.shopify).toHaveProperty('variantIdSingle')
+    expect(env.shopify).toHaveProperty('variantIdBundle')
   })
 
   it('exposes contact email', () => {
@@ -13,7 +14,7 @@ describe('env', () => {
   })
 
   it('has the expected shape', () => {
-    expect(env).toHaveProperty('stripe')
+    expect(env).toHaveProperty('shopify')
     expect(env).toHaveProperty('analytics')
     expect(env).toHaveProperty('contact')
     expect(env).toHaveProperty('soldOut')

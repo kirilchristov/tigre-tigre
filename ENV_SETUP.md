@@ -1,6 +1,6 @@
 # Environment Variables Setup
 
-This project uses environment variables for configuration, particularly for Stripe integration and other sensitive data.
+This project uses environment variables for configuration, particularly for Shopify checkout links and other sensitive data.
 
 ## Quick Start
 
@@ -12,9 +12,9 @@ This project uses environment variables for configuration, particularly for Stri
 
 2. **Edit `.env.local` with your actual values:**
    ```bash
-   # Get your Stripe keys from https://dashboard.stripe.com/apikeys
-   VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_actual_key
-   VITE_STRIPE_PAYMENT_LINK_URL=https://buy.stripe.com/test_your_link
+   VITE_SHOPIFY_STOREFRONT_DOMAIN=shop.tigre-tigre.com
+   VITE_SHOPIFY_VARIANT_ID_SINGLE=56986218955100
+   VITE_SHOPIFY_VARIANT_ID_BUNDLE=56986218955101
    ```
 
 ## Environment Files
@@ -27,21 +27,21 @@ This project uses environment variables for configuration, particularly for Stri
 
 ### Required for Production
 
-- `VITE_STRIPE_PUBLISHABLE_KEY` - Stripe publishable key (pk*live*_ or pk*test*_)
-- `VITE_STRIPE_PAYMENT_LINK_URL` - Direct link to Stripe payment page
+- `VITE_SHOPIFY_STOREFRONT_DOMAIN` - Storefront domain used to build direct checkout links
+- `VITE_SHOPIFY_VARIANT_ID_SINGLE` - Shopify variant ID for the single-offer checkout path
+- `VITE_SHOPIFY_VARIANT_ID_BUNDLE` - Shopify variant ID for the bundle-offer checkout path
 
 ### Optional
 
 - `VITE_GA_MEASUREMENT_ID` - Google Analytics tracking ID
 - `VITE_CONTACT_EMAIL` - Contact email (defaults to hello@tigre-tigre.com)
 
-## Stripe Setup
+## Shopify Setup
 
-1. Create account at [stripe.com](https://stripe.com)
-2. Get API keys from [Dashboard > Developers > API Keys](https://dashboard.stripe.com/apikeys)
-3. Create payment link at [Dashboard > Payment Links](https://dashboard.stripe.com/payment-links)
-4. Use **test mode** for development (keys start with `pk_test_`)
-5. Switch to **live mode** for production (keys start with `pk_live_`)
+1. Find the storefront domain for checkout links, for example `shop.tigre-tigre.com`
+2. Find the variant ID for each offer that should be purchasable from the frontend
+3. Set the domain and variant IDs in `.env.local`
+4. Test the generated checkout URLs locally before deploying
 
 ## Vercel Deployment
 
@@ -56,8 +56,8 @@ Set environment variables in Vercel dashboard:
 
 - ⚠️ **Never commit `.env.local` or `.env` files**
 - ✅ Only `VITE_` prefixed variables are exposed to the client
-- ✅ Publishable keys (pk\_\*) are safe to use client-side
-- ❌ Never use secret keys (sk\_\*) in client code
+- ✅ Storefront domains and public variant IDs are safe to expose client-side
+- ❌ Never place Shopify admin tokens or BOX NOW secrets in client code
 
 ## Validation
 

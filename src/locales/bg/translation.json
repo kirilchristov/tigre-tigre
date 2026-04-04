@@ -87,12 +87,17 @@
   },
   "productCTA": {
     "currency": "€",
+    "quantityLabel": "Количество",
+    "decreaseQuantity": "Намали количеството",
+    "increaseQuantity": "Увеличи количеството",
+    "estimatedTotal": "Ориентировъчно общо {{total}}{{currency}}",
+    "shippingDisclaimer": "Методът на доставка и финалните детайли се потвърждават в checkout.",
     "single": {
       "title": "Вземи 1",
       "description": "Идеално за проба",
       "price": "{{price}}{{currency}}",
       "shipping": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи 1"
+      "button": "Checkout {{quantity}}"
     },
     "multiple": {
       "badge": "Най-изгодно",
@@ -101,9 +106,9 @@
       "price": "{{price}}{{currency}}",
       "shipping": "БЕЗПЛАТНА ДОСТАВКА",
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи повече"
+      "button": "Checkout {{quantity}}"
     },
-    "trustSignal": "Бърза доставка със Speedy в цяла България, до офис или врата"
+    "trustSignal": "Checkout включва BOX NOW locker доставка и опции за плащане."
   },
   "contents": {
     "title": "съдържание",

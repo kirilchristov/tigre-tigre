@@ -1,16 +1,19 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  // Stripe
-  readonly VITE_STRIPE_PUBLISHABLE_KEY?: string
-  readonly VITE_STRIPE_PAYMENT_LINK_SINGLE: string
-  readonly VITE_STRIPE_PAYMENT_LINK_BUNDLE: string
+  // Shopify
+  readonly VITE_SHOPIFY_STOREFRONT_DOMAIN?: string
+  readonly VITE_SHOPIFY_VARIANT_ID_SINGLE: string
+  readonly VITE_SHOPIFY_VARIANT_ID_BUNDLE: string
 
   // Analytics (optional)
   readonly VITE_GA_MEASUREMENT_ID?: string
 
   // Contact
   readonly VITE_CONTACT_EMAIL: string
+
+  // Feature flags
+  readonly VITE_SOLD_OUT_MODE?: string
 
   // Vercel (auto-injected)
   readonly VITE_VERCEL_ENV?: 'production' | 'preview' | 'development'
