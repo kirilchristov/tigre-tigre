@@ -2,7 +2,7 @@
 
 ## Store Facts Needed
 
-- [ ] Confirm the shared Shopify variant ID used by both CTA paths.
+- [x] Confirm the shared Shopify variant ID used by both CTA paths.
 - [ ] Confirm that the difference between `Get 1` and `Get More` is quantity only, not separate variants.
 - [ ] Which Shopify theme is currently live on `shop.tigre-tigre.com`?
 - [ ] Which storefront/cart pages are currently reachable by customers besides direct checkout links?

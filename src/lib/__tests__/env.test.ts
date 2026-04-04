@@ -2,20 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { env, validateEnv } from '@/lib/env'
 
 describe('env', () => {
-  it('exposes shopify checkout properties', () => {
-    expect(env.shopify).toHaveProperty('storefrontDomain')
-    expect(env.shopify).toHaveProperty('variantId')
-  })
-
-  it('exposes contact email', () => {
-    expect(typeof env.contact.email).toBe('string')
-    expect(env.contact.email.length).toBeGreaterThan(0)
-  })
-
   it('has the expected shape', () => {
-    expect(env).toHaveProperty('shopify')
     expect(env).toHaveProperty('analytics')
-    expect(env).toHaveProperty('contact')
     expect(env).toHaveProperty('soldOut')
     expect(env).toHaveProperty('isDev')
     expect(env).toHaveProperty('isProd')

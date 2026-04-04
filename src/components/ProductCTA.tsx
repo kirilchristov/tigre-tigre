@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
-import { env } from '@/lib/env'
 import { buildShopifyCartPermalink, type PurchaseOptionKey } from '@/lib/shopify'
 
 interface ProductCTAProps {
@@ -25,6 +24,8 @@ const CURRENCY = '€'
 const SINGLE_QUANTITY = 1
 const BUNDLE_MIN_QUANTITY = 2
 const MAX_QUANTITY = 12
+const SHOPIFY_VARIANT_ID = '56986218955100'
+const SHOPIFY_STOREFRONT_DOMAIN = 'shop.tigre-tigre.com'
 
 const purchaseOptions: Record<
   PurchaseOptionKey,
@@ -36,12 +37,12 @@ const purchaseOptions: Record<
   }
 > = {
   single: {
-    variantId: env.shopify.variantId,
+    variantId: SHOPIFY_VARIANT_ID,
     buttonVariant: 'ctaSecondary',
     layoutClassName: 'relative transition-all hover:bg-muted/30',
   },
   bundle: {
-    variantId: env.shopify.variantId,
+    variantId: SHOPIFY_VARIANT_ID,
     buttonVariant: 'ctaPrimary',
     layoutClassName: 'relative border-t-2 border-foreground bg-muted/30 transition-all',
     highlighted: true,
@@ -66,7 +67,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
   const openCheckout = (key: PurchaseOptionKey) => {
     const checkoutUrl = buildShopifyCartPermalink({
-      storefrontDomain: env.shopify.storefrontDomain,
+      storefrontDomain: SHOPIFY_STOREFRONT_DOMAIN,
       variantId: purchaseOptions[key].variantId,
       quantity: quantities[key],
     })

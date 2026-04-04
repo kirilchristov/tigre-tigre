@@ -12,8 +12,8 @@ This project uses environment variables for configuration, particularly for Shop
 
 2. **Edit `.env.local` with your actual values:**
    ```bash
-   VITE_SHOPIFY_STOREFRONT_DOMAIN=shop.tigre-tigre.com
-   VITE_SHOPIFY_VARIANT_ID=56986218955100
+   VITE_SOLD_OUT_MODE=false
+   VITE_STAGING=false
    ```
 
 ## Environment Files
@@ -26,20 +26,14 @@ This project uses environment variables for configuration, particularly for Shop
 
 ### Required for Production
 
-- `VITE_SHOPIFY_STOREFRONT_DOMAIN` - Storefront domain used to build direct checkout links
-- `VITE_SHOPIFY_VARIANT_ID` - Shopify variant ID used by both checkout entry points, with quantity controlling the difference
-
-### Optional
-
 - `VITE_GA_MEASUREMENT_ID` - Google Analytics tracking ID
-- `VITE_CONTACT_EMAIL` - Contact email (defaults to hello@tigre-tigre.com)
+- `VITE_SOLD_OUT_MODE` - Enables sold-out mode in the frontend
+- `VITE_STAGING` - Marks a deployment as staging/preview
 
 ## Shopify Setup
 
-1. Find the storefront domain for checkout links, for example `shop.tigre-tigre.com`
-2. Find the variant ID for each offer that should be purchasable from the frontend
-3. Set the domain and variant IDs in `.env.local`
-4. Test the generated checkout URLs locally before deploying
+1. Keep the shared Shopify storefront domain and variant ID in the frontend purchase config
+2. Test the generated checkout URLs locally before deploying
 
 ## Vercel Deployment
 

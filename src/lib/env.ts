@@ -16,36 +16,10 @@ function parseBooleanFlag(value: unknown): boolean {
   return false
 }
 
-function parseEnvString(value: unknown): string {
-  if (typeof value !== 'string') {
-    return ''
-  }
-
-  const normalized = value.trim()
-
-  if (!normalized || normalized.toLowerCase() === 'undefined' || normalized.toLowerCase() === 'null') {
-    return ''
-  }
-
-  return normalized
-}
-
 export const env = {
-  // Shopify
-  shopify: {
-    storefrontDomain:
-      parseEnvString(import.meta.env.VITE_SHOPIFY_STOREFRONT_DOMAIN) || 'shop.tigre-tigre.com',
-    variantId: parseEnvString(import.meta.env.VITE_SHOPIFY_VARIANT_ID),
-  },
-
   // Analytics
   analytics: {
     gaId: import.meta.env.VITE_GA_MEASUREMENT_ID,
-  },
-
-  // Contact
-  contact: {
-    email: parseEnvString(import.meta.env.VITE_CONTACT_EMAIL) || 'hello@tigre-tigre.com',
   },
 
   // Feature flags
@@ -65,18 +39,6 @@ export const env = {
  */
 export function validateEnv() {
   if (import.meta.env.DEV) {
-    const warnings: string[] = []
-
-    if (!env.shopify.variantId) {
-      warnings.push('VITE_SHOPIFY_VARIANT_ID is not set')
-    }
-
-    if (warnings.length > 0) {
-      console.warn(
-        '⚠️ Missing environment variables:\n' +
-          warnings.map((w) => `  - ${w}`).join('\n') +
-          '\n\nCopy .env.example to .env and configure your Shopify variant IDs.'
-      )
-    }
+    return
   }
 }

@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Section } from '@/components/layout'
-import { env } from '@/lib/env'
 
 const SOCIAL_HANDLE = 'eat.tigretigre'
+const CONTACT_EMAIL = 'hello@tigre-tigre.com'
 
 export function ContactSection() {
   const { t } = useTranslation()
-  const email = env.contact.email
+  const email = CONTACT_EMAIL
 
   return (
     <Section id="contact" className="py-8 px-4 text-center border-t border-border bg-muted/30">
