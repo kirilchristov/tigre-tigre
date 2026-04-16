@@ -34,11 +34,11 @@ const SubHeroTextRollerSection = lazy(() =>
   }))
 )
 
-const FirstTigerScrollHighlightSection = lazy(() =>
-  import('@/components/sections/FirstTigerScrollHighlightSection').then((mod) => ({
-    default: mod.FirstTigerScrollHighlightSection,
-  }))
-)
+// const FirstTigerScrollHighlightSection = lazy(() =>
+//   import('@/components/sections/FirstTigerScrollHighlightSection').then((mod) => ({
+//     default: mod.FirstTigerScrollHighlightSection,
+//   }))
+// )
 
 const HowToEatScrollHighlightSection = lazy(() =>
   import('@/components/sections/HowToEatScrollHighlightSection').then((mod) => ({
@@ -61,16 +61,16 @@ function HomePage() {
         <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
-      {!isSoldOut ? (
+      {/* {!isSoldOut ? (
         <LazySection>
           <FirstTigerScrollHighlightSection />
         </LazySection>
-      ) : null}
-      <LazySection>
-        <BannerScrollerSection />
-      </LazySection>
+      ) : null} */}
       <LazySection>
         <HowToEatScrollHighlightSection />
+      </LazySection>
+      <LazySection>
+        <BannerScrollerSection />
       </LazySection>
       <LazySection>
         <ContentsSection />

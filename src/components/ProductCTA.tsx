@@ -22,7 +22,7 @@ const PRICE = '7.99'
 const SHIPPING_PRICE = '3'
 const CURRENCY = '€'
 const SINGLE_QUANTITY = 1
-const BUNDLE_MIN_QUANTITY = 2
+const BUNDLE_MIN_QUANTITY = 1
 const MAX_QUANTITY = 12
 const SHOPIFY_VARIANT_ID = '56986218955100'
 const SHOPIFY_STOREFRONT_DOMAIN = 'shop.tigre-tigre.com'
@@ -81,11 +81,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
 
   return (
     <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4 font-mono', className)}>
-      <div
-        className={cn(
-          'grid grid-cols-1 justify-items-center gap-4'
-        )}
-      >
+      <div className={cn('grid grid-cols-1 justify-items-center gap-4')}>
         {/* Single Jar Option */}
         {/* <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
           <div className="flex h-full flex-col gap-4">

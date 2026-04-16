@@ -5,7 +5,7 @@ export interface NavItem {
 
 const baseNavItems: NavItem[] = [
   { key: 'home', href: '#' },
-  { key: 'firstTiger', href: '#first-tiger-highlight' },
+  // { key: 'firstTiger', href: '#first-tiger-highlight' },
   { key: 'howTo', href: '#howto-highlight' },
   { key: 'content', href: '#content' },
   { key: 'about', href: '#about-highlight' },
