@@ -102,9 +102,9 @@
       "title": "Get More",
       "description": "Stock up for longer",
       "price": "{{price}}{{currency}}",
-      "shipping": "FREE SHIPPING",
+      "shipping": "Free delivery until the end of May with BoxNow",
       "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Get More"
+      "button": "Get"
     },
     "trustSignal": "Checkout includes BOX NOW locker delivery and payment options."
   },

@@ -18,8 +18,8 @@ interface ProductCTAProps {
  * 1. Single jar fixed to quantity 1
  * 2. Bundle option with quantity selection starting from 2
  */
-const PRICE = '6.99'
-const SHIPPING_PRICE = '2'
+const PRICE = '7.99'
+const SHIPPING_PRICE = '3'
 const CURRENCY = '€'
 const SINGLE_QUANTITY = 1
 const BUNDLE_MIN_QUANTITY = 2
@@ -83,12 +83,11 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
     <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4 font-mono', className)}>
       <div
         className={cn(
-          'grid gap-4',
-          compact ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'
+          'grid grid-cols-1 justify-items-center gap-4'
         )}
       >
         {/* Single Jar Option */}
-        <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
+        {/* <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
           <div className="flex h-full flex-col gap-4">
             <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
@@ -124,26 +123,32 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               {t('productCTA.single.button')}
             </Button>
           </div>
-        </div>
+        </div> */}
 
         {/* Multiple Jars Option (Emphasized) */}
-        <div className={cn(purchaseOptions.bundle.layoutClassName, compact ? 'p-4' : 'p-6')}>
+        <div
+          className={cn(
+            purchaseOptions.bundle.layoutClassName,
+            'w-full max-w-md',
+            compact ? 'p-4' : 'p-6'
+          )}
+        >
           {/* Best Value Badge */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          {/* <div className="absolute -top-3 left-1/2 -translate-x-1/2">
             <span className="bg-brand-600 text-background text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
               {t('productCTA.multiple.badge')}
             </span>
-          </div>
+          </div> */}
 
           <div className="flex h-full flex-col gap-4">
-            <div>
+            {/* <div>
               <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
                 {t('productCTA.multiple.title')}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
                 {t('productCTA.multiple.description')}
               </p>
-            </div>
+            </div> */}
 
             <div>
               <div className="flex items-baseline gap-2">

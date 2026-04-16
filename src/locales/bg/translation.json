@@ -102,9 +102,9 @@
       "title": "Вземи повече",
       "description": "Запаси се за по-дълго",
       "price": "{{price}}{{currency}}",
-      "shipping": "БЕЗПЛАТНА ДОСТАВКА",
+      "shipping": "Безплатна доставка до края на май с BoxNow",
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи повече"
+      "button": "Вземи"
     },
     "trustSignal": "Checkout включва BOX NOW locker доставка и опции за плащане."
   },
