@@ -14,6 +14,10 @@ describe('env', () => {
     expect(typeof env.soldOut.enabled).toBe('boolean')
   })
 
+  it('exposes google analytics id as optional string', () => {
+    expect(env.analytics.gaId === undefined || typeof env.analytics.gaId === 'string').toBe(true)
+  })
+
   it('exposes meta pixel id as optional string', () => {
     expect(
       env.analytics.metaPixelId === undefined || typeof env.analytics.metaPixelId === 'string'

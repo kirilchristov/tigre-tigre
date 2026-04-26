@@ -3,6 +3,7 @@ import { LazySection } from '@/components/ui/lazy-section'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
 import { env } from '@/lib/env'
+import { GoogleAnalyticsTracker } from '@/components/GoogleAnalyticsTracker'
 import { MetaPixelTracker } from '@/components/MetaPixelTracker'
 
 // import { SplashPage } from '@/components/SplashPage'
@@ -107,6 +108,7 @@ function App() {
   // Show full site with routing on staging domain and localhost
   return (
     <BrowserRouter>
+      <GoogleAnalyticsTracker />
       <MetaPixelTracker />
       <Routes>
         <Route path="/r/:code" element={<QrRedirect />} />

@@ -12,6 +12,7 @@ This project uses environment variables for configuration, particularly for Shop
 
 2. **Edit `.env.local` with your actual values:**
    ```bash
+   VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
    VITE_SOLD_OUT_MODE=false
    VITE_STAGING=false
    ```
