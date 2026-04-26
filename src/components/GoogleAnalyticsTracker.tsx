@@ -4,6 +4,7 @@ import { env } from '@/lib/env'
 
 const GOOGLE_TAG_SCRIPT_ID = 'google-tag-script'
 const GOOGLE_TAG_SCRIPT_SRC = 'https://www.googletagmanager.com/gtag/js'
+const GOOGLE_LINKER_DOMAINS = ['tigre-tigre.com', 'shop.tigre-tigre.com'] as const
 
 type GtagCommand = 'js' | 'config' | 'event' | 'set'
 type GtagFunction = (command: GtagCommand, target: string | Date, params?: Record<string, unknown>) => void
@@ -44,6 +45,7 @@ function ensureGoogleAnalyticsLoaded(measurementId: string) {
 
   if (initializedMeasurementId !== measurementId) {
     gtag('js', new Date())
+    gtag('set', 'linker', { domains: [...GOOGLE_LINKER_DOMAINS] })
     gtag('config', measurementId, { send_page_view: false })
     initializedMeasurementId = measurementId
   }
