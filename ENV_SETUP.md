@@ -27,6 +27,7 @@ This project uses environment variables for configuration, particularly for Shop
 ### Required for Production
 
 - `VITE_GA_MEASUREMENT_ID` - Google Analytics tracking ID
+- `VITE_META_PIXEL_ID` - Meta Pixel ID for Facebook/Instagram ad attribution
 - `VITE_SOLD_OUT_MODE` - Enables sold-out mode in the frontend
 - `VITE_STAGING` - Marks a deployment as staging/preview
 

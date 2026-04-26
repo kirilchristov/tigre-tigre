@@ -20,6 +20,7 @@ export const env = {
   // Analytics
   analytics: {
     gaId: import.meta.env.VITE_GA_MEASUREMENT_ID,
+    metaPixelId: import.meta.env.VITE_META_PIXEL_ID,
   },
 
   // Feature flags

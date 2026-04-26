@@ -1,8 +1,11 @@
 /// <reference types="vite/client" />
 
+declare const __APP_VERSION__: string
+
 interface ImportMetaEnv {
   // Analytics (optional)
   readonly VITE_GA_MEASUREMENT_ID?: string
+  readonly VITE_META_PIXEL_ID?: string
 
   // Feature flags
   readonly VITE_SOLD_OUT_MODE?: string

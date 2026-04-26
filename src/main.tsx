@@ -11,7 +11,7 @@ import { validateEnv } from './lib/env'
 // Validate environment variables in development
 validateEnv()
 
-console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, '0.1.1')
+console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
 
 const isTruthyFlag = (value: string | undefined) => {
   if (!value) return false
@@ -47,7 +47,7 @@ if (shouldBlockIndexing) {
 
 if (isPreview || isDev) {
   console.log('%ctigre tigre App', 'font-weight: bold; font-size: 16px; color: #ff6b00;')
-  console.log(`%cVersion: "0.0.1"`, 'color: #666;')
+  console.log(`%cVersion: "${__APP_VERSION__}"`, 'color: #666;')
   console.log(
     `%cEnvironment: ${import.meta.env.VITE_VERCEL_ENV || import.meta.env.MODE}`,
     'color: #666;'
