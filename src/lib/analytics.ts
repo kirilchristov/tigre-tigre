@@ -11,6 +11,8 @@ export function createDataLayerGtag(dataLayer: unknown[]): GtagFunction {
     _target: string | Date,
     _params?: Record<string, unknown>
   ) {
+    // gtag.js expects queued commands to be the original arguments object.
+    // eslint-disable-next-line prefer-rest-params
     dataLayer.push(arguments)
   }
 
