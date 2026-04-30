@@ -1,13 +1,11 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { createDataLayerGtag, type GtagFunction } from '@/lib/analytics'
 import { env } from '@/lib/env'
 
 const GOOGLE_TAG_SCRIPT_ID = 'google-tag-script'
 const GOOGLE_TAG_SCRIPT_SRC = 'https://www.googletagmanager.com/gtag/js'
 const GOOGLE_LINKER_DOMAINS = ['tigre-tigre.com', 'shop.tigre-tigre.com'] as const
-
-type GtagCommand = 'js' | 'config' | 'event' | 'set'
-type GtagFunction = (command: GtagCommand, target: string | Date, params?: Record<string, unknown>) => void
 
 declare global {
   interface Window {
@@ -25,9 +23,7 @@ function getOrCreateGtag(): GtagFunction {
   }
 
   window.dataLayer = window.dataLayer || []
-  window.gtag = ((...args: unknown[]) => {
-    window.dataLayer?.push(args)
-  }) as GtagFunction
+  window.gtag = createDataLayerGtag(window.dataLayer)
 
   return window.gtag
 }
