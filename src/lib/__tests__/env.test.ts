@@ -18,10 +18,8 @@ describe('env', () => {
     expect(env.analytics.gaId === undefined || typeof env.analytics.gaId === 'string').toBe(true)
   })
 
-  it('exposes meta pixel id as optional string', () => {
-    expect(
-      env.analytics.metaPixelId === undefined || typeof env.analytics.metaPixelId === 'string'
-    ).toBe(true)
+  it('exposes the production meta pixel id by default', () => {
+    expect(env.analytics.metaPixelId).toBe('2187360742019843')
   })
 })
 
