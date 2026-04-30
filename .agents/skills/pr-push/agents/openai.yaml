@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Push"
+  short_description: "Bump version, verify, commit, and push safely"
+  default_prompt: "Use $pr-push to bump the version, run lint, typecheck, tests, and build, then commit and push only if everything passes."
