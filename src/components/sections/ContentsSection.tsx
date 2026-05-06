@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { ImageWithFallback } from '@/components/ui/image-with-fallback'
 import { useScrollReveal } from '@/hooks/useGsap'
-import { GRADIENT_TYPES, GradientMask } from '../ui/gradient-mask'
+// import { GRADIENT_TYPES, GradientMask } from '../ui/gradient-mask'
 
 export function ContentsSection() {
   const { t } = useTranslation()
@@ -22,23 +22,23 @@ export function ContentsSection() {
         </div>
         {/* Product Image with Blended Edges */}
         <div ref={imageRef} className="flex justify-center relative">
-          <GradientMask type={GRADIENT_TYPES.RADIAL}>
-            <ImageWithFallback
-              src="/images/product-shots/back/back-1024x1024.webp"
-              alt="tigre tigre Chili Crunch ingredients"
-              sources={[
-                {
-                  srcSet:
-                    '/images/product-shots/back/back-640x640.webp 640w, /images/product-shots/back/back-1024x1024.webp 1024w',
-                  sizes: '(max-width: 768px) 100vw, 1024px',
-                  type: 'image/webp',
-                },
-              ]}
-              fallbackSrc="/images/product-shots/back/back.webp"
-              className="w-full max-w-7xl h-auto"
-              loading="eager"
-            />
-          </GradientMask>
+          {/* <GradientMask type={GRADIENT_TYPES.RADIAL}> */}
+          <ImageWithFallback
+            src="/images/product-shots/2026_back-2048x1536.webp"
+            alt="tigre tigre Chili Crunch ingredients"
+            sources={[
+              {
+                srcSet:
+                  '/images/product-shots/2026_back-1280x960.webp 1280w, /images/product-shots/2026_back-2048x1536.webp 2048w',
+                sizes: '(max-width: 768px) 100vw, 2048px',
+                type: 'image/webp',
+              },
+            ]}
+            fallbackSrc="/images/product-shots/2026_back.png"
+            className="w-full max-w-7xl h-auto"
+            loading="eager"
+          />
+          {/* </GradientMask> */}
         </div>
       </div>
     </section>

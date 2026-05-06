@@ -23,17 +23,17 @@ export function CtaSection({ isSoldOut = false, footer }: CtaSectionProps) {
             </div>
           ) : null}
           <ImageWithFallback
-            src="/images/product-shots/product_shadow-1024x1024.webp"
+            src="/images/product-shots/2026_front-2048x2048.webp"
             alt="tigre tigre Chili Crunch"
             sources={[
               {
                 srcSet:
-                  '/images/product-shots/product_shadow-640x640.webp 640w, /images/product-shots/product_shadow-1024x1024.webp 1024w',
-                sizes: '(max-width: 768px) 100vw, 1024px',
+                  '/images/product-shots/2026_front-1280x1280.webp 1280w, /images/product-shots/2026_front-2048x2048.webp 2048w',
+                sizes: '(max-width: 768px) 100vw, 2048px',
                 type: 'image/webp',
               },
             ]}
-            className="w-full max-w-7xl h-auto"
+            className="w-full max-w-7xl h-auto brightness-[1.01] contrast-[1.01]" // Subtle enhancement to make the product pop
             loading="eager"
           />
         </div>
