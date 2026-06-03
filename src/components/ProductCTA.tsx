@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button'
 import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
-import { buildShopifyCartPermalink, type PurchaseOptionKey } from '@/lib/shopify'
+import {
+  buildShopifyCartPermalink,
+  formatConvertedEstimatedTotal,
+  formatEstimatedTotal,
+  type PurchaseOptionKey,
+} from '@/lib/shopify'
 
 interface ProductCTAProps {
   /** Optional className for the container */
@@ -23,9 +28,10 @@ const SHIPPING_PRICE = '3'
 const CURRENCY = '€'
 const SINGLE_QUANTITY = 1
 const BUNDLE_MIN_QUANTITY = 1
-const MAX_QUANTITY = 12
+const MAX_QUANTITY = 20
 const SHOPIFY_VARIANT_ID = '56986218955100'
 const SHOPIFY_STOREFRONT_DOMAIN = 'shop.tigre-tigre.com'
+const EURO_BGN_EXCHANGE_RATE = 1.95583
 
 const purchaseOptions: Record<
   PurchaseOptionKey,
@@ -52,11 +58,17 @@ const purchaseOptions: Record<
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()
-  const priceVars = { price: PRICE, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
   const [quantities, setQuantities] = useState<Record<PurchaseOptionKey, number>>({
     single: SINGLE_QUANTITY,
     bundle: BUNDLE_MIN_QUANTITY,
   })
+  const bundlePrice = formatEstimatedTotal(Number(PRICE), quantities.bundle)
+  const bundleBgnPrice = formatConvertedEstimatedTotal(
+    Number(PRICE),
+    quantities.bundle,
+    EURO_BGN_EXCHANGE_RATE
+  )
+  const priceVars = { price: bundlePrice, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
 
   const setQuantity = (key: PurchaseOptionKey, quantity: number) => {
     setQuantities((current) => ({
@@ -151,7 +163,8 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
                 <span
                   className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}
                 >
-                  {t('productCTA.multiple.price', priceVars)}
+                  {t('productCTA.multiple.price', priceVars)} / {bundleBgnPrice}{' '}
+                  {t('productCTA.bgnCurrency')}
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-1">

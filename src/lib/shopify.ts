@@ -41,3 +41,14 @@ export function formatEstimatedTotal(price: number, quantity: number) {
 
   return total.toFixed(2)
 }
+
+export function formatConvertedEstimatedTotal(
+  price: number,
+  quantity: number,
+  exchangeRate: number
+) {
+  const normalizedExchangeRate = Number.isFinite(exchangeRate) ? exchangeRate : 1
+  const total = Number(formatEstimatedTotal(price, quantity)) * normalizedExchangeRate
+
+  return total.toFixed(2)
+}

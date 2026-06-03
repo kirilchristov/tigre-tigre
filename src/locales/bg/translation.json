@@ -87,6 +87,7 @@
   },
   "productCTA": {
     "currency": "€",
+    "bgnCurrency": "лв",
     "quantityLabel": "Количество",
     "decreaseQuantity": "Намали количеството",
     "increaseQuantity": "Увеличи количеството",
@@ -102,7 +103,7 @@
       "title": "Вземи повече",
       "description": "Запаси се за по-дълго",
       "price": "{{price}}{{currency}}",
-      "shipping": "Безплатна доставка до края на май с BoxNow",
+      "shipping": "Бърза доставка с BoxNow",
       "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
       "button": "Вземи"
     },
