@@ -125,7 +125,17 @@
     "iframeTitle": "Waitlist email form"
   },
   "footer": {
-    "copyright": "© {{year}} tigre tigre. All rights reserved."
+    "copyright": "© {{year}} tigre tigre. All rights reserved.",
+    "policiesLabel": "Store policies",
+    "policies": {
+      "privacyPolicy": "Privacy policy",
+      "refundPolicy": "Refund policy",
+      "contactInformation": "Contact information",
+      "termsOfService": "Terms of service",
+      "shippingPolicy": "Shipping policy",
+      "legalNotice": "Legal notice",
+      "cookiePreferences": "Cookie preferences"
+    }
   },
   "error": {
     "boundary": {

@@ -125,7 +125,17 @@
     "iframeTitle": "Форма за имейл известия"
   },
   "footer": {
-    "copyright": "© {{year}} tigre tigre. Всички права запазени."
+    "copyright": "© {{year}} tigre tigre. Всички права запазени.",
+    "policiesLabel": "Политики на магазина",
+    "policies": {
+      "privacyPolicy": "Политика за поверителност",
+      "refundPolicy": "Политика за възстановяване на суми",
+      "contactInformation": "Информация за контакт",
+      "termsOfService": "Условия за ползване",
+      "shippingPolicy": "Политика за доставка",
+      "legalNotice": "Правна информация",
+      "cookiePreferences": "Предпочитания за бисквитките"
+    }
   },
   "error": {
     "boundary": {

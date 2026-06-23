@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   buildShopifyCartPermalink,
+  buildShopifyPolicyLinks,
   formatConvertedEstimatedTotal,
   formatEstimatedTotal,
   normalizeShopifyStorefrontUrl,
@@ -49,6 +50,32 @@ describe('buildShopifyCartPermalink', () => {
         quantity: 0,
       })
     ).toBe('https://shop.tigre-tigre.com/cart/56986218955100:1')
+  })
+})
+
+describe('buildShopifyPolicyLinks', () => {
+  it('builds Bulgarian Shopify policy links by default', () => {
+    expect(buildShopifyPolicyLinks('bg').map((link) => link.href)).toEqual([
+      'https://shop.tigre-tigre.com/policies/privacy-policy',
+      'https://shop.tigre-tigre.com/policies/refund-policy',
+      'https://shop.tigre-tigre.com/policies/contact-information',
+      'https://shop.tigre-tigre.com/policies/terms-of-service',
+      'https://shop.tigre-tigre.com/policies/shipping-policy',
+      'https://shop.tigre-tigre.com/policies/legal-notice',
+      'https://shop.tigre-tigre.com/policies/#shopifyReshowConsentBanner',
+    ])
+  })
+
+  it('builds English Shopify policy links under the English locale path', () => {
+    expect(buildShopifyPolicyLinks('en-US').map((link) => link.href)).toEqual([
+      'https://shop.tigre-tigre.com/en/policies/privacy-policy',
+      'https://shop.tigre-tigre.com/en/policies/refund-policy',
+      'https://shop.tigre-tigre.com/en/policies/contact-information',
+      'https://shop.tigre-tigre.com/en/policies/terms-of-service',
+      'https://shop.tigre-tigre.com/en/policies/shipping-policy',
+      'https://shop.tigre-tigre.com/en/policies/legal-notice',
+      'https://shop.tigre-tigre.com/en/policies/#shopifyReshowConsentBanner',
+    ])
   })
 })
 
