@@ -86,12 +86,26 @@
     "button": "Order Now"
   },
   "productCTA": {
-    "single":    { "title": "Starter Pack", "deal": null,            "button": "Get 1 jar",    "delivery": "Fast delivery" },
-    "threePack": { "title": "The Regular",  "deal": "10% off",       "button": "Get 3 jars",   "delivery": "Free delivery" },
-    "sixPack":   { "title": "Value Pack",   "deal": "Get 1 free",    "button": "Get 5+1 jars", "delivery": "Free delivery" },
+    "single": {
+      "title": "Starter Pack",
+      "button": "Get 1",
+      "delivery": "Fast delivery"
+    },
+    "threePack": {
+      "title": "The Regular",
+      "deal": "10% off",
+      "button": "Get 3",
+      "delivery": "Free delivery"
+    },
+    "sixPack": {
+      "title": "Value Pack",
+      "deal": "Get 1 free",
+      "button": "Get 5+1",
+      "delivery": "Free delivery"
+    },
     "customCombos": {
       "label": "Want something different?",
-      "link":  "Mix and match at the shop"
+      "link": "Mix and match at the shop"
     }
   },
   "contents": {
