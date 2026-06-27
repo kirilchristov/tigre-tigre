@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "shopify": {
+      "type": "http",
+      "url": "https://994i4b-3m.myshopify.com/api/mcp"
+    }
+  }
+}

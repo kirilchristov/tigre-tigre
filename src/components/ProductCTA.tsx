@@ -1,205 +1,114 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
-import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { useScrollReveal } from '@/hooks/useGsap'
-import {
-  buildShopifyCartPermalink,
-  formatConvertedEstimatedTotal,
-  formatEstimatedTotal,
-  type PurchaseOptionKey,
-} from '@/lib/shopify'
 
 interface ProductCTAProps {
-  /** Optional className for the container */
   className?: string
-  /** Show as compact variant (smaller, horizontal on mobile) */
   compact?: boolean
 }
 
-/**
- * ProductCTA displays two purchase options:
- * 1. Single jar fixed to quantity 1
- * 2. Bundle option with quantity selection starting from 2
- */
-const PRICE = '7.99'
-const SHIPPING_PRICE = '3'
-const CURRENCY = '€'
-const SINGLE_QUANTITY = 1
-const BUNDLE_MIN_QUANTITY = 1
-const MAX_QUANTITY = 20
-const SHOPIFY_VARIANT_ID = '56986218955100'
-const SHOPIFY_STOREFRONT_DOMAIN = 'shop.tigre-tigre.com'
-const EURO_BGN_EXCHANGE_RATE = 1.95583
-
-const purchaseOptions: Record<
-  PurchaseOptionKey,
+const PRODUCTS = [
   {
-    variantId: string
-    buttonVariant: 'ctaPrimary' | 'ctaSecondary'
-    layoutClassName: string
-    highlighted?: boolean
-  }
-> = {
-  single: {
-    variantId: SHOPIFY_VARIANT_ID,
-    buttonVariant: 'ctaSecondary',
-    layoutClassName: 'relative transition-all hover:bg-muted/30',
+    key: 'single',
+    price: '€7.99',
+    originalPrice: null,
+    href: 'https://shop.tigre-tigre.com/cart/56986218955100:1',
+    deliveryClassName: 'text-gold',
+    image: '/images/product-shots/thumbnails/single.webp',
   },
-  bundle: {
-    variantId: SHOPIFY_VARIANT_ID,
-    buttonVariant: 'ctaPrimary',
-    layoutClassName: 'relative border-t-2 border-foreground bg-muted/30 transition-all',
-    highlighted: true,
+  {
+    key: 'threePack',
+    price: '€21.57',
+    originalPrice: '€23.97',
+    href: 'https://shop.tigre-tigre.com/cart/15645514629468:1',
+    deliveryClassName: 'text-green-600',
+    image: '/images/product-shots/thumbnails/3pack.webp',
   },
-}
+  {
+    key: 'sixPack',
+    price: '€39.95',
+    originalPrice: '€47.94',
+    href: 'https://shop.tigre-tigre.com/cart/15645518004572:1',
+    deliveryClassName: 'text-green-600',
+    image: '/images/product-shots/thumbnails/6pack.webp',
+  },
+]
 
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const ref = useScrollReveal<HTMLDivElement>()
-  const [quantities, setQuantities] = useState<Record<PurchaseOptionKey, number>>({
-    single: SINGLE_QUANTITY,
-    bundle: BUNDLE_MIN_QUANTITY,
-  })
-  const bundlePrice = formatEstimatedTotal(Number(PRICE), quantities.bundle)
-  const bundleBgnPrice = formatConvertedEstimatedTotal(
-    Number(PRICE),
-    quantities.bundle,
-    EURO_BGN_EXCHANGE_RATE
-  )
-  const priceVars = { price: bundlePrice, currency: CURRENCY, shippingPrice: SHIPPING_PRICE }
-
-  const setQuantity = (key: PurchaseOptionKey, quantity: number) => {
-    setQuantities((current) => ({
-      ...current,
-      [key]: quantity,
-    }))
-  }
-
-  const openCheckout = (key: PurchaseOptionKey) => {
-    const checkoutUrl = buildShopifyCartPermalink({
-      storefrontDomain: SHOPIFY_STOREFRONT_DOMAIN,
-      variantId: purchaseOptions[key].variantId,
-      quantity: quantities[key],
-    })
-
-    if (checkoutUrl === '#') {
-      return
-    }
-
-    window.location.href = checkoutUrl
-  }
 
   return (
     <div ref={ref} className={cn('w-full max-w-4xl mx-auto my-4 px-4 font-mono', className)}>
-      <div className={cn('grid grid-cols-1 justify-items-center gap-4')}>
-        {/* Single Jar Option */}
-        {/* <div className={cn(purchaseOptions.single.layoutClassName, compact ? 'p-4' : 'p-6')}>
-          <div className="flex h-full flex-col gap-4">
-            <div>
-              <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
-                {t('productCTA.single.title')}
-              </h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('productCTA.single.description')}
-              </p>
-            </div>
-
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span
-                  className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}
-                >
-                  {t('productCTA.single.price', priceVars)}
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('productCTA.single.shipping', priceVars)}
-              </p>
-            </div>
-
-            <div aria-hidden="true" className="h-10 border border-transparent" />
-
-            <Button
-              onClick={() => openCheckout('single')}
-              variant={purchaseOptions.single.buttonVariant}
-              size={compact ? 'default' : 'lg'}
-              className="mt-auto w-full"
-              disabled={!purchaseOptions.single.variantId}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {PRODUCTS.map((product) => {
+          const deal = t(`productCTA.${product.key}.deal`, { defaultValue: '' })
+          return (
+            <div
+              key={product.key}
+              className="flex flex-col justify-between border-t-2 border-foreground p-6 transition-colors hover:bg-muted/60"
             >
-              {t('productCTA.single.button')}
-            </Button>
-          </div>
-        </div> */}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h3
+                    className={cn(
+                      'font-black uppercase tracking-tight leading-none',
+                      compact ? 'text-2xl' : 'text-3xl'
+                    )}
+                  >
+                    {t(`productCTA.${product.key}.title`)}
+                  </h3>
+                  <span className="block text-sm font-bold text-red-600 uppercase tracking-wide min-h-[1.25rem]">
+                    {deal || ''}
+                  </span>
+                </div>
+                <img
+                  src={product.image}
+                  alt={t(`productCTA.${product.key}.title`)}
+                  className="w-full aspect-square object-cover"
+                  loading="lazy"
+                />
 
-        {/* Multiple Jars Option (Emphasized) */}
-        <div
-          className={cn(
-            purchaseOptions.bundle.layoutClassName,
-            'w-full max-w-md',
-            compact ? 'p-4' : 'p-6'
-          )}
-        >
-          {/* Best Value Badge */}
-          {/* <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span className="bg-brand-600 text-background text-xs font-bold px-3 py-1 rounded-[2px] uppercase tracking-wide">
-              {t('productCTA.multiple.badge')}
-            </span>
-          </div> */}
-
-          <div className="flex h-full flex-col gap-4">
-            {/* <div>
-              <h3 className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}>
-                {t('productCTA.multiple.title')}
-              </h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('productCTA.multiple.description')}
-              </p>
-            </div> */}
-
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span
-                  className={cn('font-bold text-foreground', compact ? 'text-2xl' : 'text-3xl')}
-                >
-                  {t('productCTA.multiple.price', priceVars)} / {bundleBgnPrice}{' '}
-                  {t('productCTA.bgnCurrency')}
-                </span>
+                <div className="flex items-baseline gap-2">
+                  {product.originalPrice && (
+                    <s className="text-muted-foreground text-sm">{product.originalPrice}</s>
+                  )}
+                  <span
+                    className={cn('font-bold text-foreground', compact ? 'text-xl' : 'text-2xl')}
+                  >
+                    {product.price}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-sm font-bold text-brand-600">
-                  {t('productCTA.multiple.shipping')}
-                </span>
+
+              <div className="flex flex-col gap-2 mt-4">
+                <p className={cn('text-sm font-medium', product.deliveryClassName)}>
+                  {t(`productCTA.${product.key}.delivery`)}
+                </p>
+                <a
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full border border-foreground bg-foreground text-background text-center py-2 px-4 text-sm font-bold uppercase tracking-wide hover:bg-red-600 hover:border-red-600 hover:text-white transition-colors"
+                >
+                  {t(`productCTA.${product.key}.button`)}
+                </a>
               </div>
             </div>
-
-            <QuantityStepper
-              value={quantities.bundle}
-              min={BUNDLE_MIN_QUANTITY}
-              max={MAX_QUANTITY}
-              quantityLabel={t('productCTA.quantityLabel')}
-              decrementLabel={t('productCTA.decreaseQuantity')}
-              incrementLabel={t('productCTA.increaseQuantity')}
-              onChange={(nextQuantity) => setQuantity('bundle', nextQuantity)}
-            />
-
-            <Button
-              onClick={() => openCheckout('bundle')}
-              variant={purchaseOptions.bundle.buttonVariant}
-              size={compact ? 'default' : 'lg'}
-              className="mt-auto w-full"
-              disabled={!purchaseOptions.bundle.variantId}
-            >
-              {t('productCTA.multiple.button')}
-            </Button>
-          </div>
-        </div>
+          )
+        })}
       </div>
 
-      {/* Trust Signals */}
-      <div className="mt-6 text-center text-sm text-muted-foreground">
-        <p>{t('productCTA.trustSignal')}</p>
+      <div className="mt-6 text-center text-base font-bold text-gold">
+        <span>{t('productCTA.customCombos.label')} </span>
+        <a
+          href="https://shop.tigre-tigre.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:opacity-80 transition-opacity"
+        >
+          {t('productCTA.customCombos.link')}
+        </a>
       </div>
     </div>
   )

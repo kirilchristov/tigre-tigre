@@ -86,28 +86,13 @@
     "button": "Поръчай сега"
   },
   "productCTA": {
-    "currency": "€",
-    "bgnCurrency": "лв",
-    "quantityLabel": "Количество",
-    "decreaseQuantity": "Намали количеството",
-    "increaseQuantity": "Увеличи количеството",
-    "single": {
-      "title": "Вземи 1",
-      "description": "Идеално за проба",
-      "price": "{{price}}{{currency}}",
-      "shipping": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи 1"
-    },
-    "multiple": {
-      "badge": "Най-изгодно",
-      "title": "Вземи повече",
-      "description": "Запаси се за по-дълго",
-      "price": "{{price}}{{currency}}",
-      "shipping": "Бърза доставка с BoxNow",
-      "shippingSaved": "+{{shippingPrice}}{{currency}} доставка",
-      "button": "Вземи"
-    },
-    "trustSignal": "Checkout включва BOX NOW locker доставка и опции за плащане."
+    "single":    { "title": "Starter Pack", "deal": null,         "button": "Вземи 1 буркан",    "delivery": "Бърза доставка" },
+    "threePack": { "title": "The Regular",  "deal": "-10%",       "button": "Вземи 3 буркана",   "delivery": "Безплатна доставка" },
+    "sixPack":   { "title": "Value Pack",   "deal": "5+1 FREE",   "button": "Вземи 5+1 буркана", "delivery": "Безплатна доставка" },
+    "customCombos": {
+      "label": "Искаш нещо различно?",
+      "link":  "Избери сам в магазина"
+    }
   },
   "contents": {
     "title": "съдържание",

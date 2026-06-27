@@ -86,28 +86,13 @@
     "button": "Order Now"
   },
   "productCTA": {
-    "currency": "€",
-    "bgnCurrency": "BGN",
-    "quantityLabel": "Quantity",
-    "decreaseQuantity": "Decrease quantity",
-    "increaseQuantity": "Increase quantity",
-    "single": {
-      "title": "Get 1",
-      "description": "Perfect for trying",
-      "price": "{{price}}{{currency}}",
-      "shipping": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Get 1"
-    },
-    "multiple": {
-      "badge": "Best Value",
-      "title": "Get More",
-      "description": "Stock up for longer",
-      "price": "{{price}}{{currency}}",
-      "shipping": "Fast delivery with BoxNow",
-      "shippingSaved": "+{{shippingPrice}}{{currency}} shipping",
-      "button": "Get"
-    },
-    "trustSignal": "Checkout includes BOX NOW locker delivery and payment options."
+    "single":    { "title": "Starter Pack", "deal": null,            "button": "Get 1 jar",    "delivery": "Fast delivery" },
+    "threePack": { "title": "The Regular",  "deal": "10% off",       "button": "Get 3 jars",   "delivery": "Free delivery" },
+    "sixPack":   { "title": "Value Pack",   "deal": "Get 1 free",    "button": "Get 5+1 jars", "delivery": "Free delivery" },
+    "customCombos": {
+      "label": "Want something different?",
+      "link":  "Mix and match at the shop"
+    }
   },
   "contents": {
     "title": "ingredients",

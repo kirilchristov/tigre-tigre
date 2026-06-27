@@ -7,7 +7,18 @@
       "Bash(node /Users/kirilchristov/CODE/tigre-tigre/scripts/optimize-image.mjs:*)",
       "Bash(sips:*)",
       "Bash(node /Users/kirilchristov/CODE/tigre-tigre/scripts/optimize-product.mjs:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Skill(update-config)",
+      "Bash(claude mcp *)",
+      "WebFetch(domain:help.shopify.com)",
+      "Bash(python3 *)",
+      "Bash(pip3 install *)",
+      "Bash(convert --version)",
+      "Bash(ffmpeg -version)",
+      "Bash(magick --version)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "shopify"
+  ]
 }
