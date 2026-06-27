@@ -15,7 +15,9 @@
       "Bash(pip3 install *)",
       "Bash(convert --version)",
       "Bash(ffmpeg -version)",
-      "Bash(magick --version)"
+      "Bash(magick --version)",
+      "Bash(git checkout *)",
+      "Bash(git merge *)"
     ]
   },
   "enabledMcpjsonServers": [
