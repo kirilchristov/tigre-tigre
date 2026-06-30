@@ -87,22 +87,21 @@
   },
   "productCTA": {
     "single": {
-      "title": "Starter Pack",
-      "button": "Get 1",
-      "delivery": "Fast delivery"
+      "title": "Get 1",
+      "description": "Perfect for trying",
+      "price": "€7.99",
+      "shipping": "Fast delivery",
+      "button": "Buy 1"
     },
-    "threePack": {
-      "title": "The Regular",
-      "deal": "10% off",
-      "button": "Get 3",
-      "delivery": "Free delivery"
+    "multiple": {
+      "badge": "Best Value",
+      "title": "Get 2+",
+      "description": "Stock up & save",
+      "price": "€7.99 each",
+      "shipping": "FREE SHIPPING from 2",
+      "button": "Buy More"
     },
-    "sixPack": {
-      "title": "Value Pack",
-      "deal": "Get 1 free",
-      "button": "Get 5+1",
-      "delivery": "Free delivery"
-    },
+    "trustSignal": "Fast delivery across Bulgaria",
     "customCombos": {
       "label": "Want something different?",
       "link": "Mix and match at the shop"

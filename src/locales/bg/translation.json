@@ -87,22 +87,21 @@
   },
   "productCTA": {
     "single": {
-      "title": "Starter Pack",
-      "button": "Вземи 1",
-      "delivery": "Бърза доставка"
+      "title": "Вземи 1",
+      "description": "Перфектно за начало",
+      "price": "€7.99",
+      "shipping": "Бърза доставка",
+      "button": "Купи 1"
     },
-    "threePack": {
-      "title": "The Regular",
-      "deal": "-10%",
-      "button": "Вземи 3",
-      "delivery": "Безплатна доставка"
+    "multiple": {
+      "badge": "Най-изгодно",
+      "title": "Вземи 2+",
+      "description": "Запаси се и спести",
+      "price": "€7.99 броя",
+      "shipping": "Безплатна доставка и отстъпки",
+      "button": "Купи Повече"
     },
-    "sixPack": {
-      "title": "Value Pack",
-      "deal": "5+1 FREE",
-      "button": "Вземи 5+1",
-      "delivery": "Безплатна доставка"
-    },
+    "trustSignal": "Бърза доставка из цяла България",
     "customCombos": {
       "label": "Искаш нещо различно?",
       "link": "Избери сам в магазина"

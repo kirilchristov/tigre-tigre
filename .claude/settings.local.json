@@ -17,7 +17,12 @@
       "Bash(ffmpeg -version)",
       "Bash(magick --version)",
       "Bash(git checkout *)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "WebFetch(domain:skills.sh)",
+      "Bash(npm run *)"
     ]
   },
   "enabledMcpjsonServers": [
