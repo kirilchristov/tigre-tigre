@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-foreground hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-foreground active:shadow-[var(--cta-shadow-pressed)]',
         ctaPrimary:
-          'border-foreground bg-foreground text-background shadow-[var(--cta-shadow-rest)] hover:-translate-y-px hover:bg-brand-600 hover:border-brand-600 hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:bg-brand-700 active:border-brand-700 active:shadow-[var(--cta-shadow-pressed)]',
+          'group relative overflow-hidden border-brand-700 bg-brand-600 text-background uppercase tracking-[0.06em] shadow-[0_10px_26px_-8px_hsl(var(--cta-accent)/0.65)] hover:-translate-y-0.5 hover:bg-brand-500 hover:border-brand-600 hover:shadow-[0_16px_34px_-8px_hsl(var(--cta-accent)/0.8)] active:translate-y-0 active:bg-brand-700 active:border-brand-800 active:shadow-[0_6px_16px_-8px_hsl(var(--cta-accent)/0.7)] before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:w-1/3 before:bg-gradient-to-r before:from-transparent before:via-background/45 before:to-transparent before:opacity-0 hover:before:animate-cta-shine hover:before:opacity-100 motion-reduce:hover:before:animate-none motion-reduce:hover:before:opacity-0',
         ctaSecondary:
           'border-foreground bg-background text-foreground shadow-none hover:-translate-y-px hover:bg-foreground hover:text-background hover:shadow-[var(--cta-shadow-hover)] active:translate-y-0 active:shadow-[var(--cta-shadow-pressed)]',
         destructive:

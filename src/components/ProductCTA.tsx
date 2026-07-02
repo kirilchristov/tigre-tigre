@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { QuantityStepper } from '@/components/ui/quantity-stepper'
@@ -188,10 +189,14 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
               onClick={() => openCheckout('bundle')}
               variant={purchaseOptions.bundle.buttonVariant}
               size={compact ? 'default' : 'lg'}
-              className="mt-auto w-full"
+              className="mt-auto w-full text-base"
               disabled={!purchaseOptions.bundle.variantId}
             >
-              {t('productCTA.multiple.button')}
+              <span className="relative z-10">{t('productCTA.multiple.button')}</span>
+              <ArrowRight
+                aria-hidden="true"
+                className="relative z-10 transition-transform duration-200 ease-out group-hover:translate-x-1"
+              />
             </Button>
           </div>
         </div>

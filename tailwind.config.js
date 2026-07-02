@@ -67,10 +67,15 @@ export default {
           '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
         },
+        'cta-shine': {
+          '0%': { transform: 'translateX(-120%) skewX(-12deg)' },
+          '100%': { transform: 'translateX(220%) skewX(-12deg)' },
+        },
       },
       animation: {
         'marquee-left': 'marquee-left var(--marquee-duration, 30s) linear infinite',
         'marquee-right': 'marquee-right var(--marquee-duration, 30s) linear infinite',
+        'cta-shine': 'cta-shine 1.1s ease-out',
       },
       borderRadius: {
         lg: 'var(--radius)',
