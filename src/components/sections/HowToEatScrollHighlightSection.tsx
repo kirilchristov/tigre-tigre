@@ -12,7 +12,7 @@ export function HowToEatScrollHighlightSection() {
   const fullText = paragraphs.join('\n\n')
 
   return (
-    <Section id="howto-highlight" className="py-24 bg-background">
+    <Section id="howto-highlight" className="py-12 bg-background">
       <div className="max-w-5xl mx-auto px-4">
         {title && (
           <h2 className="font-mono text-4xl md:text-5xl lg:text-6xl font-bold mb-16 text-foreground lowercase text-center">

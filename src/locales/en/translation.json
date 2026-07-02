@@ -39,6 +39,15 @@
     ]
   },
 
+  "whatIsIt": {
+    "title": "What is this?",
+    "paragraphs": [
+      "Our shameless take on [marker]chili crunch[/marker].",
+      "A super [underline]crispy[/underline] condiment in the spirit of Asian crunch —\nbut without nuts or soy sauce.",
+      "Just things you love — [marker]garlic[/marker], [underline]onion[/underline], chili, and red pepper,\npiled on [marker]shamelessly[/marker]."
+    ]
+  },
+
   "howToHighlight": {
     "title": "How to eat it?",
     "paragraphs": [

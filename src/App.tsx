@@ -42,6 +42,12 @@ const SubHeroTextRollerSection = lazy(() =>
 //   }))
 // )
 
+const WhatIsItSection = lazy(() =>
+  import('@/components/sections/WhatIsItSection').then((mod) => ({
+    default: mod.WhatIsItSection,
+  }))
+)
+
 const HowToEatScrollHighlightSection = lazy(() =>
   import('@/components/sections/HowToEatScrollHighlightSection').then((mod) => ({
     default: mod.HowToEatScrollHighlightSection,
@@ -61,33 +67,35 @@ function HomePage() {
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
         <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
-        <SubHeroTextRollerSection />
+        {/* <SubHeroTextRollerSection /> */}
       </Suspense>
       {/* {!isSoldOut ? (
         <LazySection>
-          <FirstTigerScrollHighlightSection />
+        <FirstTigerScrollHighlightSection />
         </LazySection>
-      ) : null} */}
-      <LazySection>
-        <HowToEatScrollHighlightSection />
-      </LazySection>
+        ) : null} */}
+
+      <WhatIsItSection />
+      <SubHeroTextRollerSection />
+
+      <HowToEatScrollHighlightSection />
+
       <LazySection>
         <BannerScrollerSection />
       </LazySection>
-      <LazySection>
-        <ContentsSection />
-      </LazySection>
-      <LazySection>
-        <AboutScrollHighlightSection
-          footer={
-            !isSoldOut && (
-              <div className="pb-4">
-                <ProductCTA />
-              </div>
-            )
-          }
-        />
-      </LazySection>
+
+      <ContentsSection />
+
+      <AboutScrollHighlightSection
+        footer={
+          !isSoldOut && (
+            <div className="pb-4">
+              <ProductCTA />
+            </div>
+          )
+        }
+      />
+
       <Suspense fallback={null}>
         <ContactSection />
       </Suspense>

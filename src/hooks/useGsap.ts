@@ -16,17 +16,18 @@ export function useScrollReveal<T extends HTMLElement>() {
         element,
         {
           opacity: 0,
-          y: 60,
+          y: 20,
         },
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.4,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: element,
-            start: 'top 85%',
+            start: 'top 115%',
             toggleActions: 'play none none none',
+            invalidateOnRefresh: true,
           },
         }
       )

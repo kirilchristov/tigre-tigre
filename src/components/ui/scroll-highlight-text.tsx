@@ -106,9 +106,9 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: 'top 80%',
+          start: 'top 115%',
           end: 'bottom 20%',
-          scrub: 1.5,
+          scrub: 0.5,
         },
       })
 
