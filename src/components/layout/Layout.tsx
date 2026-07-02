@@ -9,7 +9,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
-      <main className="pt-16">{children}</main>
+      <main className="pt-24 md:pt-28">{children}</main>
       <Footer />
     </div>
   )

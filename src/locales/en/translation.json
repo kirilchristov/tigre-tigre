@@ -1,6 +1,10 @@
 {
   "title": "tigre tigre",
   "tagline": "shamelessly delicious",
+  "announcementBar": {
+    "message": "Free shipping on 2+ jars",
+    "link": "https://shop.tigre-tigre.com/"
+  },
   "nav": {
     "home": "Home",
     "content": "Ingredients",
@@ -86,20 +90,10 @@
     "button": "Order Now"
   },
   "productCTA": {
-    "single": {
-      "title": "Get 1",
-      "description": "Perfect for trying",
-      "price": "€7.99",
-      "shipping": "Fast delivery",
-      "button": "Buy 1"
-    },
     "multiple": {
-      "badge": "Best Value",
-      "title": "Get 2+",
-      "description": "Stock up & save",
-      "price": "€7.99 each",
+      "price": "€7.99",
       "shipping": "FREE SHIPPING from 2",
-      "button": "Buy More"
+      "button": "Get"
     },
     "trustSignal": "Fast delivery across Bulgaria",
     "customCombos": {

@@ -1,6 +1,10 @@
 {
   "title": "tigre tigre",
   "tagline": "безсрамно вкусно",
+  "announcementBar": {
+    "message": "Безплатна доставка при 2+ буркана",
+    "link": "https://shop.tigre-tigre.com"
+  },
   "nav": {
     "home": "Начало",
     "content": "Съдържание",
@@ -86,20 +90,10 @@
     "button": "Поръчай сега"
   },
   "productCTA": {
-    "single": {
-      "title": "Вземи 1",
-      "description": "Перфектно за начало",
-      "price": "€7.99",
-      "shipping": "Бърза доставка",
-      "button": "Купи 1"
-    },
     "multiple": {
-      "badge": "Най-изгодно",
-      "title": "Вземи 2+",
-      "description": "Запаси се и спести",
-      "price": "€7.99 броя",
-      "shipping": "Безплатна доставка и отстъпки",
-      "button": "Купи Повече"
+      "price": "€7.99",
+      "shipping": "Безплатна доставка и отстъпки при 2+",
+      "button": "Вземи"
     },
     "trustSignal": "Бърза доставка из цяла България",
     "customCombos": {

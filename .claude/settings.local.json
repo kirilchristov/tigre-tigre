@@ -22,7 +22,9 @@
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
       "WebFetch(domain:skills.sh)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(sed -i '' '6s|\"https://shop.tigre-tigre.com\"|\"https://shop.tigre-tigre.com/products/tigre-tigre-chili-crunch\"|' /Users/kirilchristov/CODE/tigre-tigre/src/locales/en/translation.json)",
+      "Bash(sed -i '' '6s|\"https://shop.tigre-tigre.com\"|\"https://shop.tigre-tigre.com/products/tigre-tigre-chili-crunch\"|' /Users/kirilchristov/CODE/tigre-tigre/src/locales/bg/translation.json)"
     ]
   },
   "enabledMcpjsonServers": [
