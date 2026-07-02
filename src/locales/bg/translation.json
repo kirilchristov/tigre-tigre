@@ -7,6 +7,7 @@
   },
   "nav": {
     "home": "Начало",
+    "whatIsThis": "Какво е това",
     "content": "Съдържание",
     "firstTiger": "Първите 1000",
     "howTo": "Как се яде",
@@ -44,10 +45,13 @@
     "paragraphs": [
       "Нашата безсрамна версия на [marker]чили крънч[/marker].",
       "Супер [underline]хрупкава[/underline] подправка по модел на азиатския крънч,\nно без ядки и соев сос —",
-      "само неща, които обичаш — [marker]чесън[/marker], [underline]лук[/underline], чили и червен пипер,\nсложени [marker]безсрамно много[/marker]."
+      "само неща, които обичаш — [marker]чесън[/marker], [underline]лук[/underline], чили и червен пипер, в пикантно олио\nсложени [marker]безсрамно много[/marker]."
     ]
   },
 
+  "heatIndicator": {
+    "label": "пикантност"
+  },
   "howToHighlight": {
     "title": "Как се яде?",
     "paragraphs": [

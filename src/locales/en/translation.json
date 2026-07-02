@@ -7,6 +7,7 @@
   },
   "nav": {
     "home": "Home",
+    "whatIsThis": "What is this",
     "content": "Ingredients",
     "firstTiger": "First 1000",
     "howTo": "How to Eat",
@@ -44,10 +45,13 @@
     "paragraphs": [
       "Our shameless take on [marker]chili crunch[/marker].",
       "A super [underline]crispy[/underline] condiment in the spirit of Asian crunch —\nbut without nuts or soy sauce.",
-      "Just things you love — [marker]garlic[/marker], [underline]onion[/underline], chili, and red pepper,\npiled on [marker]shamelessly[/marker]."
+      "just things you love — [marker]garlic[/marker], [underline]onion[/underline], chili and red pepper, in a spicy oil\npiled [marker]shamelessly[/marker]."
     ]
   },
 
+  "heatIndicator": {
+    "label": "spiciness"
+  },
   "howToHighlight": {
     "title": "How to eat it?",
     "paragraphs": [

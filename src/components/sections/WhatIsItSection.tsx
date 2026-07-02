@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Section } from '@/components/layout'
 import { ScrollHighlightText } from '@/components/ui/scroll-highlight-text'
+import { HeatIndicator } from '@/components/ui/heat-indicator'
 
 export function WhatIsItSection() {
   const { t } = useTranslation()
@@ -21,6 +22,7 @@ export function WhatIsItSection() {
           text={fullText}
           className="font-mono text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed text-foreground"
         />
+        <HeatIndicator />
       </div>
     </Section>
   )
