@@ -60,6 +60,12 @@ const ContentsSection = lazy(() =>
   }))
 )
 
+const TestimonialsSection = lazy(() =>
+  import('@/components/sections/TestimonialsSection').then((mod) => ({
+    default: mod.TestimonialsSection,
+  }))
+)
+
 function HomePage() {
   const isSoldOut = env.soldOut.enabled
 
@@ -67,19 +73,16 @@ function HomePage() {
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
         <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
-        {/* <SubHeroTextRollerSection /> */}
+        <SubHeroTextRollerSection />
       </Suspense>
       {/* {!isSoldOut ? (
         <LazySection>
         <FirstTigerScrollHighlightSection />
         </LazySection>
         ) : null} */}
-
       <WhatIsItSection />
-      <SubHeroTextRollerSection />
 
       <HowToEatScrollHighlightSection />
-
       <LazySection>
         <BannerScrollerSection />
       </LazySection>
@@ -95,6 +98,8 @@ function HomePage() {
           )
         }
       />
+      <TestimonialsSection />
+      <ProductCTA />
 
       <Suspense fallback={null}>
         <ContactSection />

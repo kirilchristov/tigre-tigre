@@ -84,20 +84,14 @@
   },
   "testimonials": {
     "title": "What People Say",
-    "items": {
-      "one": {
-        "quote": "This chili crunch has completely changed my cooking. I put it on everything!",
-        "author": "Sofia M."
-      },
-      "two": {
-        "quote": "The perfect balance of heat and crunch. My new kitchen essential.",
-        "author": "Alex K."
-      },
-      "three": {
-        "quote": "Finally, a chili crunch that lives up to the hype. Absolutely delicious.",
-        "author": "Maria D."
-      }
-    }
+    "items": [
+      { "type": "quote", "stars": 1, "quote": "i wanted to give 5 stars but my fingers are greasy.", "author": "Kiril, 32, Sofia" },
+      { "type": "stat", "headline": "83% of our customers report using tigre tigre on more things than they planned", "subtext": "the other 17% are too ashamed to admit it" },
+      { "type": "stat", "headline": "lab testing indicated a 12-month shelf life after opening", "subtext": "actual consumption time turned out to be 2 days" },
+      { "type": "quote", "stars": 1, "quote": "too much garlic.", "author": "Vladi, 462, Transylvania" },
+      { "type": "quote", "stars": 5, "quote": "the greasiest, garlickiest, most onion-y, messiest thing i've ever bought.", "author": "Yanitsa, 26, Sofia" },
+      { "type": "quote", "stars": 2, "quote": "bought one jar as a gift for a friend, but ate it myself.", "author": "Nikolay, 39, Varna" }
+    ]
   },
   "cta": {
     "button": "Order Now"
