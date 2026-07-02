@@ -2,7 +2,7 @@
   "title": "tigre tigre",
   "tagline": "shamelessly delicious",
   "announcementBar": {
-    "message": "Free shipping on 2+ jars",
+    "message": "Free shipping on 2+, -10% off on 3+, -15% off on 6+",
     "link": "https://shop.tigre-tigre.com/"
   },
   "nav": {
@@ -99,6 +99,24 @@
     "customCombos": {
       "label": "Want something different?",
       "link": "Mix and match at the shop"
+    },
+    "quantity": "Quantity",
+    "decrement": "Decrease quantity",
+    "increment": "Increase quantity",
+    "total": "~€{{amount}} total",
+    "promo": {
+      "fastDelivery": "Fast delivery",
+      "freeShipping": "Free delivery",
+      "tenOff": "10% off + free delivery",
+      "fifteenOff": "15% off + free delivery"
+    },
+    "bulkNote": "For 21+ jars, contact us",
+    "nudge": {
+      "freeDelivery": "Unlock free delivery with 2+ jars",
+      "tenOff": "Unlock 10% off with 3",
+      "fifteenOff": "Unlock 15% off with 6",
+      "bulkContact": "For 20+ jars, contact us at",
+      "bulkContactLink": "sales@tigre-tigre.com"
     }
   },
   "contents": {
