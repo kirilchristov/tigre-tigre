@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import './lib/i18n'
+import i18n from './lib/i18n'
 import './styles/index.css'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -10,6 +11,11 @@ import { validateEnv } from './lib/env'
 
 // Validate environment variables in development
 validateEnv()
+
+// Sync <html lang> with active i18n language
+const syncLang = (lng: string) => { document.documentElement.lang = lng }
+syncLang(i18n.language)
+i18n.on('languageChanged', syncLang)
 
 console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
 

@@ -19,7 +19,10 @@ export function ContentsSection() {
           <p className="font-mono text-lg md:text-xl lg:text-2xl leading-relaxed md:leading-loose text-foreground/80 max-w-2xl mx-auto lowercase tracking-wide">
             {t('contents.ingredients')}
           </p>
-          <p className="mt-6 font-mono text-base md:text-lg lg:text-xl leading-relaxed text-foreground/70 lowercase tracking-wide">
+          <p className="mt-6 font-mono text-base md:text-lg lg:text-xl leading-relaxed text-foreground font-bold lowercase tracking-wide">
+            {t('contents.naturalLabel')}
+          </p>
+          <p className="mt-2 font-mono text-base md:text-lg lg:text-xl leading-relaxed text-foreground/70 lowercase tracking-wide">
             {t('contents.netWeight')}
           </p>
         </div>

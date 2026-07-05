@@ -10,7 +10,8 @@ const TOTAL = 5
 const FILLED = 2
 
 // Flame path from lucide-react (viewBox 0 0 24 24)
-const FLAME_PATH = 'M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4'
+const FLAME_PATH =
+  'M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4'
 
 export function HeatIndicator() {
   const { t } = useTranslation()
@@ -44,7 +45,7 @@ export function HeatIndicator() {
   }, [])
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center gap-4 py-12">
+    <div ref={containerRef} className="flex flex-col items-center gap-4 pt-12">
       <div className="flex gap-4 items-end">
         {Array.from({ length: TOTAL }, (_, i) => (
           <div key={i} className="relative w-8 h-8">
@@ -72,11 +73,7 @@ export function HeatIndicator() {
                     />
                   </clipPath>
                 </defs>
-                <path
-                  d={FLAME_PATH}
-                  fill="currentColor"
-                  clipPath={`url(#flame-fill-${i})`}
-                />
+                <path d={FLAME_PATH} fill="currentColor" clipPath={`url(#flame-fill-${i})`} />
               </svg>
             )}
           </div>
