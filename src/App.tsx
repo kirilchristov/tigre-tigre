@@ -82,24 +82,15 @@ function HomePage() {
         ) : null} */}
       <WhatIsItSection />
 
-      <HowToEatScrollHighlightSection />
       <LazySection>
         <BannerScrollerSection />
       </LazySection>
+      <HowToEatScrollHighlightSection />
+      <TestimonialsSection />
 
       <ContentsSection />
 
-      <AboutScrollHighlightSection
-        footer={
-          !isSoldOut && (
-            <div className="pb-4">
-              <ProductCTA />
-            </div>
-          )
-        }
-      />
-      <TestimonialsSection />
-      <ProductCTA />
+      <AboutScrollHighlightSection footer={<ProductCTA />} />
 
       <Suspense fallback={null}>
         <ContactSection />

@@ -12,7 +12,8 @@
     "firstTiger": "First 1000",
     "howTo": "How to Eat",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "testimonials": "Reviews"
   },
   "hero": {
     "title": "tigre tigre",
@@ -30,7 +31,6 @@
       "We have no qualms about what you put us on.\nWe only care if you think about us after."
     ]
   },
-
   "firstTigerHighlight": {
     "paragraphs": [
       "These are the first 1000 jars of [brand]tigre tigre[/brand].\nWe released them without design, without a pretty label, and without [underline]pretensions[/underline].",
@@ -39,7 +39,6 @@
       "But this here is the beginning.\nThe version where taste matters more than packaging and [marker]your opinion[/marker] is part of the product."
     ]
   },
-
   "whatIsIt": {
     "title": "What is this?",
     "paragraphs": [
@@ -48,7 +47,6 @@
       "just things you love — [marker]garlic[/marker], [underline]onion[/underline], chili and red pepper, in a spicy oil\npiled [marker]shamelessly[/marker]."
     ]
   },
-
   "heatIndicator": {
     "label": "spiciness"
   },
@@ -85,12 +83,40 @@
   "testimonials": {
     "title": "What People Say",
     "items": [
-      { "type": "quote", "stars": 1, "quote": "i wanted to give 5 stars but my fingers are greasy.", "author": "Kiril, 32, Sofia" },
-      { "type": "stat", "headline": "83% of our customers report using tigre tigre on more things than they planned", "subtext": "the other 17% are too ashamed to admit it" },
-      { "type": "stat", "headline": "lab testing indicated a 12-month shelf life after opening", "subtext": "actual consumption time turned out to be 2 days" },
-      { "type": "quote", "stars": 1, "quote": "too much garlic.", "author": "Vladi, 462, Transylvania" },
-      { "type": "quote", "stars": 5, "quote": "the greasiest, garlickiest, most onion-y, messiest thing i've ever bought.", "author": "Yanitsa, 26, Sofia" },
-      { "type": "quote", "stars": 2, "quote": "bought one jar as a gift for a friend, but ate it myself.", "author": "Nikolay, 39, Varna" }
+      {
+        "type": "quote",
+        "stars": 1,
+        "quote": "i wanted to give 5 stars but my fingers are greasy.",
+        "author": "Kiril, 32, Sofia"
+      },
+      {
+        "type": "stat",
+        "headline": "83% of our customers report using tigre tigre on more things than they planned",
+        "subtext": "the other 17% are too ashamed to admit it"
+      },
+      {
+        "type": "stat",
+        "headline": "lab testing indicated a 12-month shelf life after opening",
+        "subtext": "actual consumption time turned out to be 2 days"
+      },
+      {
+        "type": "quote",
+        "stars": 1,
+        "quote": "too much garlic.",
+        "author": "Vladi, 462, Transylvania"
+      },
+      {
+        "type": "quote",
+        "stars": 5,
+        "quote": "the greasiest, garlickiest, most onion-y, messiest thing i've ever bought.",
+        "author": "Yanitsa, 26, Sofia"
+      },
+      {
+        "type": "quote",
+        "stars": 2,
+        "quote": "bought one jar as a gift for a friend, but ate it myself.",
+        "author": "Nikolay, 39, Varna"
+      }
     ]
   },
   "cta": {
@@ -112,7 +138,7 @@
     "increment": "Increase quantity",
     "total": "~€{{amount}} total",
     "promo": {
-      "fastDelivery": "Fast delivery",
+      "fastDelivery": "1-2 days delivery",
       "freeShipping": "Free delivery",
       "tenOff": "10% off + free delivery",
       "fifteenOff": "15% off + free delivery"
