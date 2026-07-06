@@ -17,6 +17,10 @@ describe('normalizeShopifyStorefrontUrl', () => {
       'https://shop.tigre-tigre.com'
     )
   })
+
+  it('falls back to the default storefront domain when no argument is given', () => {
+    expect(normalizeShopifyStorefrontUrl()).toBe('https://shop.tigre-tigre.com')
+  })
 })
 
 describe('buildShopifyCartPermalink', () => {
@@ -48,6 +52,26 @@ describe('buildShopifyCartPermalink', () => {
         quantity: 0,
       })
     ).toBe('https://shop.tigre-tigre.com/cart/56986218955100:1')
+  })
+
+  it('floors fractional quantities', () => {
+    expect(
+      buildShopifyCartPermalink({
+        storefrontDomain: 'shop.tigre-tigre.com',
+        variantId: '56986218955100',
+        quantity: 2.7,
+      })
+    ).toBe('https://shop.tigre-tigre.com/cart/56986218955100:2')
+  })
+
+  it('falls back when the variant is whitespace only', () => {
+    expect(
+      buildShopifyCartPermalink({
+        storefrontDomain: 'shop.tigre-tigre.com',
+        variantId: '   ',
+        quantity: 1,
+      })
+    ).toBe('#')
   })
 })
 
