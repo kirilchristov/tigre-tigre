@@ -14,6 +14,6 @@ const baseNavItems: NavItem[] = [
   { key: 'contact', href: '#contact' },
 ]
 
-export function getNavItems(isSoldOut: boolean): NavItem[] {
-  return isSoldOut ? baseNavItems.filter((item) => item.key !== 'firstTiger') : baseNavItems
+export function getNavItems(): NavItem[] {
+  return baseNavItems
 }

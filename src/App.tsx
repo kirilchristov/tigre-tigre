@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react'
 import { LazySection } from '@/components/ui/lazy-section'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
-import { env } from '@/lib/env'
 import { GoogleAnalyticsTracker } from '@/components/GoogleAnalyticsTracker'
 import { MetaPixelTracker } from '@/components/MetaPixelTracker'
 
@@ -10,7 +9,6 @@ import { MetaPixelTracker } from '@/components/MetaPixelTracker'
 import { NotFound } from '@/components/NotFound'
 import { QrRedirect } from './components/QRRedirect'
 import { ProductCTA } from '@/components/ProductCTA'
-import { WaitlistEmbed } from '@/components/WaitlistEmbed'
 
 const AboutScrollHighlightSection = lazy(() =>
   import('@/components/sections/AboutScrollHighlightSection').then((mod) => ({
@@ -67,12 +65,10 @@ const TestimonialsSection = lazy(() =>
 )
 
 function HomePage() {
-  const isSoldOut = env.soldOut.enabled
-
   return (
     <Layout>
       <Suspense fallback={<div className="min-h-screen" />}>
-        <CtaSection isSoldOut={isSoldOut} footer={isSoldOut ? <WaitlistEmbed /> : <ProductCTA />} />
+        <CtaSection footer={<ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
       {/* {!isSoldOut ? (

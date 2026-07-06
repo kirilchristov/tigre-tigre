@@ -3,19 +3,6 @@
  * Safely access environment variables with type checking and defaults
  */
 
-function parseBooleanFlag(value: unknown): boolean {
-  if (typeof value === 'boolean') {
-    return value
-  }
-
-  if (typeof value === 'string') {
-    const normalized = value.trim().toLowerCase()
-    return normalized === 'true' || normalized === '1'
-  }
-
-  return false
-}
-
 const DEFAULT_META_PIXEL_ID = '2187360742019843'
 
 export const env = {
@@ -23,11 +10,6 @@ export const env = {
   analytics: {
     gaId: import.meta.env.VITE_GA_MEASUREMENT_ID,
     metaPixelId: import.meta.env.VITE_META_PIXEL_ID ?? DEFAULT_META_PIXEL_ID,
-  },
-
-  // Feature flags
-  soldOut: {
-    enabled: parseBooleanFlag(import.meta.env.VITE_SOLD_OUT_MODE),
   },
 
   // Environment checks

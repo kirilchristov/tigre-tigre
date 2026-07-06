@@ -1,12 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { env } from '@/lib/env'
 import { buildShopifyPolicyLinks } from '@/lib/shopify'
 import { getNavItems } from './nav-items'
 
 export function Footer() {
   const { t, i18n } = useTranslation()
   const currentYear = new Date().getFullYear()
-  const navItems = getNavItems(env.soldOut.enabled)
+  const navItems = getNavItems()
   const policyLinks = buildShopifyPolicyLinks(i18n.resolvedLanguage ?? i18n.language)
 
   return (
