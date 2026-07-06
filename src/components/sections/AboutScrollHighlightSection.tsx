@@ -22,7 +22,7 @@ export function AboutScrollHighlightSection({ footer }: AboutScrollHighlightSect
   const fullText = paragraphs.join('\n\n')
 
   return (
-    <Section id="about-highlight" className="relative [clip-path:inset(0)]" fullWidth>
+    <Section id="about-highlight" className="relative [clip-path:inset(0)] py-16" fullWidth>
       {/* Fixed background image — stays in place while content scrolls over it */}
       <div className="fixed inset-0 -z-10 h-screen w-full">
         <ColoredOverlay color="hsl(var(--background))" opacity={0.7} className="h-full w-full">
