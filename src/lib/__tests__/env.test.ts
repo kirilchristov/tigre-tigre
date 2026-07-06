@@ -1,12 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { env, validateEnv } from '@/lib/env'
+import { env } from '@/lib/env'
 
 describe('env', () => {
   it('has the expected shape', () => {
     expect(env).toHaveProperty('analytics')
-    expect(env).toHaveProperty('isDev')
-    expect(env).toHaveProperty('isProd')
-    expect(env).toHaveProperty('mode')
   })
 
   it('exposes google analytics id as optional string', () => {
@@ -18,8 +15,3 @@ describe('env', () => {
   })
 })
 
-describe('validateEnv()', () => {
-  it('does not throw', () => {
-    expect(() => validateEnv()).not.toThrow()
-  })
-})

@@ -7,24 +7,6 @@ interface ColoredOverlayProps {
   color?: string
   /** Opacity of the color (0-1) */
   opacity?: number
-  /** CSS blend mode for the overlay */
-  blendMode?:
-    | 'normal'
-    | 'multiply'
-    | 'screen'
-    | 'overlay'
-    | 'darken'
-    | 'lighten'
-    | 'color-dodge'
-    | 'color-burn'
-    | 'hard-light'
-    | 'soft-light'
-    | 'difference'
-    | 'exclusion'
-    | 'hue'
-    | 'saturation'
-    | 'color'
-    | 'luminosity'
   /** Additional CSS classes for the container */
   className?: string
   /** CSS classes for the overlay layer */
@@ -44,7 +26,6 @@ export function ColoredOverlay({
   children,
   color = 'black',
   opacity = 0.5,
-  blendMode = 'normal',
   className,
   overlayClassName,
 }: ColoredOverlayProps) {
@@ -70,7 +51,6 @@ export function ColoredOverlay({
 
   const overlayStyle: CSSProperties = {
     backgroundColor: getColorWithOpacity(),
-    mixBlendMode: blendMode,
   }
 
   return (

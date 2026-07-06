@@ -73,20 +73,3 @@ export function buildShopifyPolicyLinks(language: string, storefrontDomain?: str
   }))
 }
 
-export function formatEstimatedTotal(price: number, quantity: number) {
-  const normalizedQuantity = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1
-  const total = price * normalizedQuantity
-
-  return total.toFixed(2)
-}
-
-export function formatConvertedEstimatedTotal(
-  price: number,
-  quantity: number,
-  exchangeRate: number
-) {
-  const normalizedExchangeRate = Number.isFinite(exchangeRate) ? exchangeRate : 1
-  const total = Number(formatEstimatedTotal(price, quantity)) * normalizedExchangeRate
-
-  return total.toFixed(2)
-}

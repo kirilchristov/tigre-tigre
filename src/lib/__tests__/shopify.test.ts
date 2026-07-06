@@ -2,8 +2,6 @@ import { describe, expect, it } from 'vitest'
 import {
   buildShopifyCartPermalink,
   buildShopifyPolicyLinks,
-  formatConvertedEstimatedTotal,
-  formatEstimatedTotal,
   normalizeShopifyStorefrontUrl,
 } from '@/lib/shopify'
 
@@ -79,14 +77,3 @@ describe('buildShopifyPolicyLinks', () => {
   })
 })
 
-describe('formatEstimatedTotal', () => {
-  it('formats a two-decimal total from quantity and price', () => {
-    expect(formatEstimatedTotal(6.99, 3)).toBe('20.97')
-  })
-})
-
-describe('formatConvertedEstimatedTotal', () => {
-  it('formats a two-decimal converted total from quantity, price, and exchange rate', () => {
-    expect(formatConvertedEstimatedTotal(7.99, 3, 1.95583)).toBe('46.88')
-  })
-})
