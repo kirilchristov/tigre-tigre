@@ -5,9 +5,7 @@ import { Layout } from '@/components/layout'
 import { GoogleAnalyticsTracker } from '@/components/GoogleAnalyticsTracker'
 import { MetaPixelTracker } from '@/components/MetaPixelTracker'
 
-// import { SplashPage } from '@/components/SplashPage'
 import { NotFound } from '@/components/NotFound'
-import { QrRedirect } from './components/QRRedirect'
 import { ProductCTA } from '@/components/ProductCTA'
 
 const AboutScrollHighlightSection = lazy(() =>
@@ -33,12 +31,6 @@ const SubHeroTextRollerSection = lazy(() =>
     default: mod.SubHeroTextRollerSection,
   }))
 )
-
-// const FirstTigerScrollHighlightSection = lazy(() =>
-//   import('@/components/sections/FirstTigerScrollHighlightSection').then((mod) => ({
-//     default: mod.FirstTigerScrollHighlightSection,
-//   }))
-// )
 
 const WhatIsItSection = lazy(() =>
   import('@/components/sections/WhatIsItSection').then((mod) => ({
@@ -71,11 +63,6 @@ function HomePage() {
         <CtaSection footer={<ProductCTA />} />
         <SubHeroTextRollerSection />
       </Suspense>
-      {/* {!isSoldOut ? (
-        <LazySection>
-        <FirstTigerScrollHighlightSection />
-        </LazySection>
-        ) : null} */}
       <WhatIsItSection />
 
       <LazySection>
@@ -83,11 +70,8 @@ function HomePage() {
       </LazySection>
       <HowToEatScrollHighlightSection />
       <TestimonialsSection />
-
       <ContentsSection />
-
       <AboutScrollHighlightSection footer={<ProductCTA />} />
-
       <Suspense fallback={null}>
         <ContactSection />
       </Suspense>
@@ -96,22 +80,11 @@ function HomePage() {
 }
 
 function App() {
-  // Show splash page ONLY on production domains (not staging or localhost)
-  // const hostname = window.location.hostname
-  // const isProductionDomain = hostname === 'tigre-tigre.com' || hostname === 'www.tigre-tigre.com'
-
-  // Show splash page on production domain
-  // if (isProductionDomain) {
-  //   return <SplashPage />
-  // }
-
-  // Show full site with routing on staging domain and localhost
   return (
     <BrowserRouter>
       <GoogleAnalyticsTracker />
       <MetaPixelTracker />
       <Routes>
-        <Route path="/r/:code" element={<QrRedirect />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

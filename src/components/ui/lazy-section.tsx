@@ -1,4 +1,5 @@
 import { Suspense, useRef, useState, useEffect, type ReactNode } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 interface LazySectionProps {
   children: ReactNode
@@ -45,6 +46,26 @@ export function LazySection({
       window.removeEventListener('hashchange', onHashChange)
     }
   }, [rootMargin])
+
+  // ponytail: debounced resize refresh — waits for layout to settle before recalculating ScrollTrigger
+  useEffect(() => {
+    if (!visible) return
+    const el = ref.current
+    if (!el) return
+    let timer: ReturnType<typeof setTimeout>
+    const ro = new ResizeObserver(() => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        ScrollTrigger.refresh()
+        ro.disconnect()
+      }, 300)
+    })
+    ro.observe(el)
+    return () => {
+      clearTimeout(timer)
+      ro.disconnect()
+    }
+  }, [visible])
 
   return (
     <div ref={ref}>
