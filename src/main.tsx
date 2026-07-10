@@ -12,7 +12,7 @@ const syncLang = (lng: string) => { document.documentElement.lang = lng }
 syncLang(i18n.language)
 i18n.on('languageChanged', syncLang)
 
-console.log('tigre-tigre: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
+console.log('tigre-tigre v0.2.0: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
 
 const isTruthyFlag = (value: string | undefined) => {
   if (!value) return false
