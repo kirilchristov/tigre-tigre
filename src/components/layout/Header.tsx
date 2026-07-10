@@ -13,14 +13,14 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <a
+      {/* <a
         href={t('announcementBar.link')}
         target="_blank"
         rel="noopener noreferrer"
         className="block w-full bg-foreground text-background text-center text-xs font-mono py-2 px-4 hover:opacity-90 transition-opacity"
       >
         {t('announcementBar.message')}
-      </a>
+      </a> */}
       <div className="bg-background/80 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
