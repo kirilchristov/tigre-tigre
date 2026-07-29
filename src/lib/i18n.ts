@@ -19,7 +19,6 @@ i18n
       bg: { translation: bg },
       en: { translation: en },
     },
-    lng: 'bg',
     detection: {
       order: ['querystring', 'localStorage'],
       lookupQuerystring: 'lang',

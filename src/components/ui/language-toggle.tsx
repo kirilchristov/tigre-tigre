@@ -1,12 +1,26 @@
 import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 export function LanguageToggle() {
   const { i18n } = useTranslation()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'bg' : 'en'
-    i18n.changeLanguage(newLang)
+    const searchParams = new URLSearchParams(location.search)
+    searchParams.set('lang', newLang)
+
+    void i18n.changeLanguage(newLang)
+    navigate(
+      {
+        pathname: location.pathname,
+        search: `?${searchParams.toString()}`,
+        hash: location.hash,
+      },
+      { replace: true }
+    )
   }
 
   return (

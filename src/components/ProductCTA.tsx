@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button'
 import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { buildShopifyCartPermalink } from '@/lib/shopify'
+import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
 import { ArrowRight } from 'lucide-react'
 
-const VARIANT_ID = '56986218955100'
-const BASE_PRICE = 7.99
+const BASE_PRICE = SINGLE_JAR_PRODUCT.priceCents / 100
 
 const floorMoney = (v: number) => Math.floor(v * 100) / 100
 const money = (v: number) => (Math.round((v + Number.EPSILON) * 100) / 100).toFixed(2)
@@ -32,7 +32,10 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const discountPerItem = floorMoney(BASE_PRICE * promo.discount)
   const total = money((BASE_PRICE - discountPerItem) * quantity)
   const undiscountedTotal = money(BASE_PRICE * quantity)
-  const cartUrl = buildShopifyCartPermalink({ variantId: VARIANT_ID, quantity })
+  const cartUrl = buildShopifyCartPermalink({
+    variantId: SINGLE_JAR_PRODUCT.variantId,
+    quantity,
+  })
 
   let nudge: React.ReactNode = null
   if (quantity === 1) nudge = t('productCTA.nudge.freeDelivery')

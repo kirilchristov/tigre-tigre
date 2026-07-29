@@ -12,3 +12,13 @@ export const navItems: NavItem[] = [
   { key: 'about', href: '#about-highlight' },
   { key: 'contact', href: '#contact' },
 ]
+
+export function resolveNavHref(pathname: string, href: string) {
+  const isHome = pathname === '/'
+
+  if (isHome) {
+    return href
+  }
+
+  return href === '#' ? '/' : `/${href}`
+}

@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { buildShopifyPolicyLinks } from '@/lib/shopify'
-import { navItems } from './nav-items'
+import { navItems, resolveNavHref } from './nav-items'
 
 export function Footer() {
   const { t, i18n } = useTranslation()
+  const location = useLocation()
   const currentYear = new Date().getFullYear()
   const policyLinks = buildShopifyPolicyLinks(i18n.resolvedLanguage ?? i18n.language)
 
@@ -12,7 +14,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-4">
         <div className="grid grid-cols-1 md:grid-cols-7 items-center gap-6 pb-8">
           {/* Logo */}
-          <a href="#" className="md:col-span-2 text-lg sm:text-xl font-bold tracking-tight text-center md:text-left">
+          <a href="/" className="md:col-span-2 text-lg sm:text-xl font-bold tracking-tight text-center md:text-left">
             tigre tigre
           </a>
 
@@ -21,7 +23,7 @@ export function Footer() {
             {navItems.map((item) => (
               <a
                 key={item.key}
-                href={item.href}
+                href={resolveNavHref(location.pathname, item.href)}
                 className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors font-mono"
               >
                 {t(`nav.${item.key}`)}

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
 import { GoogleAnalyticsTracker } from '@/components/GoogleAnalyticsTracker'
 import { MetaPixelTracker } from '@/components/MetaPixelTracker'
+import { PageMetadata } from '@/components/PageMetadata'
 
 import { NotFound } from '@/components/NotFound'
 import { ProductCTA } from '@/components/ProductCTA'
@@ -56,6 +57,10 @@ const TestimonialsSection = lazy(() =>
   }))
 )
 
+const PromoPage = lazy(() =>
+  import('@/features/promo/PromoPage').then((mod) => ({ default: mod.PromoPage }))
+)
+
 function HomePage() {
   return (
     <Layout>
@@ -82,10 +87,19 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
+      <PageMetadata />
       <GoogleAnalyticsTracker />
       <MetaPixelTracker />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          path="/promo"
+          element={
+            <Suspense fallback={<div className="min-h-screen bg-background" />}>
+              <PromoPage />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

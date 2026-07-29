@@ -63,6 +63,19 @@
   }
 }
 
+@layer components {
+  .promo-stripes {
+    background-color: hsl(var(--gold));
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 1.1rem,
+      hsl(var(--foreground)) 1.1rem,
+      hsl(var(--foreground)) 2.2rem
+    );
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

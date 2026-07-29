@@ -1,6 +1,9 @@
 {
   "title": "tigre tigre",
   "tagline": "shamelessly delicious",
+  "a11y": {
+    "skipToContent": "Skip to main content"
+  },
   "announcementBar": {
     "message": "Free shipping on 2+, -10% off on 3+, -15% off on 6+",
     "link": "https://shop.tigre-tigre.com/"
@@ -151,6 +154,89 @@
       "bulkContact": "For 20+ jars, contact us at",
       "bulkContactLink": "sales@tigre-tigre.com"
     }
+  },
+  "promo": {
+    "hero": {
+      "title": "OKAY DISCOUNTS",
+      "leadIn": "up to",
+      "discount": "15% off",
+      "footnote": "*on selected jar quantities",
+      "intro": "Grab more jars and get a perfectly okay discount.",
+      "imageAlt": "A jar of tigre tigre chili crunch"
+    },
+    "uses": {
+      "title": "chili crunch",
+      "items": [
+        "rice, noodles, eggs",
+        "pizza, banitsa, bread",
+        "tripe soup and fish soup",
+        "salad and tarator",
+        "ice cream"
+      ]
+    },
+    "labels": {
+      "total": "total",
+      "freeDelivery": "free delivery",
+      "noDiscount": "0% off",
+      "savings": "You save {{amount}}",
+      "goodOffer": "good deal",
+      "bestOffer": "even better deal"
+    },
+    "bundles": {
+      "eyebrow": "Pick your quantity",
+      "title": "Okay offers",
+      "note": "More jars, less thinking about the next delivery.",
+      "single": {
+        "title": "1 jar",
+        "tagline": "to give it a try",
+        "promo": "0% off",
+        "imageAlt": "One jar of tigre tigre chili crunch"
+      },
+      "duo": {
+        "title": "2 jars",
+        "tagline": "to save the delivery",
+        "promo": "free delivery",
+        "imageAlt": "Two jars of tigre tigre chili crunch"
+      },
+      "trio": {
+        "title": "3 jars",
+        "tagline": "so there is always some",
+        "promo": "10% off + free delivery",
+        "imageAlt": "Three jars of tigre tigre chili crunch"
+      },
+      "six": {
+        "title": "6 jars",
+        "tagline": "for our people",
+        "promo": "15% off + free delivery",
+        "imageAlt": "Six jars of tigre tigre chili crunch"
+      }
+    },
+    "benefits": {
+      "title": "Offer comparison",
+      "receives": "You get:",
+      "duo": {
+        "title": "Get 2 jars",
+        "items": [
+          "free delivery",
+          "a backup jar",
+          "brief peace of mind"
+        ]
+      },
+      "six": {
+        "title": "Get 6 jars",
+        "items": [
+          "15% off",
+          "save 5 deliveries",
+          "enough for a while"
+        ]
+      }
+    },
+    "trust": {
+      "statement": "100% shamelessly delicious",
+      "heatLabel": "2/5 heat",
+      "heatAccessibleLabel": "Heat level: 2 out of 5"
+    },
+    "cta": "Go to shop"
   },
   "contents": {
     "title": "ingredients",

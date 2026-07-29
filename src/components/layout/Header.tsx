@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LanguageToggle } from '@/components/ui/language-toggle'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
-import { navItems } from './nav-items'
+import { navItems, resolveNavHref } from './nav-items'
 
 export function Header() {
   const { t } = useTranslation()
+  const location = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -26,7 +28,7 @@ export function Header() {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a
-              href="#"
+              href="/"
               className="text-lg sm:text-xl font-bold tracking-tight min-h-[44px] flex items-center"
             >
               tigre tigre
@@ -41,7 +43,7 @@ export function Header() {
               {navItems.map((item) => (
                 <a
                   key={item.key}
-                  href={item.href}
+                  href={resolveNavHref(location.pathname, item.href)}
                   className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors font-mono"
                 >
                   {t(`nav.${item.key}`)}
@@ -89,7 +91,7 @@ export function Header() {
             {navItems.map((item) => (
               <a
                 key={item.key}
-                href={item.href}
+                href={resolveNavHref(location.pathname, item.href)}
                 className="font-mono text-base font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >

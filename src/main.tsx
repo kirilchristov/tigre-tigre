@@ -33,12 +33,14 @@ if (shouldBlockIndexing) {
     const existing = document.head.querySelector(`meta[name="${name}"]`)
     if (existing) {
       existing.setAttribute('content', content)
+      existing.setAttribute('data-environment-robots', 'true')
       return
     }
 
     const meta = document.createElement('meta')
     meta.setAttribute('name', name)
     meta.setAttribute('content', content)
+    meta.setAttribute('data-environment-robots', 'true')
     document.head.appendChild(meta)
   }
 
