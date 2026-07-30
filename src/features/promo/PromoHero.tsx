@@ -38,12 +38,12 @@ export function PromoHero() {
 
           <div className="grid items-center gap-4 p-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] sm:p-8">
             <div>
-              <h2 className="font-mono text-3xl font-bold lowercase">{t('promo.uses.title')}</h2>
+              <h2 className="font-mono text-3xl font-bold">{t('promo.uses.title')}</h2>
               <ul className="mt-5 space-y-3">
                 {uses.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 text-sm font-semibold sm:text-base"
+                    className="flex items-start gap-3 text-sm font-mono font-semibold sm:text-base"
                   >
                     <span className="mt-0.5 grid size-5 shrink-0 place-items-center border border-foreground bg-background">
                       <Check aria-hidden="true" className="size-4 text-brand-600" strokeWidth={3} />
@@ -67,7 +67,7 @@ export function PromoHero() {
         </div>
       </div>
 
-      <p className="border-t-2 border-foreground px-5 py-4 text-center font-mono text-sm font-semibold sm:px-8">
+      <p className="border-t-2 border-foreground px-5 py-4 text-center font-mono text-lg font-semibold sm:px-8">
         {t('promo.hero.intro')}
       </p>
     </section>

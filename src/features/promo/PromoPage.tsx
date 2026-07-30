@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { Layout } from '@/components/layout'
 import { PROMO_BUNDLES } from './promo-data'
-import { PromoBenefits } from './PromoBenefits'
 import { PromoBundleCard } from './PromoBundleCard'
 import { PromoHero } from './PromoHero'
+import { PromoTrust } from './PromoTrust'
+
+const DISPLAYED_PROMO_BUNDLES = Object.freeze(
+  PROMO_BUNDLES.filter((bundle) => bundle.id !== 'single')
+)
 
 export function PromoPage() {
   const { t } = useTranslation()
@@ -29,14 +33,17 @@ export function PromoPage() {
             <p className="max-w-lg text-sm text-muted-foreground">{t('promo.bundles.note')}</p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PROMO_BUNDLES.map((bundle) => (
+          <div
+            data-testid="promo-bundle-grid"
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {DISPLAYED_PROMO_BUNDLES.map((bundle) => (
               <PromoBundleCard key={bundle.id} bundle={bundle} />
             ))}
           </div>
         </section>
 
-        <PromoBenefits />
+        <PromoTrust />
       </div>
     </Layout>
   )

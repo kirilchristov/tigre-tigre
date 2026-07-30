@@ -27,7 +27,7 @@ describe('PromoPage', () => {
     await i18n.changeLanguage('bg')
   })
 
-  it('renders the approved Bulgarian brochure content and four bundles', () => {
+  it('renders the approved Bulgarian brochure content and three flexible bundle cards', () => {
     const { container } = renderPromoPage()
 
     expect(screen.getByRole('heading', { level: 1, name: 'ОКЕЙ НАМАЛЕНИЯ' })).toBeVisible()
@@ -36,54 +36,100 @@ describe('PromoPage', () => {
       '-15%',
       '*на избрани количества буркани',
       'Вземи повече буркани и получи едно напълно окей намаление.',
+      'Сложи върху:',
       'ориз, нудъли, яйца',
       'шкембе и рибена чорба',
-      '1 буркан',
-      'за да опиташ',
-      '2 буркана',
-      'за да си спестиш доставката',
-      '3 буркана',
-      'за да има',
-      '6 буркана',
-      'за наши хора',
-      'Вземи 2 буркана',
-      'Получаваш:',
-      'резервен буркан',
-      'Вземи 6 буркана',
-      'спестяваш 5 доставки',
       '100% безсрамно вкусно',
       '2/5 люто',
     ])
+    expect(screen.getByRole('heading', { level: 2, name: 'Сложи върху:' })).not.toHaveClass(
+      'lowercase'
+    )
 
     const cards = screen.getAllByTestId('promo-bundle-card')
-    expect(cards).toHaveLength(4)
-    expect(within(cards[0]).getByText('€7.99')).toBeVisible()
-    expect(within(cards[1]).getByText('€15.98')).toBeVisible()
-    expect(within(cards[2]).getByText('€21.60')).toBeVisible()
-    expect(within(cards[3]).getByText('€40.80')).toBeVisible()
+    expect(cards).toHaveLength(3)
+    expect(screen.queryByRole('heading', { level: 3, name: '1 буркан' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Към магазина — 1 буркан' })).not.toBeInTheDocument()
+    expect(within(cards[0]).getByText('€15.98')).toBeVisible()
+    expect(within(cards[1]).getByText('€21.60')).toBeVisible()
+    expect(within(cards[2]).getByText('€40.80')).toBeVisible()
+    const discountBursts = screen.getAllByTestId('promo-discount-burst')
+    expect(discountBursts).toHaveLength(2)
+    expect(within(discountBursts[0]).getByText('-10%')).toHaveClass('bg-gold', 'text-white')
+    expect(within(discountBursts[1]).getByText('-15%')).toHaveClass(
+      'bg-brand-700',
+      'text-white'
+    )
+    for (const burst of discountBursts) {
+      expect(burst).toHaveClass(
+        'promo-discount-burst',
+        'h-40',
+        'w-48',
+        'bg-black',
+        'p-[4px]'
+      )
+      expect(burst.firstElementChild).toHaveClass('text-4xl')
+      expect(burst).toHaveClass('absolute', 'right-0', 'top-0', 'z-10')
+      expect(burst.parentElement).toHaveAttribute('data-testid', 'promo-bundle-visual')
+      expect(burst).not.toHaveClass('border-2', 'min-w-16')
+    }
+    for (const priceRow of screen.getAllByTestId('promo-bundle-price-row')) {
+      expect(priceRow).toHaveClass('relative', 'z-30')
+    }
+    for (const imageStage of screen.getAllByTestId('promo-bundle-image-stage')) {
+      expect(imageStage).toHaveClass('relative')
+      expect(imageStage.querySelector('img')).toHaveClass('relative', 'z-20')
+    }
+    const bundleDetails = [
+      {
+        card: cards[0],
+        title: '2 буркана:',
+        items: ['за да си спестиш доставката', 'резервен буркан', 'кратко спокойствие'],
+      },
+      {
+        card: cards[1],
+        title: '3 буркана:',
+        items: ['-10% отстъпка', 'три за щастие', 'за да има за по-дълго'],
+      },
+      {
+        card: cards[2],
+        title: '6 буркана:',
+        items: ['-15% отстъпка', 'спестяваш 6 доставки', 'ще остане и за почерпка'],
+      },
+    ] as const
+
+    for (const { card, title, items } of bundleDetails) {
+      expect(within(card).getByRole('heading', { level: 3, name: title })).toBeVisible()
+      const list = within(card).getByRole('list')
+      expect(within(list).getAllByRole('listitem').map((item) => item.textContent)).toEqual(items)
+    }
+
+    expect(screen.queryByRole('heading', { name: 'Вземи 2 буркана' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Вземи 6 буркана' })).not.toBeInTheDocument()
+    expect(screen.queryByText('Получаваш:')).not.toBeInTheDocument()
     for (const [card, savings] of [
-      [cards[1], 'Спестяваш €1.74'],
-      [cards[2], 'Спестяваш €4.11'],
-      [cards[3], 'Спестяваш €8.88'],
+      [cards[0], 'Спестяваш €1.74'],
+      [cards[1], 'Спестяваш €4.11'],
+      [cards[2], 'Спестяваш €8.88'],
     ] as const) {
       expect(within(card).getByText(savings)).toHaveClass('font-bold', 'text-brand-600')
     }
 
     const tooltipCases = [
       {
-        card: cards[1],
+        card: cards[0],
         triggerName: 'Как се изчислява „Спестяваш €1.74“',
         id: 'promo-savings-tooltip-duo',
         explanation: 'Спестяваш €1.74 (€1.74 доставка)',
       },
       {
-        card: cards[2],
+        card: cards[1],
         triggerName: 'Как се изчислява „Спестяваш €4.11“',
         id: 'promo-savings-tooltip-trio',
         explanation: 'Спестяваш €4.11 (€2.37 отстъпка + €1.74 доставка)',
       },
       {
-        card: cards[3],
+        card: cards[2],
         triggerName: 'Как се изчислява „Спестяваш €8.88“',
         id: 'promo-savings-tooltip-six',
         explanation: 'Спестяваш €8.88 (€7.14 отстъпка + €1.74 доставка)',
@@ -102,15 +148,19 @@ describe('PromoPage', () => {
       expect(savingsTooltip).not.toHaveTextContent(/буркана|плащаш|→/)
     }
 
-    expect(within(cards[0]).queryByText('общо')).not.toBeInTheDocument()
-    expect(within(cards[1]).queryByText('общо')).not.toBeInTheDocument()
-    expect(within(cards[2]).queryByText('общо')).not.toBeInTheDocument()
-    expect(within(cards[3]).queryByText('общо')).not.toBeInTheDocument()
+    for (const card of cards) {
+      expect(within(card).queryByText('общо')).not.toBeInTheDocument()
+    }
 
-    expect(within(cards[2]).getByText('€23.97')).toHaveClass('line-through')
-    expect(within(cards[3]).getByText('€47.94')).toHaveClass('line-through')
-    expect(within(cards[0]).queryByText('€7.99', { selector: '.line-through' })).toBeNull()
-    expect(within(cards[1]).queryByText('€15.98', { selector: '.line-through' })).toBeNull()
+    expect(within(cards[1]).getByText('€23.97')).toHaveClass('line-through')
+    expect(within(cards[2]).getByText('€47.94')).toHaveClass('line-through')
+    expect(within(cards[0]).queryByText('€15.98', { selector: '.line-through' })).toBeNull()
+
+    expect(screen.getByTestId('promo-bundle-grid')).toHaveClass(
+      'grid',
+      'sm:grid-cols-2',
+      'lg:grid-cols-3'
+    )
 
     const headings = Array.from(container.querySelectorAll('h1, h2, h3'))
     expect(headings[0]).toHaveTextContent('ОКЕЙ НАМАЛЕНИЯ')
@@ -131,10 +181,6 @@ describe('PromoPage', () => {
     renderPromoPage()
 
     const expectedLinks = [
-      {
-        name: 'Към магазина — 1 буркан',
-        href: 'https://shop.tigre-tigre.com/cart/56986218955100:1',
-      },
       {
         name: 'Към магазина — 2 буркана',
         href: 'https://shop.tigre-tigre.com/cart/56986218955100:2',
@@ -185,26 +231,35 @@ describe('PromoPage', () => {
       '15% off',
       '*on selected jar quantities',
       'Grab more jars and get a perfectly okay discount.',
+      'Put it on:',
       'rice, noodles, eggs',
       'tripe soup and fish soup',
-      '1 jar',
-      'to give it a try',
-      '2 jars',
-      'to save the delivery',
-      '3 jars',
-      'so there is always some',
-      '6 jars',
-      'for our people',
-      'Get 2 jars',
-      'You get:',
-      'a backup jar',
-      'Get 6 jars',
-      'save 5 deliveries',
       '100% shamelessly delicious',
       '2/5 heat',
     ])
+    const englishCards = screen.getAllByTestId('promo-bundle-card')
+    for (const { card, title, items } of [
+      {
+        card: englishCards[0],
+        title: '2 jars:',
+        items: ['to save on delivery', 'a backup jar', 'brief peace of mind'],
+      },
+      {
+        card: englishCards[1],
+        title: '3 jars:',
+        items: ['10% off', 'three’s a charm', 'to last longer'],
+      },
+      {
+        card: englishCards[2],
+        title: '6 jars:',
+        items: ['15% off', 'save 6 deliveries', 'enough left to share'],
+      },
+    ] as const) {
+      expect(within(card).getByRole('heading', { level: 3, name: title })).toBeVisible()
+      const list = within(card).getByRole('list')
+      expect(within(list).getAllByRole('listitem').map((item) => item.textContent)).toEqual(items)
+    }
     for (const name of [
-      'Go to shop — 1 jar',
       'Go to shop — 2 jars',
       'Go to shop — 3 jars',
       'Go to shop — 6 jars',

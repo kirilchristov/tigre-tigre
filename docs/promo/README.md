@@ -16,11 +16,12 @@ the print layout literally.
 - Themes: light and dark through the existing theme control.
 - Shell: use the shared site header and footer.
 - Discovery: do not add Promo to the global navigation in the first release.
-- Products: show 1-, 2-, 3-, and 6-jar offers.
-- CTA: every offer opens a quantity-specific Shopify cart permalink in a new
+- Products: show 2-, 3-, and 6-jar offer cards. The single-jar product remains
+  featured in the hero.
+- CTA: every displayed offer opens a quantity-specific Shopify cart permalink in a new
   tab, using the shared single-jar variant configuration.
-- Checkout: cart destinations follow `/cart/{variantId}:{quantity}` for 1, 2,
-  3, and 6 jars.
+- Checkout: card destinations follow `/cart/{variantId}:{quantity}` for 2, 3,
+  and 6 jars.
 - SEO: the page is indexable, prerendered, canonicalized, and listed in the
   sitemap.
 - Localization discovery: `?lang=bg` and `?lang=en` are real runtime language
@@ -43,8 +44,8 @@ the print layout literally.
 1. Editorial promo hero with the brand, product introduction, and “up to 15%”
    message.
 2. Chili-crunch use-case checklist.
-3. Four bundle offer cards.
-4. Two benefit panels comparing the 2-jar and 6-jar offers.
+3. Three flexible bundle offer cards.
+4. Per-bundle benefit lists inside each offer card.
 5. Brand promise and 2/5 heat strip.
 
 The QR code, print page counter, and print seal/badge are deliberately omitted.
@@ -140,7 +141,6 @@ scope:
 
 ## Additional info
 
-- 1 jar: pay €7.99
 - 2 jars: pay €15.98; savings €1.74
 - 3 jars: €23.97 → pay €21.60; savings €4.11 (€2.37 discount +
   €1.74 delivery)

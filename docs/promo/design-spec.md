@@ -48,13 +48,9 @@ Rules:
 │ brand                    │
 │ use cases + product      │
 ├──────────────────────────┤
-│ 1-jar card               │
 │ 2-jar card               │
 │ 3-jar card               │
 │ 6-jar card               │
-├──────────────────────────┤
-│ 2-jar benefits           │
-│ 6-jar benefits           │
 ├──────────────────────────┤
 │ 100% promise · heat 2/5  │
 └──────────────────────────┘
@@ -70,14 +66,13 @@ Rules:
 - Stack the hero's editorial blocks unless there is enough width for a balanced
   two-column composition.
 - Display bundle cards in a two-column grid.
-- Benefit panels may remain stacked to preserve readable lists.
+- Bundle benefits remain inside their respective product cards.
 
 ### Desktop: 1024 px and above
 
 - Use a split hero: product/use-case editorial content and the red discount
   statement occupy balanced columns.
-- Display all four bundle cards in one row.
-- Display the 2-jar and 6-jar benefit panels side by side.
+- Display all three bundle cards in one equal-width row.
 - Constrain the page to the site's existing content width and preserve generous
   section spacing.
 
@@ -85,7 +80,7 @@ Rules:
 
 | Offer | Asset | Rendering |
 | --- | --- | --- |
-| 1 jar | `/images/promo/one.webp` | Supplied single-jar composition |
+| Hero | `/images/promo/one.webp` | Supplied single-jar composition |
 | 2 jars | `/images/promo/duo.webp` | Supplied two-jar composition |
 | 3 jars | `/images/promo/three.webp` | Supplied three-jar composition |
 | 6 jars | `/images/promo/six.webp` | Supplied six-jar composition |
@@ -112,7 +107,7 @@ decimal places and percentages to include `%`.
 | --- | --- |
 | Brand | `tigre tigre` |
 | Tagline | `безсрамно вкусно` |
-| Product | `чили крънч` |
+| Use-case heading | `Сложи върху:` |
 | Campaign headline | `ОКЕЙ НАМАЛЕНИЯ` |
 | Campaign lead | `до -15%` |
 | Campaign qualifier | `на избрани количества буркани` |
@@ -128,29 +123,17 @@ decimal places and percentages to include `%`.
 
 ### Bundle cards
 
-| Quantity | Original | Payable | Promotion | Savings | Card line |
+| Quantity | Original | Payable | Promotion | Savings | Benefits |
 | ---: | ---: | ---: | --- | ---: | --- |
-| `1 буркан` | — | `€7.99` | `0% намаление` | — | `за да опиташ` |
-| `2 буркана` | — | `€15.98` | `+ безплатна доставка` | `Спестяваш €1.74` | `за да си спестиш доставката` |
-| `3 буркана` | `€23.97` (зачертана) | `€21.60` | `-10% + безплатна доставка` | `Спестяваш €4.11` | `за да има` |
-| `6 буркана` | `€47.94` (зачертана) | `€40.80` | `-15% + безплатна доставка` | `Спестяваш €8.88` | `за наши хора` |
+| `2 буркана` | — | `€15.98` | `+ безплатна доставка` | `Спестяваш €1.74` | `за да си спестиш доставката`; `резервен буркан`; `кратко спокойствие` |
+| `3 буркана` | `€23.97` (зачертана) | `€21.60` | `-10% + безплатна доставка` | `Спестяваш €4.11` | `-10% отстъпка`; `три за щастие`; `за да има за по-дълго` |
+| `6 буркана` | `€47.94` (зачертана) | `€40.80` | `-15% + безплатна доставка` | `Спестяваш €8.88` | `-15% отстъпка`; `спестяваш 6 доставки`; `ще остане и за почерпка` |
 
 The €1.74 delivery value is included in savings for every free-delivery tier
 but is not deducted from the payable product total.
 
 Every card CTA says `Към магазина`. Its accessible label must include the
 quantity, for example `Към магазина — 3 буркана`.
-
-### Benefit panels
-
-| 2-jar panel | 6-jar panel |
-| --- | --- |
-| `ДОБРА ОФЕРТА` | `ОЩЕ ПО-ДОБРА ОФЕРТА` |
-| `ВЗЕМИ 2 БУРКАНА` | `ВЗЕМИ 6 БУРКАНА` |
-| `Получаваш:` | `Получаваш:` |
-| `безплатна доставка` | `-15% намаление` |
-| `резервен буркан` | `спестяваш 5 доставки` |
-| `кратко спокойствие` | `достатъчно за известно време` |
 
 ### Trust strip
 
@@ -168,7 +151,7 @@ where that would sound unnatural.
 | --- | --- |
 | Brand | `tigre tigre` |
 | Tagline | `shamelessly delicious` |
-| Product | `chili crunch` |
+| Use-case heading | `Put it on:` |
 | Campaign headline | `OKAY DISCOUNTS` |
 | Campaign lead | `up to 15% off` |
 | Campaign qualifier | `on selected jar quantities` |
@@ -184,29 +167,17 @@ where that would sound unnatural.
 
 ### Bundle cards
 
-| Quantity | Original | Payable | Promotion | Savings | Card line |
+| Quantity | Original | Payable | Promotion | Savings | Benefits |
 | ---: | ---: | ---: | --- | ---: | --- |
-| `1 jar` | — | `€7.99` | `0% off` | — | `to give it a try` |
-| `2 jars` | — | `€15.98` | `+ free delivery` | `You save €1.74` | `to save the delivery` |
-| `3 jars` | `€23.97` (struck through) | `€21.60` | `10% off + free delivery` | `You save €4.11` | `so there is always some` |
-| `6 jars` | `€47.94` (struck through) | `€40.80` | `15% off + free delivery` | `You save €8.88` | `for our people` |
+| `2 jars` | — | `€15.98` | `+ free delivery` | `You save €1.74` | `to save on delivery`; `a backup jar`; `brief peace of mind` |
+| `3 jars` | `€23.97` (struck through) | `€21.60` | `10% off + free delivery` | `You save €4.11` | `10% off`; `three’s a charm`; `to last longer` |
+| `6 jars` | `€47.94` (struck through) | `€40.80` | `15% off + free delivery` | `You save €8.88` | `15% off`; `save 6 deliveries`; `enough left to share` |
 
 The €1.74 delivery value is included in savings for every free-delivery tier
 but is not deducted from the payable product total.
 
 Every card CTA says `Go to shop`. Its accessible label must include the
 quantity, for example `Go to shop — 3 jars`.
-
-### Benefit panels
-
-| 2-jar panel | 6-jar panel |
-| --- | --- |
-| `GOOD DEAL` | `EVEN BETTER DEAL` |
-| `GET 2 JARS` | `GET 6 JARS` |
-| `You get:` | `You get:` |
-| `free delivery` | `15% off` |
-| `a backup jar` | `save 5 deliveries` |
-| `brief peace of mind` | `enough for a while` |
 
 ### Trust strip
 
@@ -216,8 +187,7 @@ quantity, for example `Go to shop — 3 jars`.
 ## Content hierarchy and accessibility
 
 - Use one H1 for the campaign headline.
-- Use H2 elements for bundles and benefit sections; use H3 elements for
-  individual bundle titles only when required by the final component hierarchy.
+- Use H2 elements for sections and H3 elements for individual bundle titles.
 - Render use cases and benefits as semantic lists, not disabled checkboxes.
 - Text must carry discount meaning; color and starburst shapes are decorative.
 - Decorative stripes and icons use `aria-hidden="true"`.

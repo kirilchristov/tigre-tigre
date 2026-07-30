@@ -165,7 +165,7 @@
       "imageAlt": "A jar of tigre tigre chili crunch"
     },
     "uses": {
-      "title": "chili crunch",
+      "title": "Put it on:",
       "items": [
         "rice, noodles, eggs",
         "pizza, banitsa, bread",
@@ -192,47 +192,27 @@
       "note": "More jars, less thinking about the next delivery.",
       "single": {
         "title": "1 jar",
-        "tagline": "to give it a try",
+        "details": ["to give it a try"],
         "promo": "0% off",
         "imageAlt": "One jar of tigre tigre chili crunch"
       },
       "duo": {
         "title": "2 jars",
-        "tagline": "to save the delivery",
+        "details": ["to save on delivery", "a backup jar", "brief peace of mind"],
         "promo": "free delivery",
         "imageAlt": "Two jars of tigre tigre chili crunch"
       },
       "trio": {
         "title": "3 jars",
-        "tagline": "so there is always some",
+        "details": ["10% off", "three’s a charm", "to last longer"],
         "promo": "10% off + free delivery",
         "imageAlt": "Three jars of tigre tigre chili crunch"
       },
       "six": {
         "title": "6 jars",
-        "tagline": "for our people",
+        "details": ["15% off", "save 6 deliveries", "enough left to share"],
         "promo": "15% off + free delivery",
         "imageAlt": "Six jars of tigre tigre chili crunch"
-      }
-    },
-    "benefits": {
-      "title": "Offer comparison",
-      "receives": "You get:",
-      "duo": {
-        "title": "Get 2 jars",
-        "items": [
-          "free delivery",
-          "a backup jar",
-          "brief peace of mind"
-        ]
-      },
-      "six": {
-        "title": "Get 6 jars",
-        "items": [
-          "15% off",
-          "save 5 deliveries",
-          "enough for a while"
-        ]
       }
     },
     "trust": {

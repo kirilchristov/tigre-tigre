@@ -7,8 +7,7 @@ shared `Layout`. Keep content in focused feature components:
 
 - Editorial promo hero.
 - Use-case checklist.
-- Bundle grid and bundle card.
-- Two offer-benefit panels.
+- Bundle grid with benefits integrated into each bundle card.
 - Brand promise and heat strip.
 
 Use one immutable, typed bundle configuration as the source of commercial
@@ -176,10 +175,10 @@ Follow RED → GREEN → refactor:
 ### Integration
 
 - Direct render of `/promo` produces one H1 and does not render the 404 page.
-- Exactly four semantic bundle cards render in the configured order.
+- Exactly three semantic bundle cards render in the configured 2/3/6 order.
 - All exact BG/EN copy from `design-spec.md` renders after language changes.
-- Each CTA has the quantity-aware accessible label and exact 1-, 2-, 3-, or
-  6-jar Shopify cart permalink.
+- Each CTA has the quantity-aware accessible label and exact 2-, 3-, or 6-jar
+  Shopify cart permalink.
 - All external CTAs carry the safe new-tab attributes.
 - Theme switching retains readable tokens and product-image stages.
 - Shared header/footer navigation returns from `/promo` to homepage sections.
@@ -187,11 +186,12 @@ Follow RED → GREEN → refactor:
 ### End to end
 
 - Direct navigation to `/promo` and `/promo?lang=en` succeeds.
-- Hero, use-case list, four cards, both benefit panels, and trust strip are
+- Hero, use-case list, three combined offer/benefit cards, and trust strip are
   visible.
 - Theme and language toggles work without route loss.
 - Clicking a shared section link returns to the corresponding homepage anchor.
-- Card layout is one column on mobile, two on tablet, and four on desktop.
+- Card layout is one column on mobile, two on tablet, and three equal flexible
+  columns on desktop.
 - No horizontal overflow occurs at 360 px.
 - Keyboard order, focus visibility, heading order, alt text, and textual
   discount labels are accessible.
