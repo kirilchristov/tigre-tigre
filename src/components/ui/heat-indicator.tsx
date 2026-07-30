@@ -16,13 +16,13 @@ const FLAME_PATH =
 export function HeatIndicator() {
   const { t } = useTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
-  const rectRefs = useRef<SVGRectElement[]>([])
-
-  rectRefs.current = []
+  const rectRefs = useRef<Array<SVGRectElement | null>>([])
 
   useEffect(() => {
     const container = containerRef.current
-    const rects = rectRefs.current.filter(Boolean)
+    const rects = rectRefs.current.filter(
+      (rect): rect is SVGRectElement => rect !== null
+    )
     if (!container || rects.length === 0) return
 
     const ctx = gsap.context(() => {
@@ -64,7 +64,7 @@ export function HeatIndicator() {
                   <clipPath id={`flame-fill-${i}`}>
                     <rect
                       ref={(el) => {
-                        if (el) rectRefs.current.push(el)
+                        rectRefs.current[i] = el
                       }}
                       x="0"
                       y="24"

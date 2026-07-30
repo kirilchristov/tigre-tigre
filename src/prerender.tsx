@@ -21,10 +21,19 @@ interface PrerenderArguments {
 }
 
 export async function prerender({ url = '/' }: PrerenderArguments = {}) {
-  const requestedUrl = new URL(url, 'https://tigre-tigre.com')
+  const requestedUrl = new URL(url, 'https://www.tigre-tigre.com')
   const { pathname, search } = requestedUrl
+  const isEnglishPrerender = pathname === '/en' || pathname === '/en/promo'
+  const publicPathname =
+    pathname === '/en/promo' ? '/promo' : pathname === '/en' ? '/' : pathname
+  const publicSearch = isEnglishPrerender ? '?lang=en' : search
+  const requestedLanguage =
+    isEnglishPrerender || new URLSearchParams(search).get('lang') === 'en' ? 'en' : 'bg'
+
+  await i18n.changeLanguage(requestedLanguage)
+
   const page =
-    pathname === '/promo' ? (
+    publicPathname === '/promo' ? (
       <PromoPage />
     ) : (
       <Layout>
@@ -49,11 +58,11 @@ export async function prerender({ url = '/' }: PrerenderArguments = {}) {
 
   const html = renderToString(
     <I18nextProvider i18n={i18n}>
-      <StaticRouter location={`${pathname}${search}`}>{page}</StaticRouter>
+      <StaticRouter location={`${publicPathname}${publicSearch}`}>{page}</StaticRouter>
     </I18nextProvider>
   )
   const language = i18n.resolvedLanguage ?? i18n.language
-  const metadata = getPageMetadata(pathname, language, search)
+  const metadata = getPageMetadata(publicPathname, language, publicSearch)
 
   return {
     html,

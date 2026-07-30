@@ -21,8 +21,8 @@ export function LazySection({
 
     // Load immediately if user navigated to a hash anchor
     if (window.location.hash) {
-      setVisible(true)
-      return
+      const frame = window.requestAnimationFrame(() => setVisible(true))
+      return () => window.cancelAnimationFrame(frame)
     }
 
     const observer = new IntersectionObserver(

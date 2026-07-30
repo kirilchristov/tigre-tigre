@@ -31,21 +31,21 @@ describe('PageMetadata', () => {
 
     renderMetadata()
 
-    expect(document.title).toBe('ОКЕЙ НАМАЛЕНИЯ | tigre tigre')
+    expect(document.title).toBe('Окей оферти за чили крънч | tigre tigre')
     expect(document.head.querySelectorAll('link[rel="canonical"]')).toHaveLength(1)
     expect(document.head.querySelector('link[rel="canonical"]')).toHaveAttribute(
       'href',
-      'https://tigre-tigre.com/promo'
+      'https://www.tigre-tigre.com/promo'
     )
 
     await i18n.changeLanguage('en')
     await waitFor(() => {
-      expect(document.title).toBe('OKAY DISCOUNTS | tigre tigre')
+      expect(document.title).toBe('Okay Chili Crunch Offers | tigre tigre')
     })
     expect(document.head.querySelectorAll('meta[name="description"]')).toHaveLength(1)
     expect(document.head.querySelector('meta[property="og:title"]')).toHaveAttribute(
       'content',
-      'OKAY DISCOUNTS | tigre tigre'
+      'More jars. Less thinking.'
     )
   })
 
@@ -71,8 +71,8 @@ describe('PageMetadata', () => {
     expect(productScript).not.toBeNull()
     expect(JSON.parse(productScript?.textContent ?? '{}')).toMatchObject({
       '@type': 'Product',
-      name: 'tigre tigre Чили крънч',
-      url: 'https://tigre-tigre.com/',
+      name: 'tigre tigre екстра хрупкав чили крънч, 180 г',
+      url: 'https://www.tigre-tigre.com/',
     })
 
     await i18n.changeLanguage('en')
@@ -82,7 +82,7 @@ describe('PageMetadata', () => {
           document.head.querySelector('script[data-page-structured-data="product"]')
             ?.textContent ?? '{}'
         ).name
-      ).toBe('tigre tigre Chili Crunch')
+      ).toBe('tigre tigre Extra-Crispy Chili Crunch, 180 g')
     })
 
     rerender(

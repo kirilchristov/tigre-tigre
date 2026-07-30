@@ -104,22 +104,29 @@ navigation.
 
 For `/promo`:
 
-- Canonical: `https://tigre-tigre.com/promo`.
-- Bulgarian alternate: `https://tigre-tigre.com/promo?lang=bg`.
-- English alternate: `https://tigre-tigre.com/promo?lang=en`.
-- `x-default`: `https://tigre-tigre.com/promo`.
-- Social image: `https://tigre-tigre.com/images/promo/social.jpg` (opaque,
+- Canonical: `https://www.tigre-tigre.com/promo`.
+- Bulgarian alternate: `https://www.tigre-tigre.com/promo`.
+- English alternate: `https://www.tigre-tigre.com/promo?lang=en`.
+- `x-default`: `https://www.tigre-tigre.com/promo`.
+- Social image: `https://www.tigre-tigre.com/images/promo/social.jpg` (opaque,
   1200 × 630).
 - Open Graph type: `website`.
 - Robots: `index, follow` in production; preserve existing preview/staging
   noindex behavior.
 
-Recommended localized metadata:
+Localized search metadata:
 
 | Locale | Title | Description |
 | --- | --- | --- |
-| BG | `ОКЕЙ НАМАЛЕНИЯ | tigre tigre` | `Вземи 1, 2, 3 или 6 буркана tigre tigre с безплатна доставка и до 15% намаление.` |
-| EN | `OKAY DISCOUNTS | tigre tigre` | `Get 1, 2, 3, or 6 jars of tigre tigre with free delivery and up to 15% off.` |
+| BG | `Окей оферти за чили крънч \| tigre tigre` | `2 буркана за спокойствие, 3 за щастие, 6 и за споделяне. Безплатна доставка от 2 броя и до 15% отстъпка.` |
+| EN | `Okay Chili Crunch Offers \| tigre tigre` | `Two jars for peace of mind. Three’s a charm. Six leaves enough to share. Free delivery from 2 jars and up to 15% off.` |
+
+Localized social metadata:
+
+| Locale | Title | Description |
+| --- | --- | --- |
+| BG | `Повече буркани. По-малко мислене.` | `Избери 2, 3 или 6 буркана. Безплатна доставка от 2 и до 15% отстъпка. Напълно окей.` |
+| EN | `More jars. Less thinking.` | `Pick 2, 3, or 6 jars. Free delivery from 2 and up to 15% off. Perfectly okay.` |
 
 Metadata must update before route page-view trackers read `document.title`.
 
@@ -130,19 +137,22 @@ Product/Offer markup remains deferred until the displayed bundle prices have
 verified direct-cart destinations.
 
 The query-string language detector must honor `?lang=bg` and `?lang=en` ahead
-of local storage. Each explicit language URL must canonicalize to itself, while
-the queryless route remains the `x-default`. The language toggle must replace
-the `lang` parameter so reloads preserve the selected language. Browser
-verification must cover direct loads of both URLs, including visible copy,
-document language, title, description, canonical, and reciprocal hreflang
-links.
+of local storage. The queryless Bulgarian route is canonical and serves as the
+`x-default`; `?lang=bg` canonicalizes to it. The English URL self-canonicalizes
+with `?lang=en`. The language toggle must replace the `lang` parameter so
+reloads preserve the selected language. Browser verification must cover direct
+loads of both URLs, including visible copy, document language, title,
+description, canonical, and reciprocal hreflang links.
 
-Update prerendering so its route-aware entry accepts the requested URL, renders
-the correct route with `StaticRouter`, and includes `/promo` in
-`additionalPrerenderRoutes`. The production build must emit
-`dist/promo/index.html` containing promo markup and metadata.
+Update prerendering so its route-aware entry accepts the requested URL and
+renders the correct route with `StaticRouter`. The production build must emit
+Bulgarian pages at `dist/index.html` and `dist/promo/index.html`, plus internal
+English render targets at `dist/en/index.html` and
+`dist/en/promo/index.html`. Vercel must serve those English files for the public
+`?lang=en` URLs before applying the SPA fallback. This gives search and social
+crawlers localized metadata without changing the public URL contract.
 
-Add `https://tigre-tigre.com/promo` to `public/sitemap.xml` with a reasonable
+Add `https://www.tigre-tigre.com/promo` to `public/sitemap.xml` with a reasonable
 campaign priority below the homepage.
 
 ## Implementation sequence
@@ -203,8 +213,11 @@ Follow RED → GREEN → refactor:
   and lines across new or changed promo modules.
 - Lint and TypeScript checks pass.
 - Production build passes.
-- `dist/promo/index.html` contains the localized promo H1, title, canonical, and
-  page markup.
+- The four Bulgarian and English prerender files contain the expected localized
+  page copy, title, description, canonical, social metadata, and structured
+  data.
+- Vercel serves the prerendered `/promo` file and both `?lang=en` render targets
+  before applying the SPA fallback.
 - Sitemap contains `/promo`.
 - Playwright tests pass.
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tigre-tigre.com/sitemap.xml
+Sitemap: https://www.tigre-tigre.com/sitemap.xml

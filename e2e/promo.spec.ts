@@ -18,8 +18,8 @@ test('promo route renders the approved campaign and safe bundle cart links', asy
     customOffer.getByRole('heading', { level: 2, name: 'Ти избираш бройката.' })
   ).toBeVisible()
   await customOffer.getByRole('button', { name: 'Увеличи количеството' }).click()
-  await expect(customOffer.getByText('€15.98')).toBeVisible()
-  await expect(customOffer.getByText('Безплатна доставка')).toBeVisible()
+  await expect(customOffer.getByText('€15.98', { exact: true })).toBeVisible()
+  await expect(customOffer.getByText('Безплатна доставка', { exact: true })).toBeVisible()
   await expect(customOffer.getByRole('link', { name: 'Вземи' })).toHaveAttribute(
     'href',
     'https://shop.tigre-tigre.com/cart/56986218955100:2'
@@ -101,7 +101,7 @@ test('promo route keeps language, theme, and homepage navigation working', async
 
   await page.locator('button[aria-label="Switch to English"]:visible').click()
   await expect(page.getByRole('heading', { level: 1, name: 'OKAY DISCOUNTS' })).toBeVisible()
-  await expect(page).toHaveTitle('OKAY DISCOUNTS | tigre tigre')
+  await expect(page).toHaveTitle('Okay Chili Crunch Offers | tigre tigre')
   await expect(page).toHaveURL('/promo?lang=en')
 
   await page.reload()
@@ -122,37 +122,37 @@ test('language query parameters select their exact localized promo version', asy
 
   await expect(page.getByRole('heading', { level: 1, name: 'OKAY DISCOUNTS' })).toBeVisible()
   await expect(page.locator('html')).toHaveAttribute('lang', 'en')
-  await expect(page).toHaveTitle('OKAY DISCOUNTS | tigre tigre')
+  await expect(page).toHaveTitle('Okay Chili Crunch Offers | tigre tigre')
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://tigre-tigre.com/promo?lang=en'
+    'https://www.tigre-tigre.com/promo?lang=en'
   )
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
-    'Get 1, 2, 3, or 6 jars of tigre tigre with free delivery and up to 15% off.'
+    'Two jars for peace of mind. Three’s a charm. Six leaves enough to share. Free delivery from 2 jars and up to 15% off.'
   )
 
   await page.goto('/promo?lang=bg')
 
   await expect(page.getByRole('heading', { level: 1, name: 'ОКЕЙ НАМАЛЕНИЯ' })).toBeVisible()
   await expect(page.locator('html')).toHaveAttribute('lang', 'bg')
-  await expect(page).toHaveTitle('ОКЕЙ НАМАЛЕНИЯ | tigre tigre')
+  await expect(page).toHaveTitle('Окей оферти за чили крънч | tigre tigre')
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     'href',
-    'https://tigre-tigre.com/promo?lang=bg'
+    'https://www.tigre-tigre.com/promo'
   )
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
-    'Вземи 1, 2, 3 или 6 буркана tigre tigre с безплатна доставка и до 15% намаление.'
+    '2 буркана за спокойствие, 3 за щастие, 6 и за споделяне. Безплатна доставка от 2 броя и до 15% отстъпка.'
   )
 
   await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute(
     'href',
-    'https://tigre-tigre.com/promo?lang=en'
+    'https://www.tigre-tigre.com/promo?lang=en'
   )
   await expect(page.locator('link[rel="alternate"][hreflang="bg"]')).toHaveAttribute(
     'href',
-    'https://tigre-tigre.com/promo?lang=bg'
+    'https://www.tigre-tigre.com/promo'
   )
 })
 
@@ -195,17 +195,48 @@ test('production preview serves prerendered promo metadata and sitemap entry', a
 }) => {
   const homeResponse = await request.get('/')
   expect(homeResponse.ok()).toBe(true)
-  const homeJsonLd = extractJsonLd(await homeResponse.text())
+  const homeHtml = await homeResponse.text()
+  const homeJsonLd = extractJsonLd(homeHtml)
   const homeProducts = homeJsonLd.filter((entry) => entry['@type'] === 'Product')
+  const homeWebsites = homeJsonLd.filter((entry) => entry['@type'] === 'WebSite')
+  const homeOrganizations = homeJsonLd.filter((entry) => entry['@type'] === 'Organization')
 
+  expect(homeHtml).toContain('<title>tigre tigre — безсрамно вкусен чили крънч</title>')
+  expect(homeHtml).toContain(
+    'content="Супер хрупкав чили крънч с опасно много чесън, лук и пикантно олио. Без ядки, без соев сос, без срам. Слагаш го върху всичко."'
+  )
+  expect(homeHtml).toContain(
+    '<meta property="og:title" content="чили крънч за мазни пръсти | tigre tigre">'
+  )
   expect(homeProducts).toHaveLength(1)
+  expect(homeWebsites).toEqual([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'tigre tigre',
+      url: 'https://www.tigre-tigre.com/',
+    },
+  ])
+  expect(homeOrganizations).toEqual([
+    expect.objectContaining({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'tigre tigre',
+      url: 'https://www.tigre-tigre.com/',
+      email: 'hello@tigre-tigre.com',
+      sameAs: [
+        'https://instagram.com/eat.tigretigre',
+        'https://tiktok.com/@eat.tigretigre',
+      ],
+    }),
+  ])
   expect(homeProducts[0]).toMatchObject({
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: 'tigre tigre Чили крънч',
+    name: 'tigre tigre екстра хрупкав чили крънч, 180 г',
     brand: { '@type': 'Brand', name: 'tigre tigre' },
-    image: 'https://tigre-tigre.com/images/product-shots/2026_front-2048x2048.webp',
-    url: 'https://tigre-tigre.com/',
+    image: 'https://www.tigre-tigre.com/images/product-shots/2026_front-2048x2048.webp',
+    url: 'https://www.tigre-tigre.com/',
     offers: {
       '@type': 'Offer',
       url: 'https://shop.tigre-tigre.com/products/tigre-tigre-chili-crunch',
@@ -215,16 +246,44 @@ test('production preview serves prerendered promo metadata and sitemap entry', a
     },
   })
 
+  const englishHomeResponse = await request.get('/en/index.html')
+  expect(englishHomeResponse.ok()).toBe(true)
+  const englishHomeHtml = await englishHomeResponse.text()
+  expect(englishHomeHtml).toContain(
+    '<title>tigre tigre — shamelessly delicious chili crunch</title>'
+  )
+  expect(englishHomeHtml).toContain(
+    '<link rel="canonical" href="https://www.tigre-tigre.com/?lang=en">'
+  )
+  expect(englishHomeHtml).toContain(
+    '<meta property="og:title" content="chili crunch for greasy fingers | tigre tigre">'
+  )
+
   const promoResponse = await request.get('/promo')
   expect(promoResponse.ok()).toBe(true)
   const promoHtml = await promoResponse.text()
 
   expect(promoHtml).toContain('ОКЕЙ НАМАЛЕНИЯ')
-  expect(promoHtml).toContain('<title>ОКЕЙ НАМАЛЕНИЯ | tigre tigre</title>')
-  expect(promoHtml).toContain('<link rel="canonical" href="https://tigre-tigre.com/promo">')
+  expect(promoHtml).toContain('<title>Окей оферти за чили крънч | tigre tigre</title>')
+  expect(promoHtml).toContain(
+    '<link rel="canonical" href="https://www.tigre-tigre.com/promo">'
+  )
   expect(promoHtml.match(/rel="canonical"/g)).toHaveLength(1)
   expect(extractJsonLd(promoHtml).filter((entry) => entry['@type'] === 'Product')).toHaveLength(0)
 
+  const englishPromoResponse = await request.get('/en/promo/index.html')
+  expect(englishPromoResponse.ok()).toBe(true)
+  const englishPromoHtml = await englishPromoResponse.text()
+  expect(englishPromoHtml).toContain(
+    '<title>Okay Chili Crunch Offers | tigre tigre</title>'
+  )
+  expect(englishPromoHtml).toContain(
+    '<link rel="canonical" href="https://www.tigre-tigre.com/promo?lang=en">'
+  )
+  expect(englishPromoHtml).toContain(
+    '<meta property="og:title" content="More jars. Less thinking.">'
+  )
+
   const sitemapResponse = await request.get('/sitemap.xml')
-  expect(await sitemapResponse.text()).toContain('<loc>https://tigre-tigre.com/promo</loc>')
+  expect(await sitemapResponse.text()).toContain('<loc>https://www.tigre-tigre.com/promo</loc>')
 })

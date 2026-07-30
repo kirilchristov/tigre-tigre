@@ -34,8 +34,8 @@ type ParsedSegment =
  */
 export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTextProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const wordsRef = useRef<HTMLSpanElement[]>([])
-  const svgRefs = useRef<SVGSVGElement[]>([])
+  const wordsRef = useRef(new Map<string, HTMLSpanElement>())
+  const svgRefs = useRef(new Map<string, SVGSVGElement>())
 
   // Parse text with markup into segments
   const parsedContent = useMemo(() => {
@@ -96,8 +96,8 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
 
   useEffect(() => {
     const container = containerRef.current
-    const words = wordsRef.current.filter(Boolean)
-    const svgs = svgRefs.current.filter(Boolean)
+    const words = Array.from(wordsRef.current.values())
+    const svgs = Array.from(svgRefs.current.values())
 
     if (!container || words.length === 0) return
 
@@ -168,11 +168,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
     }
   }, [parsedContent])
 
-  // Reset refs array when content changes
-  wordsRef.current = []
-  svgRefs.current = []
-
-  const renderHighlightSVG = (type: HighlightType, wordIndex: number, content: string) => {
+  const renderHighlightSVG = (type: HighlightType, segmentIndex: number, content: string) => {
     const baseClass = 'absolute text-red-500 pointer-events-none left-0'
     // Calculate width based on character count (approximate 0.6em per character)
     const charCount = content.length
@@ -183,9 +179,11 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         return (
           <HighlightMarker
             ref={(el) => {
-              if (el) svgRefs.current.push(el)
+              const key = `highlight-${segmentIndex}`
+              if (el) svgRefs.current.set(key, el)
+              else svgRefs.current.delete(key)
             }}
-            data-word-index={wordIndex}
+            data-segment-index={segmentIndex}
             className={`${baseClass} top-[0.1em] mix-blend-multiply`}
             style={{ width, height: '1.2em', opacity: 0 }}
           />
@@ -194,9 +192,11 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         return (
           <HighlightCircle
             ref={(el) => {
-              if (el) svgRefs.current.push(el)
+              const key = `highlight-${segmentIndex}`
+              if (el) svgRefs.current.set(key, el)
+              else svgRefs.current.delete(key)
             }}
-            data-word-index={wordIndex}
+            data-segment-index={segmentIndex}
             className={`${baseClass} bottom-0`}
             style={{ width, opacity: 0 }}
           />
@@ -205,9 +205,11 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         return (
           <HighlightUnderline
             ref={(el) => {
-              if (el) svgRefs.current.push(el)
+              const key = `highlight-${segmentIndex}`
+              if (el) svgRefs.current.set(key, el)
+              else svgRefs.current.delete(key)
             }}
-            data-word-index={wordIndex}
+            data-segment-index={segmentIndex}
             className={`${baseClass} bottom-0`}
             style={{ width, opacity: 0 }}
           />
@@ -218,7 +220,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
   }
 
   // Render words from a text string, splitting by spaces
-  const renderWords = (content: string) => {
+  const renderWords = (content: string, segmentKey: string) => {
     const words = content.split(/(\s+)/)
     return words.map((word, i) => {
       // Preserve whitespace
@@ -231,7 +233,9 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         <span
           key={`word-${i}`}
           ref={(el) => {
-            if (el) wordsRef.current.push(el)
+            const key = `${segmentKey}-word-${i}`
+            if (el) wordsRef.current.set(key, el)
+            else wordsRef.current.delete(key)
           }}
           className="inline"
           style={{ opacity: 0.15 }}
@@ -248,12 +252,11 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
     highlightType: HighlightType,
     segmentIndex: number
   ) => {
-    const firstWordIndex = wordsRef.current.length
     const words = content.split(/(\s+)/)
 
     return (
       <span key={`highlight-${segmentIndex}`} className="relative inline-block whitespace-nowrap">
-        {renderHighlightSVG(highlightType, firstWordIndex, content)}
+        {renderHighlightSVG(highlightType, segmentIndex, content)}
         <span className="relative z-10">
           {words.map((word, i) => {
             if (/^\s+$/.test(word)) {
@@ -265,7 +268,9 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
               <span
                 key={`word-${i}`}
                 ref={(el) => {
-                  if (el) wordsRef.current.push(el)
+                  const key = `highlight-${segmentIndex}-word-${i}`
+                  if (el) wordsRef.current.set(key, el)
+                  else wordsRef.current.delete(key)
                 }}
                 className="inline"
                 style={{ opacity: 0.15 }}
@@ -291,7 +296,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
               rel="noopener noreferrer"
               className="underline hover:text-foreground/80 transition-colors"
             >
-              {renderWords(segment.content)}
+              {renderWords(segment.content, `link-${index}`)}
             </a>
           )
         }
@@ -299,7 +304,7 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         if (segment.type === 'brand') {
           return (
             <span key={`brand-${index}`} className="font-sans font-bold">
-              {renderWords(segment.content)}
+              {renderWords(segment.content, `brand-${index}`)}
             </span>
           )
         }
@@ -313,7 +318,9 @@ export function ScrollHighlightText({ text, className = '' }: ScrollHighlightTex
         }
 
         // Regular text
-        return <span key={`text-${index}`}>{renderWords(segment.content)}</span>
+        return (
+          <span key={`text-${index}`}>{renderWords(segment.content, `text-${index}`)}</span>
+        )
       })}
     </div>
   )
