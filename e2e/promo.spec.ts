@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test'
 
 function extractJsonLd(html: string) {
-  return [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
-    .map((match) => JSON.parse(match[1]))
+  return [
+    ...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g),
+  ].map((match) => JSON.parse(match[1]))
 }
 
 test('promo route renders the approved campaign and safe bundle cart links', async ({ page }) => {
@@ -11,6 +12,18 @@ test('promo route renders the approved campaign and safe bundle cart links', asy
   await expect(page.getByRole('heading', { level: 1, name: 'ОКЕЙ НАМАЛЕНИЯ' })).toBeVisible()
   await expect(page.getByRole('heading', { level: 2, name: 'Сложи върху:' })).toBeVisible()
   await expect(page.getByText('100% безсрамно вкусно')).toBeVisible()
+
+  const customOffer = page.getByTestId('promo-custom-offer')
+  await expect(
+    customOffer.getByRole('heading', { level: 2, name: 'Ти избираш бройката.' })
+  ).toBeVisible()
+  await customOffer.getByRole('button', { name: 'Увеличи количеството' }).click()
+  await expect(customOffer.getByText('€15.98')).toBeVisible()
+  await expect(customOffer.getByText('Безплатна доставка')).toBeVisible()
+  await expect(customOffer.getByRole('link', { name: 'Вземи' })).toHaveAttribute(
+    'href',
+    'https://shop.tigre-tigre.com/cart/56986218955100:2'
+  )
 
   const cards = page.getByTestId('promo-bundle-card')
   await expect(cards).toHaveCount(3)
@@ -63,9 +76,7 @@ test('promo route renders the approved campaign and safe bundle cart links', asy
   await savingsTrigger.hover()
   const savingsTooltip = cards.nth(1).getByRole('tooltip')
   await expect(savingsTooltip).toBeVisible()
-  await expect(savingsTooltip).toContainText(
-    'Спестяваш €4.11 (€2.37 отстъпка + €1.74 доставка)'
-  )
+  await expect(savingsTooltip).toContainText('Спестяваш €4.11 (€2.37 отстъпка + €1.74 доставка)')
 
   const ctas = cards.getByRole('link', { name: /Към магазина —/ })
   await expect(ctas).toHaveCount(3)
@@ -143,26 +154,28 @@ test('language query parameters select their exact localized promo version', asy
   )
 })
 
-test('promo route does not overflow a narrow mobile viewport', async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 800 })
-  await page.goto('/promo?lang=bg')
+test('promo route does not overflow narrow mobile viewports', async ({ page }) => {
+  for (const width of [320, 360]) {
+    await page.setViewportSize({ width, height: 800 })
+    await page.goto('/promo?lang=bg')
 
-  await expect(page.getByTestId('promo-bundle-card')).toHaveCount(3)
-  const dimensions = await page.evaluate(() => ({
-    clientWidth: document.documentElement.clientWidth,
-    scrollWidth: document.documentElement.scrollWidth,
-  }))
+    await expect(page.getByTestId('promo-bundle-card')).toHaveCount(3)
+    const dimensions = await page.evaluate(() => ({
+      clientWidth: document.documentElement.clientWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }))
 
-  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
+    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
+  }
 })
 
 test('promo bundle cards form one flexible row at the desktop breakpoint', async ({ page }) => {
   await page.setViewportSize({ width: 1024, height: 900 })
   await page.goto('/promo?lang=bg')
 
-  const cardTops = await page.getByTestId('promo-bundle-card').evaluateAll((cards) =>
-    cards.map((card) => Math.round(card.getBoundingClientRect().top))
-  )
+  const cardTops = await page
+    .getByTestId('promo-bundle-card')
+    .evaluateAll((cards) => cards.map((card) => Math.round(card.getBoundingClientRect().top)))
   const imageTops = await page
     .getByTestId('promo-bundle-image-stage')
     .evaluateAll((stages) => stages.map((stage) => Math.round(stage.getBoundingClientRect().top)))
@@ -206,9 +219,7 @@ test('production preview serves prerendered promo metadata and sitemap entry', a
 
   expect(promoHtml).toContain('ОКЕЙ НАМАЛЕНИЯ')
   expect(promoHtml).toContain('<title>ОКЕЙ НАМАЛЕНИЯ | tigre tigre</title>')
-  expect(promoHtml).toContain(
-    '<link rel="canonical" href="https://tigre-tigre.com/promo">'
-  )
+  expect(promoHtml).toContain('<link rel="canonical" href="https://tigre-tigre.com/promo">')
   expect(promoHtml.match(/rel="canonical"/g)).toHaveLength(1)
   expect(extractJsonLd(promoHtml).filter((entry) => entry['@type'] === 'Product')).toHaveLength(0)
 

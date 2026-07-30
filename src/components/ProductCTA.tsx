@@ -80,7 +80,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             <p
               className={cn(
                 'text-sm font-bold mt-1',
-                quantity === 1 ? 'text-gold' : 'text-green-600'
+                quantity === 1 ? 'text-brand-700 dark:text-gold' : 'text-green-600'
               )}
             >
               {promoBadge}
@@ -95,7 +95,12 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             quantityLabel={t('productCTA.quantity')}
             decrementLabel={t('productCTA.decrement')}
             incrementLabel={t('productCTA.increment')}
+            className="flex w-full flex-wrap gap-2"
           />
+
+          <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {t('productCTA.status', { quantity, total, promo: promoBadge })}
+          </p>
 
           <p className={cn('text-xs text-muted-foreground', !nudge && 'invisible')}>
             {nudge ?? ' '}

@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import i18n from '@/lib/i18n'
@@ -56,18 +56,9 @@ describe('PromoPage', () => {
     const discountBursts = screen.getAllByTestId('promo-discount-burst')
     expect(discountBursts).toHaveLength(2)
     expect(within(discountBursts[0]).getByText('-10%')).toHaveClass('bg-gold', 'text-white')
-    expect(within(discountBursts[1]).getByText('-15%')).toHaveClass(
-      'bg-brand-700',
-      'text-white'
-    )
+    expect(within(discountBursts[1]).getByText('-15%')).toHaveClass('bg-brand-700', 'text-white')
     for (const burst of discountBursts) {
-      expect(burst).toHaveClass(
-        'promo-discount-burst',
-        'h-40',
-        'w-48',
-        'bg-black',
-        'p-[4px]'
-      )
+      expect(burst).toHaveClass('promo-discount-burst', 'h-40', 'w-48', 'bg-black', 'p-[4px]')
       expect(burst.firstElementChild).toHaveClass('text-4xl')
       expect(burst).toHaveClass('absolute', 'right-0', 'top-0', 'z-10')
       expect(burst.parentElement).toHaveAttribute('data-testid', 'promo-bundle-visual')
@@ -94,14 +85,18 @@ describe('PromoPage', () => {
       {
         card: cards[2],
         title: '6 буркана:',
-        items: ['-15% отстъпка', 'спестяваш 6 доставки', 'ще остане и за почерпка'],
+        items: ['-15% отстъпка', 'спестяваш 6 доставки', 'ще остане и за споделяне'],
       },
     ] as const
 
     for (const { card, title, items } of bundleDetails) {
       expect(within(card).getByRole('heading', { level: 3, name: title })).toBeVisible()
       const list = within(card).getByRole('list')
-      expect(within(list).getAllByRole('listitem').map((item) => item.textContent)).toEqual(items)
+      expect(
+        within(list)
+          .getAllByRole('listitem')
+          .map((item) => item.textContent)
+      ).toEqual(items)
     }
 
     expect(screen.queryByRole('heading', { name: 'Вземи 2 буркана' })).not.toBeInTheDocument()
@@ -221,6 +216,66 @@ describe('PromoPage', () => {
     }
   })
 
+  it('lets shoppers build a custom offer before the closing trust statement', () => {
+    const { container } = renderPromoPage()
+
+    const customOffer = screen.getByTestId('promo-custom-offer')
+    expect(
+      within(customOffer).getByRole('heading', { level: 2, name: 'Ти избираш бройката.' })
+    ).toBeVisible()
+    expect(within(customOffer).getByText('НАПРАВИ СИ ОФЕРТА')).toBeVisible()
+    expect(
+      within(customOffer).getByText('Отстъпките си остават същите, математиката е от нас.')
+    ).toBeVisible()
+
+    const customOfferLink = within(customOffer).getByRole('link', { name: 'Вземи' })
+    expect(customOfferLink).toHaveAttribute(
+      'href',
+      'https://shop.tigre-tigre.com/cart/56986218955100:1'
+    )
+    expect(within(customOffer).getByRole('status')).toHaveTextContent(
+      'Количество: 1. Общо: €7.99. 1-2 дни доставка.'
+    )
+
+    fireEvent.click(within(customOffer).getByRole('button', { name: 'Увеличи количеството' }))
+
+    expect(within(customOffer).getByText('€15.98')).toBeVisible()
+    expect(within(customOffer).getByText('Безплатна доставка')).toBeVisible()
+    expect(customOfferLink).toHaveAttribute(
+      'href',
+      'https://shop.tigre-tigre.com/cart/56986218955100:2'
+    )
+
+    fireEvent.click(within(customOffer).getByRole('button', { name: 'Увеличи количеството' }))
+    expect(within(customOffer).getByText('€21.60')).toBeVisible()
+    expect(within(customOffer).getByText('10% отстъпка + безплатна доставка')).toBeVisible()
+
+    for (let quantity = 4; quantity <= 6; quantity += 1) {
+      fireEvent.click(within(customOffer).getByRole('button', { name: 'Увеличи количеството' }))
+    }
+    expect(within(customOffer).getByText('€40.80')).toBeVisible()
+    expect(within(customOffer).getByText('15% отстъпка + безплатна доставка')).toBeVisible()
+    expect(customOfferLink).toHaveAttribute(
+      'href',
+      'https://shop.tigre-tigre.com/cart/56986218955100:6'
+    )
+
+    for (let quantity = 7; quantity <= 20; quantity += 1) {
+      fireEvent.click(within(customOffer).getByRole('button', { name: 'Увеличи количеството' }))
+    }
+    expect(within(customOffer).getByText('За повече от 20 буркана,')).toBeVisible()
+    expect(customOfferLink).toHaveAttribute(
+      'href',
+      'https://shop.tigre-tigre.com/cart/56986218955100:20'
+    )
+
+    const trustStatement = screen.getByText('100% безсрамно вкусно')
+    expect(
+      customOffer.compareDocumentPosition(trustStatement) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy()
+    expect(container.querySelectorAll('[data-testid="promo-custom-offer"]')).toHaveLength(1)
+  })
+
   it('renders the English adaptation through the existing locale system', async () => {
     await i18n.changeLanguage('en')
     renderPromoPage()
@@ -234,6 +289,9 @@ describe('PromoPage', () => {
       'Put it on:',
       'rice, noodles, eggs',
       'tripe soup and fish soup',
+      'BUILD YOUR OWN OFFER',
+      'You pick the quantity.',
+      'The discounts stay the same. We’ll do the math.',
       '100% shamelessly delicious',
       '2/5 heat',
     ])
@@ -257,18 +315,16 @@ describe('PromoPage', () => {
     ] as const) {
       expect(within(card).getByRole('heading', { level: 3, name: title })).toBeVisible()
       const list = within(card).getByRole('list')
-      expect(within(list).getAllByRole('listitem').map((item) => item.textContent)).toEqual(items)
+      expect(
+        within(list)
+          .getAllByRole('listitem')
+          .map((item) => item.textContent)
+      ).toEqual(items)
     }
-    for (const name of [
-      'Go to shop — 2 jars',
-      'Go to shop — 3 jars',
-      'Go to shop — 6 jars',
-    ]) {
+    for (const name of ['Go to shop — 2 jars', 'Go to shop — 3 jars', 'Go to shop — 6 jars']) {
       expect(screen.getByRole('link', { name })).toBeVisible()
     }
-    expect(
-      screen.getByRole('button', { name: 'How “You save €4.11” is calculated' })
-    ).toBeVisible()
+    expect(screen.getByRole('button', { name: 'How “You save €4.11” is calculated' })).toBeVisible()
     expect(screen.getByRole('link', { name: 'Skip to main content' })).toHaveAttribute(
       'href',
       '#main-content'

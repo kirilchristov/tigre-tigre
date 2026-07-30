@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Layout } from '@/components/layout'
 import { PROMO_BUNDLES } from './promo-data'
 import { PromoBundleCard } from './PromoBundleCard'
+import { PromoCustomOffer } from './PromoCustomOffer'
 import { PromoHero } from './PromoHero'
 import { PromoTrust } from './PromoTrust'
 
@@ -33,15 +34,14 @@ export function PromoPage() {
             <p className="max-w-lg text-sm text-muted-foreground">{t('promo.bundles.note')}</p>
           </div>
 
-          <div
-            data-testid="promo-bundle-grid"
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-          >
+          <div data-testid="promo-bundle-grid" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {DISPLAYED_PROMO_BUNDLES.map((bundle) => (
               <PromoBundleCard key={bundle.id} bundle={bundle} />
             ))}
           </div>
         </section>
+
+        <PromoCustomOffer />
 
         <PromoTrust />
       </div>
