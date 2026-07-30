@@ -55,10 +55,10 @@ describe('PromoPage', () => {
     expect(within(cards[2]).getByText('€40.80')).toBeVisible()
     const discountBursts = screen.getAllByTestId('promo-discount-burst')
     expect(discountBursts).toHaveLength(2)
-    expect(within(discountBursts[0]).getByText('-10%')).toHaveClass('bg-gold', 'text-white')
+    expect(within(discountBursts[0]).getByText('-10%')).toHaveClass('bg-gold', 'text-black')
     expect(within(discountBursts[1]).getByText('-15%')).toHaveClass('bg-brand-700', 'text-white')
     for (const burst of discountBursts) {
-      expect(burst).toHaveClass('promo-discount-burst', 'h-40', 'w-48', 'bg-black', 'p-[4px]')
+      expect(burst).toHaveClass('promo-discount-burst', 'size-44', 'bg-black', 'p-1')
       expect(burst.firstElementChild).toHaveClass('text-4xl')
       expect(burst).toHaveClass('absolute', 'right-0', 'top-0', 'z-10')
       expect(burst.parentElement).toHaveAttribute('data-testid', 'promo-bundle-visual')

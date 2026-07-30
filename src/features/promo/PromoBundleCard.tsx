@@ -27,12 +27,12 @@ function DiscountBurst({ bundle }: PromoBundleCardProps) {
   return (
     <span
       data-testid="promo-discount-burst"
-      className="promo-discount-burst absolute right-0 top-0 z-10 inline-grid h-40 w-48 shrink-0 place-items-center bg-black p-[4px]"
+      className="promo-discount-burst absolute right-0 top-0 z-10 inline-grid size-44 shrink-0 place-items-center bg-black p-1"
     >
       <span
         className={cn(
           'promo-discount-burst grid h-full w-full place-items-center px-4 font-mono text-4xl font-black leading-none',
-          bundle.emphasis === 'best' ? 'bg-brand-700 text-white' : 'bg-gold text-white'
+          bundle.emphasis === 'best' ? 'bg-brand-700 text-white' : 'bg-gold text-black'
         )}
       >
         -{bundle.discountPercent}%

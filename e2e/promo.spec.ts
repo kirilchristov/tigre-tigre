@@ -38,6 +38,8 @@ test('promo route renders the approved campaign and safe bundle cart links', asy
   expect(
     await discountBursts.nth(0).evaluate((burst) => getComputedStyle(burst).clipPath)
   ).not.toBe('none')
+  const burstBox = await discountBursts.nth(0).boundingBox()
+  expect(burstBox?.width).toBe(burstBox?.height)
   const overlap = await cards.nth(1).evaluate((card) => {
     const burst = card.querySelector<HTMLElement>('[data-testid="promo-discount-burst"]')
     const priceRow = card.querySelector<HTMLElement>('[data-testid="promo-bundle-price-row"]')
