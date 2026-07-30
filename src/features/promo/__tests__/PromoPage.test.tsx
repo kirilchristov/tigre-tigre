@@ -61,6 +61,23 @@ describe('PromoPage', () => {
     expect(within(cards[1]).getByText('€15.98')).toBeVisible()
     expect(within(cards[2]).getByText('€21.60')).toBeVisible()
     expect(within(cards[3]).getByText('€40.80')).toBeVisible()
+    for (const [card, savings] of [
+      [cards[1], 'Спестяваш €1.74'],
+      [cards[2], 'Спестяваш €4.11'],
+      [cards[3], 'Спестяваш €8.88'],
+    ] as const) {
+      expect(within(card).getByText(savings)).toHaveClass('font-bold', 'text-brand-600')
+    }
+
+    expect(within(cards[0]).queryByText('общо')).not.toBeInTheDocument()
+    expect(within(cards[1]).queryByText('общо')).not.toBeInTheDocument()
+    expect(within(cards[2]).queryByText('общо')).not.toBeInTheDocument()
+    expect(within(cards[3]).queryByText('общо')).not.toBeInTheDocument()
+
+    expect(within(cards[2]).getByText('€23.97')).toHaveClass('line-through')
+    expect(within(cards[3]).getByText('€47.94')).toHaveClass('line-through')
+    expect(within(cards[0]).queryByText('€7.99', { selector: '.line-through' })).toBeNull()
+    expect(within(cards[1]).queryByText('€15.98', { selector: '.line-through' })).toBeNull()
 
     const headings = Array.from(container.querySelectorAll('h1, h2, h3'))
     expect(headings[0]).toHaveTextContent('ОКЕЙ НАМАЛЕНИЯ')
@@ -77,16 +94,51 @@ describe('PromoPage', () => {
     expect(container.querySelector('main')).toHaveAttribute('id', 'main-content')
   })
 
-  it('links every bundle to the generic Shopify storefront safely', () => {
+  it('links every bundle to its Shopify cart safely with the homepage CTA treatment', () => {
     renderPromoPage()
 
-    const links = screen.getAllByRole('link', { name: /Към магазина —/ })
-    expect(links).toHaveLength(4)
+    const expectedLinks = [
+      {
+        name: 'Към магазина — 1 буркан',
+        href: 'https://shop.tigre-tigre.com/cart/56986218955100:1',
+      },
+      {
+        name: 'Към магазина — 2 буркана',
+        href: 'https://shop.tigre-tigre.com/cart/56986218955100:2',
+      },
+      {
+        name: 'Към магазина — 3 буркана',
+        href: 'https://shop.tigre-tigre.com/cart/56986218955100:3',
+      },
+      {
+        name: 'Към магазина — 6 буркана',
+        href: 'https://shop.tigre-tigre.com/cart/56986218955100:6',
+      },
+    ] as const
 
-    for (const link of links) {
-      expect(link).toHaveAttribute('href', 'https://shop.tigre-tigre.com/')
+    for (const { name, href } of expectedLinks) {
+      const link = screen.getByRole('link', { name })
+
+      expect(link).toHaveAttribute('href', href)
       expect(link).toHaveAttribute('target', '_blank')
       expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+      expect(link).toHaveClass(
+        'bg-destructive',
+        'text-destructive-foreground',
+        'h-11',
+        'w-full',
+        'group'
+      )
+
+      const icon = link.querySelector('.lucide-arrow-right')
+      expect(icon).toBeInTheDocument()
+      expect(icon).toHaveAttribute('aria-hidden', 'true')
+      expect(icon).toHaveClass(
+        'transition-transform',
+        'duration-200',
+        'ease-out',
+        'group-hover:translate-x-1'
+      )
     }
   })
 
@@ -118,7 +170,14 @@ describe('PromoPage', () => {
       '100% shamelessly delicious',
       '2/5 heat',
     ])
-    expect(screen.getAllByRole('link', { name: /Go to shop —/ })).toHaveLength(4)
+    for (const name of [
+      'Go to shop — 1 jar',
+      'Go to shop — 2 jars',
+      'Go to shop — 3 jars',
+      'Go to shop — 6 jars',
+    ]) {
+      expect(screen.getByRole('link', { name })).toBeVisible()
+    }
     expect(screen.getByRole('link', { name: 'Skip to main content' })).toHaveAttribute(
       'href',
       '#main-content'

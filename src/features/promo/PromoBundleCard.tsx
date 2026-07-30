@@ -1,6 +1,8 @@
-import { ArrowUpRight, Truck } from 'lucide-react'
+import { ArrowRight, Truck } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
+import { buildShopifyCartPermalink } from '@/lib/shopify'
 import { cn } from '@/lib/utils'
 import { formatEuro, type PromoBundle } from './promo-data'
 
@@ -30,6 +32,10 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
       : bundle.emphasis === 'best'
         ? t('promo.labels.bestOffer')
         : null
+  const cartUrl = buildShopifyCartPermalink({
+    variantId: SINGLE_JAR_PRODUCT.variantId,
+    quantity: bundle.quantity,
+  })
 
   return (
     <article
@@ -54,12 +60,16 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
       <div className="p-4">
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              {t('promo.labels.total')}
-            </p>
-            <p className="font-mono text-3xl font-bold tracking-tight">
-              {formatEuro(bundle.totalCents)}
-            </p>
+            <div className="flex items-baseline gap-2 font-mono">
+              {bundle.originalTotalCents > bundle.totalCents && (
+                <span className="text-sm text-muted-foreground line-through">
+                  {formatEuro(bundle.originalTotalCents)}
+                </span>
+              )}
+              <span className="text-3xl font-bold tracking-tight">
+                {formatEuro(bundle.totalCents)}
+              </span>
+            </div>
           </div>
           {bundle.discountPercent > 0 && (
             <span
@@ -94,21 +104,24 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
             <p className="text-center text-muted-foreground">{t('promo.labels.noDiscount')}</p>
           )}
           {bundle.savingsCents !== undefined && (
-            <p className="text-center">
+            <p className="text-center font-bold text-brand-600">
               {t('promo.labels.savings', { amount: formatEuro(bundle.savingsCents) })}
             </p>
           )}
         </div>
 
-        <Button asChild size="lg" variant="ctaPrimary" className="mt-5 w-full">
+        <Button asChild size="lg" variant="destructive" className="group mt-5 w-full">
           <a
-            href={bundle.shopUrl}
+            href={cartUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${t('promo.cta')} — ${title}`}
           >
             {t('promo.cta')}
-            <ArrowUpRight aria-hidden="true" />
+            <ArrowRight
+              aria-hidden="true"
+              className="transition-transform duration-200 ease-out group-hover:translate-x-1"
+            />
           </a>
         </Button>
       </div>

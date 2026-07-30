@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { PROMO_BUNDLES, PROMO_STORE_URL } from '../promo-data'
+import { PROMO_BUNDLES } from '../promo-data'
 
 describe('PROMO_BUNDLES', () => {
   it('keeps the approved brochure tiers in display order', () => {
@@ -11,10 +11,11 @@ describe('PROMO_BUNDLES', () => {
     ])
   })
 
-  it('uses the approved brochure totals and savings copy', () => {
+  it('derives payable totals and savings with per-item discount flooring', () => {
     expect(
       PROMO_BUNDLES.map(
-        ({ totalCents, savingsCents, discountPercent, freeShipping }) => ({
+        ({ originalTotalCents, totalCents, savingsCents, discountPercent, freeShipping }) => ({
+          originalTotalCents,
           totalCents,
           savingsCents,
           discountPercent,
@@ -22,16 +23,39 @@ describe('PROMO_BUNDLES', () => {
         })
       )
     ).toEqual([
-      { totalCents: 799, savingsCents: undefined, discountPercent: 0, freeShipping: false },
-      { totalCents: 1598, savingsCents: 170, discountPercent: 0, freeShipping: true },
-      { totalCents: 2160, savingsCents: 240, discountPercent: 10, freeShipping: true },
-      { totalCents: 4080, savingsCents: 790, discountPercent: 15, freeShipping: true },
+      {
+        originalTotalCents: 799,
+        totalCents: 799,
+        savingsCents: undefined,
+        discountPercent: 0,
+        freeShipping: false,
+      },
+      {
+        originalTotalCents: 1598,
+        totalCents: 1598,
+        savingsCents: 174,
+        discountPercent: 0,
+        freeShipping: true,
+      },
+      {
+        originalTotalCents: 2397,
+        totalCents: 2160,
+        savingsCents: 411,
+        discountPercent: 10,
+        freeShipping: true,
+      },
+      {
+        originalTotalCents: 4794,
+        totalCents: 4080,
+        savingsCents: 888,
+        discountPercent: 15,
+        freeShipping: true,
+      },
     ])
   })
 
-  it('uses the generic storefront until direct bundle carts are approved', () => {
-    expect(PROMO_STORE_URL).toBe('https://shop.tigre-tigre.com/')
-    expect(PROMO_BUNDLES.every((bundle) => bundle.shopUrl === PROMO_STORE_URL)).toBe(true)
+  it('keeps checkout destinations derived instead of storing duplicated URLs', () => {
+    expect(PROMO_BUNDLES.every((bundle) => !('shopUrl' in bundle))).toBe(true)
   })
 
   it('uses the optimized supplied bundle compositions', () => {

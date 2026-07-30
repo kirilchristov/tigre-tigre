@@ -22,28 +22,32 @@ type PromoBundleId = 'single' | 'duo' | 'trio' | 'six'
 type PromoBundle = Readonly<{
   id: PromoBundleId
   quantity: 1 | 2 | 3 | 6
+  originalTotalCents: number
   totalCents: number
   savingsCents?: number
   discountPercent: 0 | 10 | 15
   freeShipping: boolean
   imageSrc: string
   emphasis: 'default' | 'good' | 'best'
-  shopUrl: string
   copyKey: string
 }>
 ```
 
-Initial values:
+Calculated outputs:
 
-| ID | Quantity | Total cents | Savings cents | Discount | Free shipping | Asset | Emphasis |
-| --- | ---: | ---: | ---: | ---: | --- | --- | --- |
-| `single` | 1 | 799 | — | 0 | No | `/images/promo/one.webp` | `default` |
-| `duo` | 2 | 1598 | 170 | 0 | Yes | `/images/promo/duo.webp` | `good` |
-| `trio` | 3 | 2160 | 240 | 10 | Yes | `/images/promo/three.webp` | `default` |
-| `six` | 6 | 4080 | 790 | 15 | Yes | `/images/promo/six.webp` | `best` |
+| ID | Quantity | Original cents | Payable cents | Savings cents | Discount | Free shipping | Asset | Emphasis |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
+| `single` | 1 | 799 | 799 | — | 0 | No | `/images/promo/one.webp` | `default` |
+| `duo` | 2 | 1598 | 1598 | 174 | 0 | Yes | `/images/promo/duo.webp` | `good` |
+| `trio` | 3 | 2397 | 2160 | 411 | 10 | Yes | `/images/promo/three.webp` | `default` |
+| `six` | 6 | 4794 | 4080 | 888 | 15 | Yes | `/images/promo/six.webp` | `best` |
 
 Money formatting always emits two decimal places and uses the euro symbol.
-Render configuration in the table order above; do not sort it at runtime.
+Derive every product total from the shared €7.99 price. Floor the percentage
+discount per jar before multiplying by quantity, matching `ProductCTA`. Add
+€1.74 to displayed savings for free delivery, but never subtract it from the
+product price the customer pays. Render configuration in the table order above;
+do not sort it at runtime.
 
 ## Routing and shared shell
 
@@ -61,30 +65,36 @@ Render configuration in the table order above; do not sort it at runtime.
 
 ## CTA contract and Shopify boundary
 
-Do not reuse `ProductCTA`. It owns a quantity stepper, one Shopify variant, and
-cart-permalink behavior that does not match a fixed bundle card.
+Do not reuse the entire `ProductCTA`; it owns quantity-selection and pricing
+state that fixed bundle cards do not need. Reuse its shared Shopify permalink
+helper, product variant configuration, and destructive CTA treatment.
 
-For the first release:
+For each bundle:
 
-- Set every bundle's `shopUrl` to `https://shop.tigre-tigre.com/`.
-- Open the URL in a new tab with `noopener noreferrer`.
+- Derive `/cart/{variantId}:{quantity}` with `buildShopifyCartPermalink`,
+  `SINGLE_JAR_PRODUCT.variantId`, and the bundle quantity.
+- Use the homepage destructive button variant and animated `ArrowRight`, while
+  retaining the promo-specific translated label.
+- Open the cart URL in a new tab with `noopener noreferrer`.
 - Include quantity in the accessible label.
-- Do not claim that the target cart contains the displayed quantity or total.
+- Keep checkout destinations derived rather than storing duplicated URLs on
+  the bundle display model.
 
-The `shopUrl` field is the future direct-checkout seam. After Shopify pricing is
-reconciled, update each configuration entry to a verified bundle product/cart
-URL without changing card structure or translated prose.
-
-Before activating direct links, verify:
+Shopify QA must verify:
 
 1. The cart contains the correct variant and quantity.
 2. The automatic discount and free-delivery rules apply together as advertised.
-3. Cart and checkout totals match the card exactly.
+3. Any difference between cart totals and brochure-approved card totals is
+   recorded.
 4. Currency and locale remain correct.
 5. Existing analytics cross-domain linking is preserved.
 
-The current blocker is documented in [README.md](./README.md): the brochure
-uses €21.60/€40.80, while the Shopify fixture uses €21.57/€39.95.
+The accepted commercial discrepancy is documented in [README.md](./README.md):
+the brochure uses €21.60/€40.80, while the Shopify fixture uses
+€21.57/€39.95. The quantity-based links also differ from that fixture's
+dedicated bundle-variant recommendation; product-scoped discount behavior is
+therefore an accepted Shopify follow-up, not part of the URL-generation
+contract.
 
 ## Metadata, prerendering, and discovery
 
@@ -168,7 +178,8 @@ Follow RED → GREEN → refactor:
 - Direct render of `/promo` produces one H1 and does not render the 404 page.
 - Exactly four semantic bundle cards render in the configured order.
 - All exact BG/EN copy from `design-spec.md` renders after language changes.
-- Each CTA has the quantity-aware accessible label and generic storefront URL.
+- Each CTA has the quantity-aware accessible label and exact 1-, 2-, 3-, or
+  6-jar Shopify cart permalink.
 - All external CTAs carry the safe new-tab attributes.
 - Theme switching retains readable tokens and product-image stages.
 - Shared header/footer navigation returns from `/promo` to homepage sections.
@@ -224,7 +235,7 @@ Acceptance criteria:
 - All commercial values and copy match this specification.
 - Product photos remain legible and undistorted.
 - Red/gold hierarchy works in both themes.
-- Four generic storefront CTAs are present and safe.
-- There is no misleading direct-cart behavior.
+- Four quantity-specific Shopify cart CTAs are present and safe.
+- Each direct-cart URL contains the shared variant ID and displayed quantity.
 - No print-only QR, page counter, or seal appears.
 - No regression occurs on the homepage, shared navigation, analytics, or 404.

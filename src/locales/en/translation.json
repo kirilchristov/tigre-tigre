@@ -175,7 +175,6 @@
       ]
     },
     "labels": {
-      "total": "total",
       "freeDelivery": "free delivery",
       "noDiscount": "0% off",
       "savings": "You save {{amount}}",

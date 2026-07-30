@@ -17,9 +17,10 @@ the print layout literally.
 - Shell: use the shared site header and footer.
 - Discovery: do not add Promo to the global navigation in the first release.
 - Products: show 1-, 2-, 3-, and 6-jar offers.
-- CTA: every offer links to `https://shop.tigre-tigre.com/` in a new tab.
-- Checkout: direct bundle/cart links are deferred until Shopify pricing is
-  reconciled.
+- CTA: every offer opens a quantity-specific Shopify cart permalink in a new
+  tab, using the shared single-jar variant configuration.
+- Checkout: cart destinations follow `/cart/{variantId}:{quantity}` for 1, 2,
+  3, and 6 jars.
 - SEO: the page is indexable, prerendered, canonicalized, and listed in the
   sitemap.
 - Localization discovery: `?lang=bg` and `?lang=en` are real runtime language
@@ -28,12 +29,14 @@ the print layout literally.
   URL synchronized.
 - Structured data: the homepage retains one localized Product entity with its
   €7.99 single-jar Offer. `/promo` deliberately does not inherit that homepage
-  entity because its bundle prices are not yet wired to verified direct-cart
-  destinations.
+  entity because its multiple promotional quantities are not represented as
+  verified structured offers.
 - Analytics: the existing Google Analytics and Meta Pixel page-view trackers
   continue to handle route visits.
 - Copy: Bulgarian is canonical; English is a faithful brand-voice adaptation.
-- Commercial values: use the brochure-approved totals in this release.
+- Commercial values: derive payable totals from the shared €7.99 product price
+  with the homepage's per-jar discount flooring. Free delivery adds €1.74 to
+  displayed savings without reducing the payable product total.
 
 ## Page structure
 
@@ -70,11 +73,11 @@ Included in the first release:
 
 - Responsive page design and all approved brochure content.
 - BG/EN localization, light/dark themes, route-aware shared navigation.
-- Generic store CTAs, metadata, prerendering, sitemap entry, and test coverage.
+- Quantity-specific Shopify cart CTAs, metadata, prerendering, sitemap entry,
+  and test coverage.
 
 Deferred:
 
-- Bundle-specific Shopify checkout or cart permalinks.
 - CMS or Shopify-driven pricing.
 - Promo entry in global navigation.
 - Checkout conversion events beyond the existing page-view tracking.
@@ -110,12 +113,17 @@ do not agree:
 | 6 jars | €40.80 | €39.95 | €0.85 |
 
 The 3-jar Shopify fixture applies a fixed €2.40 reduction to €23.97. The 6-jar
-fixture models a 5+1 offer by subtracting €7.99 from €47.94. Until those rules
-are reconciled with the brochure, the promo page must not imply that its cards
-link to preconfigured carts with those exact totals.
+fixture models a 5+1 offer by subtracting €7.99 from €47.94. The promo page
+continues to display the approved brochure values, while each CTA now
+preconfigures only the product variant and quantity. Shopify remains
+authoritative for the final cart and checkout totals, discounts, and shipping.
 
-The first release therefore displays the approved brochure values and sends all
-four CTAs to the generic storefront.
+This quantity-based permalink intentionally follows the homepage purchase flow.
+It differs from the dedicated 3-pack and 6-pack variant recommendation in
+[`docs/shopify/pricing-fixtures.md`](../shopify/pricing-fixtures.md), so the
+older product-scoped automatic-discount rules are not guaranteed by these URLs.
+That Shopify configuration remains a commercial follow-up rather than a blocker
+for the direct links.
 
 ## Repository-level follow-ups found during review
 

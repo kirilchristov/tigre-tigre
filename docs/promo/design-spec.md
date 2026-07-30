@@ -128,12 +128,15 @@ decimal places and percentages to include `%`.
 
 ### Bundle cards
 
-| Quantity | Total | Promotion | Savings | Card line |
-| ---: | ---: | --- | ---: | --- |
-| `1 буркан` | `€7.99` | `0% намаление` | — | `за да опиташ` |
-| `2 буркана` | `€15.98` | `+ безплатна доставка` | `Спестяваш €1.70` | `за да си спестиш доставката` |
-| `3 буркана` | `€21.60` | `-10% + безплатна доставка` | `Спестяваш €2.40` | `за да има` |
-| `6 буркана` | `€40.80` | `-15% + безплатна доставка` | `Спестяваш €7.90` | `за наши хора` |
+| Quantity | Original | Payable | Promotion | Savings | Card line |
+| ---: | ---: | ---: | --- | ---: | --- |
+| `1 буркан` | — | `€7.99` | `0% намаление` | — | `за да опиташ` |
+| `2 буркана` | — | `€15.98` | `+ безплатна доставка` | `Спестяваш €1.74` | `за да си спестиш доставката` |
+| `3 буркана` | `€23.97` (зачертана) | `€21.60` | `-10% + безплатна доставка` | `Спестяваш €4.11` | `за да има` |
+| `6 буркана` | `€47.94` (зачертана) | `€40.80` | `-15% + безплатна доставка` | `Спестяваш €8.88` | `за наши хора` |
+
+The €1.74 delivery value is included in savings for every free-delivery tier
+but is not deducted from the payable product total.
 
 Every card CTA says `Към магазина`. Its accessible label must include the
 quantity, for example `Към магазина — 3 буркана`.
@@ -181,12 +184,15 @@ where that would sound unnatural.
 
 ### Bundle cards
 
-| Quantity | Total | Promotion | Savings | Card line |
-| ---: | ---: | --- | ---: | --- |
-| `1 jar` | `€7.99` | `0% off` | — | `to give it a try` |
-| `2 jars` | `€15.98` | `+ free delivery` | `You save €1.70` | `to save the delivery` |
-| `3 jars` | `€21.60` | `10% off + free delivery` | `You save €2.40` | `so there is always some` |
-| `6 jars` | `€40.80` | `15% off + free delivery` | `You save €7.90` | `for our people` |
+| Quantity | Original | Payable | Promotion | Savings | Card line |
+| ---: | ---: | ---: | --- | ---: | --- |
+| `1 jar` | — | `€7.99` | `0% off` | — | `to give it a try` |
+| `2 jars` | — | `€15.98` | `+ free delivery` | `You save €1.74` | `to save the delivery` |
+| `3 jars` | `€23.97` (struck through) | `€21.60` | `10% off + free delivery` | `You save €4.11` | `so there is always some` |
+| `6 jars` | `€47.94` (struck through) | `€40.80` | `15% off + free delivery` | `You save €8.88` | `for our people` |
+
+The €1.74 delivery value is included in savings for every free-delivery tier
+but is not deducted from the payable product total.
 
 Every card CTA says `Go to shop`. Its accessible label must include the
 quantity, for example `Go to shop — 3 jars`.

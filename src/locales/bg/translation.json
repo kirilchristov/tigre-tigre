@@ -175,7 +175,6 @@
       ]
     },
     "labels": {
-      "total": "общо",
       "freeDelivery": "безплатна доставка",
       "noDiscount": "0% намаление",
       "savings": "Спестяваш {{amount}}",

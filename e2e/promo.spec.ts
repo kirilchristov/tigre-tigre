@@ -5,7 +5,7 @@ function extractJsonLd(html: string) {
     .map((match) => JSON.parse(match[1]))
 }
 
-test('promo route renders the approved campaign and safe storefront links', async ({ page }) => {
+test('promo route renders the approved campaign and safe bundle cart links', async ({ page }) => {
   await page.goto('/promo?lang=bg')
 
   await expect(page.getByRole('heading', { level: 1, name: 'ОКЕЙ НАМАЛЕНИЯ' })).toBeVisible()
@@ -13,11 +13,27 @@ test('promo route renders the approved campaign and safe storefront links', asyn
 
   const cards = page.getByTestId('promo-bundle-card')
   await expect(cards).toHaveCount(4)
+  await expect(cards.nth(0).getByText('€7.99', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('€15.98', { exact: true })).toBeVisible()
+  await expect(cards.nth(2).getByText('€21.60', { exact: true })).toBeVisible()
+  await expect(cards.nth(3).getByText('€40.80', { exact: true })).toBeVisible()
+  await expect(cards.nth(1).getByText('Спестяваш €1.74')).toBeVisible()
+  await expect(cards.nth(2).getByText('Спестяваш €4.11')).toBeVisible()
+  await expect(cards.nth(3).getByText('Спестяваш €8.88')).toBeVisible()
+  await expect(cards.nth(2).getByText('€23.97')).toHaveClass(/line-through/)
+  await expect(cards.nth(3).getByText('€47.94')).toHaveClass(/line-through/)
 
   const ctas = cards.getByRole('link', { name: /Към магазина —/ })
   await expect(ctas).toHaveCount(4)
-  for (const cta of await ctas.all()) {
-    await expect(cta).toHaveAttribute('href', 'https://shop.tigre-tigre.com/')
+  const expectedCartUrls = [
+    'https://shop.tigre-tigre.com/cart/56986218955100:1',
+    'https://shop.tigre-tigre.com/cart/56986218955100:2',
+    'https://shop.tigre-tigre.com/cart/56986218955100:3',
+    'https://shop.tigre-tigre.com/cart/56986218955100:6',
+  ]
+
+  for (const [index, cta] of (await ctas.all()).entries()) {
+    await expect(cta).toHaveAttribute('href', expectedCartUrls[index])
     await expect(cta).toHaveAttribute('target', '_blank')
     await expect(cta).toHaveAttribute('rel', 'noopener noreferrer')
   }
