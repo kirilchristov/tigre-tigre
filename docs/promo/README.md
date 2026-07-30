@@ -108,9 +108,9 @@ The brochure-approved display values and the current Shopify pricing document
 do not agree:
 
 | Bundle | `/promo` display | Shopify pricing fixture | Difference |
-| --- | ---: | ---: | ---: |
-| 3 jars | €21.60 | €21.57 | €0.03 |
-| 6 jars | €40.80 | €39.95 | €0.85 |
+| ------ | ---------------: | ----------------------: | ---------: |
+| 3 jars |           €21.60 |                  €21.57 |      €0.03 |
+| 6 jars |           €40.80 |                  €39.95 |      €0.85 |
 
 The 3-jar Shopify fixture applies a fixed €2.40 reduction to €23.97. The 6-jar
 fixture models a 5+1 offer by subtracting €7.99 from €47.94. The promo page
@@ -137,3 +137,13 @@ scope:
   uses `BrowserRouter`, not React Server Components, but the dependency should
   still be reviewed in a separate maintenance change. The audit's forced fix
   proposes a breaking downgrade and was not applied.
+
+## Additional info
+
+- 1 jar: pay €7.99
+- 2 jars: pay €15.98; savings €1.74
+- 3 jars: €23.97 → pay €21.60; savings €4.11 (€2.37 discount +
+  €1.74 delivery)
+
+- 6 jars: €47.94 → pay €40.80; savings €8.88 (€7.14 discount +
+  €1.74 delivery)

@@ -69,6 +69,39 @@ describe('PromoPage', () => {
       expect(within(card).getByText(savings)).toHaveClass('font-bold', 'text-brand-600')
     }
 
+    const tooltipCases = [
+      {
+        card: cards[1],
+        triggerName: 'Как се изчислява „Спестяваш €1.74“',
+        id: 'promo-savings-tooltip-duo',
+        explanation: 'Спестяваш €1.74 (€1.74 доставка)',
+      },
+      {
+        card: cards[2],
+        triggerName: 'Как се изчислява „Спестяваш €4.11“',
+        id: 'promo-savings-tooltip-trio',
+        explanation: 'Спестяваш €4.11 (€2.37 отстъпка + €1.74 доставка)',
+      },
+      {
+        card: cards[3],
+        triggerName: 'Как се изчислява „Спестяваш €8.88“',
+        id: 'promo-savings-tooltip-six',
+        explanation: 'Спестяваш €8.88 (€7.14 отстъпка + €1.74 доставка)',
+      },
+    ] as const
+
+    for (const { card, triggerName, id, explanation } of tooltipCases) {
+      const savingsTrigger = within(card).getByRole('button', { name: triggerName })
+      const savingsTooltip = within(card).getByRole('tooltip')
+
+      expect(savingsTrigger).toHaveAttribute('aria-describedby', id)
+      expect(savingsTooltip).toHaveAttribute('id', id)
+      expect(savingsTooltip).toHaveClass('group-hover:block', 'group-focus-within:block')
+      expect(savingsTooltip).toHaveTextContent(explanation)
+      expect(savingsTooltip).not.toHaveTextContent('Как се изчисляват спестяванията')
+      expect(savingsTooltip).not.toHaveTextContent(/буркана|плащаш|→/)
+    }
+
     expect(within(cards[0]).queryByText('общо')).not.toBeInTheDocument()
     expect(within(cards[1]).queryByText('общо')).not.toBeInTheDocument()
     expect(within(cards[2]).queryByText('общо')).not.toBeInTheDocument()
@@ -178,6 +211,9 @@ describe('PromoPage', () => {
     ]) {
       expect(screen.getByRole('link', { name })).toBeVisible()
     }
+    expect(
+      screen.getByRole('button', { name: 'How “You save €4.11” is calculated' })
+    ).toBeVisible()
     expect(screen.getByRole('link', { name: 'Skip to main content' })).toHaveAttribute(
       'href',
       '#main-content'

@@ -54,7 +54,7 @@ const bundleDefinitions: PromoBundleDefinition[] = [
     discountPercent: 0,
     freeShipping: true,
     imageSrc: '/images/promo/duo.webp',
-    emphasis: 'good',
+    emphasis: 'default',
     copyKey: 'promo.bundles.duo',
   },
   {
@@ -63,7 +63,7 @@ const bundleDefinitions: PromoBundleDefinition[] = [
     discountPercent: 10,
     freeShipping: true,
     imageSrc: '/images/promo/three.webp',
-    emphasis: 'default',
+    emphasis: 'good',
     copyKey: 'promo.bundles.trio',
   },
   {

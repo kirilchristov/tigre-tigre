@@ -181,6 +181,11 @@
       "goodOffer": "good deal",
       "bestOffer": "even better deal"
     },
+    "savingsTooltip": {
+      "triggerLabel": "How “{{savings}}” is calculated",
+      "delivery": "You save {{savings}} ({{delivery}} delivery)",
+      "discount": "You save {{savings}} ({{discount}} discount + {{delivery}} delivery)"
+    },
     "bundles": {
       "eyebrow": "Pick your quantity",
       "title": "Okay offers",

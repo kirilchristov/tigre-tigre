@@ -1,4 +1,4 @@
-import { ArrowRight, Truck } from 'lucide-react'
+import { ArrowRight, Info, Truck } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
@@ -20,6 +20,46 @@ function BundleImage({ bundle, alt }: { bundle: Readonly<PromoBundle>; alt: stri
       loading="lazy"
       className="h-full w-full object-contain"
     />
+  )
+}
+
+function SavingsTooltip({ bundle }: PromoBundleCardProps) {
+  const { t } = useTranslation()
+  const savingsLabel = t('promo.labels.savings', {
+    amount: formatEuro(bundle.savingsCents ?? 0),
+  })
+  const tooltipId = `promo-savings-tooltip-${bundle.id}`
+  const productSavingsCents = bundle.originalTotalCents - bundle.totalCents
+  const deliverySavingsCents = (bundle.savingsCents ?? 0) - productSavingsCents
+  const explanation = t(
+    productSavingsCents === 0 ? 'promo.savingsTooltip.delivery' : 'promo.savingsTooltip.discount',
+    {
+      savings: formatEuro(bundle.savingsCents ?? 0),
+      discount: formatEuro(productSavingsCents),
+      delivery: formatEuro(deliverySavingsCents),
+    }
+  )
+
+  return (
+    <div className="group relative flex justify-center">
+      <button
+        type="button"
+        aria-describedby={tooltipId}
+        aria-label={t('promo.savingsTooltip.triggerLabel', { savings: savingsLabel })}
+        className="inline-flex items-center gap-1 text-center font-bold text-brand-600 underline decoration-dotted underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+      >
+        {savingsLabel}
+        <Info aria-hidden="true" className="size-4" />
+      </button>
+
+      <div
+        id={tooltipId}
+        role="tooltip"
+        className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 hidden w-52 -translate-x-1/2 border-2 border-foreground bg-background p-3 text-left font-mono text-xs font-normal leading-relaxed text-foreground shadow-[var(--cta-shadow-hover)] group-hover:block group-focus-within:block"
+      >
+        {explanation}
+      </div>
+    </div>
   )
 }
 
@@ -74,7 +114,7 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
           {bundle.discountPercent > 0 && (
             <span
               className={cn(
-                'inline-flex min-h-11 min-w-16 items-center justify-center border-2 border-foreground px-2 font-mono text-lg font-bold',
+                'inline-flex min-h-11 min-w-16 items-center justify-center border-2 border-foreground px-2 font-mono text-2xl font-bold',
                 bundle.emphasis === 'best' ? 'bg-brand-700 text-white' : 'bg-gold text-black'
               )}
             >
@@ -103,11 +143,7 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
           ) : (
             <p className="text-center text-muted-foreground">{t('promo.labels.noDiscount')}</p>
           )}
-          {bundle.savingsCents !== undefined && (
-            <p className="text-center font-bold text-brand-600">
-              {t('promo.labels.savings', { amount: formatEuro(bundle.savingsCents) })}
-            </p>
-          )}
+          {bundle.savingsCents !== undefined && <SavingsTooltip bundle={bundle} />}
         </div>
 
         <Button asChild size="lg" variant="destructive" className="group mt-5 w-full">

@@ -23,6 +23,16 @@ test('promo route renders the approved campaign and safe bundle cart links', asy
   await expect(cards.nth(2).getByText('€23.97')).toHaveClass(/line-through/)
   await expect(cards.nth(3).getByText('€47.94')).toHaveClass(/line-through/)
 
+  const savingsTrigger = cards.nth(2).getByRole('button', {
+    name: 'Как се изчислява „Спестяваш €4.11“',
+  })
+  await savingsTrigger.hover()
+  const savingsTooltip = cards.nth(2).getByRole('tooltip')
+  await expect(savingsTooltip).toBeVisible()
+  await expect(savingsTooltip).toContainText(
+    'Спестяваш €4.11 (€2.37 отстъпка + €1.74 доставка)'
+  )
+
   const ctas = cards.getByRole('link', { name: /Към магазина —/ })
   await expect(ctas).toHaveCount(4)
   const expectedCartUrls = [

@@ -181,6 +181,11 @@
       "goodOffer": "добра оферта",
       "bestOffer": "още по-добра оферта"
     },
+    "savingsTooltip": {
+      "triggerLabel": "Как се изчислява „{{savings}}“",
+      "delivery": "Спестяваш {{savings}} ({{delivery}} доставка)",
+      "discount": "Спестяваш {{savings}} ({{discount}} отстъпка + {{delivery}} доставка)"
+    },
     "bundles": {
       "eyebrow": "Избери си количество",
       "title": "Окей оферти",
