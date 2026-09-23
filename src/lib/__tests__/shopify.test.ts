@@ -44,6 +44,41 @@ describe('buildShopifyCartPermalink', () => {
     ).toBe('#')
   })
 
+  it('appends attribution params when provided', () => {
+    expect(
+      buildShopifyCartPermalink({
+        storefrontDomain: 'shop.tigre-tigre.com',
+        variantId: '56986218955100',
+        quantity: 2,
+        attributionParams: {
+          utm_source: 'meta',
+          utm_campaign: 'bg_launch',
+          gclid: 'abc',
+          utm_term: undefined, // empty/undefined entries are dropped
+        },
+      })
+    ).toBe('https://shop.tigre-tigre.com/cart/56986218955100:2?utm_source=meta&utm_campaign=bg_launch&gclid=abc')
+  })
+
+  it('keeps the bare URL when attribution params are absent or all empty', () => {
+    const bare = 'https://shop.tigre-tigre.com/cart/56986218955100:2'
+    expect(
+      buildShopifyCartPermalink({
+        storefrontDomain: 'shop.tigre-tigre.com',
+        variantId: '56986218955100',
+        quantity: 2,
+      })
+    ).toBe(bare)
+    expect(
+      buildShopifyCartPermalink({
+        storefrontDomain: 'shop.tigre-tigre.com',
+        variantId: '56986218955100',
+        quantity: 2,
+        attributionParams: { utm_source: '  ', utm_medium: undefined },
+      })
+    ).toBe(bare)
+  })
+
   it('normalizes invalid quantities to one', () => {
     expect(
       buildShopifyCartPermalink({

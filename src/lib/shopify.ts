@@ -25,6 +25,11 @@ interface ShopifyCheckoutParams {
   storefrontDomain?: string
   variantId?: string
   quantity: number
+  /**
+   * Marketing params (utm_*, gclid, fbclid, …) appended to the cart URL so
+   * Shopify journeys keep their source. See src/lib/attribution.ts.
+   */
+  attributionParams?: Record<string, string | undefined>
 }
 
 const SHOPIFY_POLICY_DEFINITIONS: ShopifyPolicyDefinition[] = [
@@ -51,6 +56,7 @@ export function buildShopifyCartPermalink({
   storefrontDomain,
   variantId,
   quantity,
+  attributionParams,
 }: ShopifyCheckoutParams) {
   const normalizedVariantId = variantId?.trim()
 
@@ -60,7 +66,14 @@ export function buildShopifyCartPermalink({
 
   const normalizedQuantity = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1
 
-  return `${normalizeShopifyStorefrontUrl(storefrontDomain)}/cart/${normalizedVariantId}:${normalizedQuantity}`
+  const attributionEntries = Object.entries(attributionParams ?? {}).filter(
+    (entry): entry is [string, string] =>
+      typeof entry[1] === 'string' && entry[1].trim() !== ''
+  )
+  const attributionQuery = new URLSearchParams(attributionEntries).toString()
+  const attributionSuffix = attributionEntries.length > 0 ? `?${attributionQuery}` : ''
+
+  return `${normalizeShopifyStorefrontUrl(storefrontDomain)}/cart/${normalizedVariantId}:${normalizedQuantity}${attributionSuffix}`
 }
 
 export function buildShopifyPolicyLinks(language: string, storefrontDomain?: string) {
