@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import './lib/i18n'
 import i18n from './lib/i18n'
+import { captureAndStoreAttribution } from './lib/attribution'
 import './styles/index.css'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -13,6 +14,10 @@ syncLang(i18n.language)
 i18n.on('languageChanged', syncLang)
 
 console.log('tigre-tigre v0.2.0: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
+
+// Persist marketing attribution params (utm_*, gclid, fbclid, …) from the
+// landing URL so cart permalinks can re-attach them for Shopify journeys.
+captureAndStoreAttribution(window.location.search)
 
 const isTruthyFlag = (value: string | undefined) => {
   if (!value) return false

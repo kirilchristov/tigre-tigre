@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
 import { buildShopifyCartPermalink } from '@/lib/shopify'
+import { getAttributionParams } from '@/lib/attribution'
 import { cn } from '@/lib/utils'
 import { formatEuro, type PromoBundle } from './promo-data'
 
@@ -94,6 +95,7 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
   const cartUrl = buildShopifyCartPermalink({
     variantId: SINGLE_JAR_PRODUCT.variantId,
     quantity: bundle.quantity,
+    attributionParams: getAttributionParams(),
   })
 
   return (

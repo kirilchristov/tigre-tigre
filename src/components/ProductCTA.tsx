@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { buildShopifyCartPermalink } from '@/lib/shopify'
+import { getAttributionParams } from '@/lib/attribution'
 import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
 import { ArrowRight } from 'lucide-react'
 
@@ -35,6 +36,7 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const cartUrl = buildShopifyCartPermalink({
     variantId: SINGLE_JAR_PRODUCT.variantId,
     quantity,
+    attributionParams: getAttributionParams(),
   })
 
   let nudge: React.ReactNode = null
