@@ -13,7 +13,7 @@ const syncLang = (lng: string) => { document.documentElement.lang = lng }
 syncLang(i18n.language)
 i18n.on('languageChanged', syncLang)
 
-console.log('tigre-tigre v0.2.0: grrrrrrr :)', import.meta.env.MODE, __APP_VERSION__)
+console.log(`tigre-tigre v${__APP_VERSION__}: grrrrrrr :)`, import.meta.env.MODE, `last commit: ${__APP_LAST_COMMIT__}`)
 
 // Persist marketing attribution params (utm_*, gclid, fbclid, …) from the
 // landing URL so cart permalinks can re-attach them for Shopify journeys.
@@ -56,6 +56,7 @@ if (shouldBlockIndexing) {
 if (isPreview || isDev) {
   console.log('%ctigre tigre App', 'font-weight: bold; font-size: 16px; color: #ff6b00;')
   console.log(`%cVersion: "${__APP_VERSION__}"`, 'color: #666;')
+  console.log(`%cLast commit: "${__APP_LAST_COMMIT__}"`, 'color: #666;')
   console.log(
     `%cEnvironment: ${import.meta.env.VITE_VERCEL_ENV || import.meta.env.MODE}`,
     'color: #666;'
