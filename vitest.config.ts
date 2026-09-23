@@ -6,6 +6,13 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'jsdom',
+      // Node 25+/26 ships experimental webstorage accessors on globalThis even
+      // when disabled. Vitest's getWindowKeys then refuses to copy jsdom's
+      // localStorage/sessionStorage (key already exists on globalThis, not in
+      // its allowlist), so bare `localStorage` resolves to Node's lazy getter
+      // -> undefined -> ThemeToggle crashes on render (vitest-dev/vitest#10867).
+      // --no-webstorage removes Node's accessors so jsdom's Storage installs.
+      execArgv: ['--no-webstorage'],
       setupFiles: ['./src/test/setup.ts'],
       include: ['**/__tests__/**/*.test.{ts,tsx,mts}'],
       coverage: {
