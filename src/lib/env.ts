@@ -3,7 +3,7 @@
  * Safely access environment variables with type checking and defaults
  */
 
-const DEFAULT_META_PIXEL_ID = '2187360742019843'
+const DEFAULT_META_PIXEL_ID = '1883344772853949'
 
 export const env = {
   // Analytics
