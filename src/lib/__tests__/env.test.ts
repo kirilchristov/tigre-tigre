@@ -11,7 +11,7 @@ describe('env', () => {
   })
 
   it('exposes the production meta pixel id by default', () => {
-    expect(env.analytics.metaPixelId).toBe('2187360742019843')
+    expect(env.analytics.metaPixelId).toBe('1883344772853949')
   })
 })
 
