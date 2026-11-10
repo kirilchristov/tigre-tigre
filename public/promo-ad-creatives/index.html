@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    <title>tigre tigre — рекламни визии за Meta и Instagram</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="preview-header">
+      <div class="preview-header__main">
+        <p class="preview-header__eyebrow">tigre tigre</p>
+        <h1>Рекламни визии за Meta и Instagram</h1>
+        <p class="preview-header__hint">
+          Щракни върху всеки текст във визиите, за да го редактираш. Промените се
+          синхронизират между трите формата.
+        </p>
+        <div class="preview-actions" aria-label="Инструменти за редакция">
+          <button id="copy-link" type="button">Копирай линк с промените</button>
+          <button id="safe-toggle" type="button">Покажи безопасните зони</button>
+          <button id="reset-copy" type="button" class="preview-actions__secondary">
+            Нулирай текста
+          </button>
+          <span id="save-status" role="status">Промените се пазят автоматично.</span>
+        </div>
+      </div>
+      <p>3 оферти × 3 формата · PNG файловете ще бъдат създадени след одобрение</p>
+    </header>
+
+    <main id="gallery" class="gallery" aria-label="Рекламни визии"></main>
+
+    <script>
+      const bundles = Object.freeze({
+        duo: Object.freeze({
+          id: 'duo',
+          eyebrow: 'ОКЕЙ ОФЕРТА',
+          headline: 'ДВА БУРКАНА.\nНУЛА ДОСТАВКА.',
+          bundleLabel: '2 БУРКАНА',
+          promo: 'БЕЗПЛАТНА ДОСТАВКА',
+          originalPrice: '',
+          price: '€15.98',
+          savings: 'спестяваш €1.74 от доставка',
+          detail: 'Резервен буркан. Кратко спокойствие.',
+          image: 'assets/duo.webp',
+          imageAlt: 'Два буркана tigre tigre чили крънч',
+          tone: 'black',
+        }),
+        trio: Object.freeze({
+          id: 'trio',
+          eyebrow: 'ДОБРА ОФЕРТА',
+          headline: 'ТРИ БУРКАНА.\n10% ПО-МАЛКО.',
+          bundleLabel: '3 БУРКАНА',
+          promo: '-10% + БЕЗПЛАТНА ДОСТАВКА',
+          originalPrice: '€23.97',
+          price: '€21.60',
+          savings: 'спестяваш общо €4.11',
+          detail: 'Три за щастие. И за да има по-дълго.',
+          image: 'assets/trio.webp',
+          imageAlt: 'Три буркана tigre tigre чили крънч',
+          tone: 'gold',
+        }),
+        six: Object.freeze({
+          id: 'six',
+          eyebrow: 'ОЩЕ ПО-ДОБРА ОФЕРТА',
+          headline: 'ШЕСТ БУРКАНА.\n15% ПО-МАЛКО.',
+          bundleLabel: '6 БУРКАНА',
+          promo: '-15% + БЕЗПЛАТНА ДОСТАВКА',
+          originalPrice: '€47.94',
+          price: '€40.80',
+          savings: 'спестяваш общо €8.88',
+          detail: 'Ще остане и за споделяне. Евентуално.',
+          image: 'assets/six.webp',
+          imageAlt: 'Шест буркана tigre tigre чили крънч',
+          tone: 'red',
+        }),
+      })
+
+      const formats = Object.freeze({
+        square: Object.freeze({ label: 'Квадратен фийд · 1080 × 1080', width: 1080, height: 1080 }),
+        portrait: Object.freeze({ label: 'Вертикален фийд · 1080 × 1350', width: 1080, height: 1350 }),
+        story: Object.freeze({ label: 'Стори / Рийл · 1080 × 1920', width: 1080, height: 1920 }),
+      })
+
+      const params = new URLSearchParams(window.location.search)
+      const requestedBundle = params.get('bundle')
+      const requestedFormat = params.get('format')
+      const hasOwn = (record, key) => key !== null && Object.hasOwn(record, key)
+      const selectedBundle = hasOwn(bundles, requestedBundle) ? requestedBundle : null
+      const selectedFormat = hasOwn(formats, requestedFormat) ? requestedFormat : null
+      const exportMode = params.get('export') === '1'
+      const showSafeZone = params.get('safe') === '1'
+      const hasInvalidFilter =
+        (requestedBundle !== null && selectedBundle === null) ||
+        (requestedFormat !== null && selectedFormat === null)
+
+      const bundleEntries = selectedBundle
+        ? [[selectedBundle, bundles[selectedBundle]]]
+        : Object.entries(bundles)
+      const formatEntries = selectedFormat
+        ? [[selectedFormat, formats[selectedFormat]]]
+        : Object.entries(formats)
+
+      if (exportMode) document.body.classList.add('is-exporting')
+
+      function editableAttributes(key) {
+        return `contenteditable="true" spellcheck="true" data-editable data-edit-key="${key}"`
+      }
+
+      function priceMarkup(bundle) {
+        return `
+          <div class="creative__price-row">
+            ${
+              bundle.originalPrice
+                ? `<span class="creative__old-price" ${editableAttributes(`${bundle.id}.originalPrice`)}>${bundle.originalPrice}</span>`
+                : ''
+            }
+            <strong class="creative__price" ${editableAttributes(`${bundle.id}.price`)}>${bundle.price}</strong>
+          </div>
+        `
+      }
+
+      function creativeMarkup(bundle, formatName, format) {
+        return `
+          <section
+            class="artboard-shell"
+            style="--artboard-width:${format.width}px;--artboard-height:${format.height}px"
+            aria-label="${bundle.bundleLabel}, ${format.label}"
+          >
+            <p class="artboard-shell__label">${bundle.bundleLabel} · ${format.label}</p>
+            <article
+              class="creative creative--${formatName} creative--${bundle.tone}${showSafeZone ? ' show-safe-zone' : ''}"
+              data-bundle="${bundle.id}"
+              data-format="${formatName}"
+            >
+              <div class="creative__stripe creative__stripe--top" aria-hidden="true"></div>
+              <div class="creative__stripe creative__stripe--bottom" aria-hidden="true"></div>
+              <div class="creative__burst" aria-hidden="true"></div>
+              <div class="creative__safe-guide" aria-hidden="true">БЕЗОПАСНА ЗОНА</div>
+
+              <div class="creative__safe-content">
+                <header class="creative__header">
+                  <div class="creative__brand">
+                    <strong ${editableAttributes('global.brand')}>tigre tigre</strong>
+                    <span ${editableAttributes('global.tagline')}>безсрамно вкусно</span>
+                  </div>
+                  <span class="creative__eyebrow" ${editableAttributes(`${bundle.id}.eyebrow`)}>${bundle.eyebrow}</span>
+                </header>
+
+                <div class="creative__hero">
+                  <div class="creative__copy">
+                    <p class="creative__promo" ${editableAttributes(`${bundle.id}.promo`)}>${bundle.promo}</p>
+                    <h2 ${editableAttributes(`${bundle.id}.headline`)}>${bundle.headline}</h2>
+                    <p class="creative__detail" ${editableAttributes(`${bundle.id}.detail`)}>${bundle.detail}</p>
+                  </div>
+
+                  <div class="creative__product-stage">
+                    <img src="${bundle.image}" alt="${bundle.imageAlt}" />
+                  </div>
+                </div>
+
+                <footer class="creative__offer">
+                  <div class="creative__offer-copy">
+                    <span class="creative__bundle-label" ${editableAttributes(`${bundle.id}.bundleLabel`)}>${bundle.bundleLabel}</span>
+                    ${priceMarkup(bundle)}
+                    <span class="creative__savings" ${editableAttributes(`${bundle.id}.savings`)}>${bundle.savings}</span>
+                  </div>
+                  <div class="creative__cta">
+                    <strong ${editableAttributes('global.cta')}>ВЗЕМИ ОФЕРТАТА</strong>
+                    <span ${editableAttributes('global.url')}>TIGRE-TIGRE.COM/PROMO →</span>
+                  </div>
+                </footer>
+              </div>
+            </article>
+          </section>
+        `
+      }
+
+      const gallery = document.querySelector('#gallery')
+      gallery.innerHTML = bundleEntries
+        .flatMap(([, bundle]) =>
+          formatEntries.map(([formatName, format]) => creativeMarkup(bundle, formatName, format))
+        )
+        .join('')
+
+      const storageKey = 'tigre-tigre-promo-creative-edits-v1'
+      const editableElements = [...document.querySelectorAll('[data-edit-key]')]
+      const saveStatus = document.querySelector('#save-status')
+
+      if (hasInvalidFilter) {
+        document.body.dataset.invalidFilters = 'true'
+        saveStatus.textContent = 'Невалиден филтър — показани са всички визии.'
+      }
+
+      function readJson(value) {
+        try {
+          const parsed = JSON.parse(value)
+          return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {}
+        } catch {
+          return {}
+        }
+      }
+
+      function readStoredEdits() {
+        try {
+          return readJson(localStorage.getItem(storageKey) ?? '{}')
+        } catch {
+          return {}
+        }
+      }
+
+      function readSharedEdits() {
+        const value = new URLSearchParams(window.location.hash.slice(1)).get('edits')
+        return value ? readJson(value) : {}
+      }
+
+      let edits = Object.freeze({ ...readStoredEdits(), ...readSharedEdits() })
+
+      function updateMatchingElements(key, value, source) {
+        for (const element of editableElements) {
+          if (element !== source && element.dataset.editKey === key) element.textContent = value
+        }
+      }
+
+      function persistEdits() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(edits))
+        } catch {
+          // The shareable URL remains the fallback when browser storage is unavailable.
+        }
+
+        const hash = new URLSearchParams()
+        if (Object.keys(edits).length > 0) hash.set('edits', JSON.stringify(edits))
+        const nextUrl = `${window.location.pathname}${window.location.search}${hash.size ? `#${hash}` : ''}`
+        window.history.replaceState(null, '', nextUrl)
+        saveStatus.textContent = 'Промените са запазени в този линк.'
+      }
+
+      for (const element of editableElements) {
+        const savedValue = edits[element.dataset.editKey]
+        if (typeof savedValue === 'string') element.textContent = savedValue
+
+        element.addEventListener('paste', (event) => {
+          event.preventDefault()
+          document.execCommand('insertText', false, event.clipboardData.getData('text/plain'))
+        })
+
+        element.addEventListener('input', () => {
+          const key = element.dataset.editKey
+          const value = element.innerText.replaceAll('\r', '')
+          edits = Object.freeze({ ...edits, [key]: value })
+          updateMatchingElements(key, value, element)
+          persistEdits()
+        })
+
+        element.addEventListener('blur', () => {
+          const value = element.innerText.replaceAll('\r', '')
+          element.textContent = value
+        })
+      }
+
+      document.querySelector('#safe-toggle').addEventListener('click', (event) => {
+        const previews = document.querySelectorAll('.creative')
+        const shouldShow = !previews[0]?.classList.contains('show-safe-zone')
+        for (const preview of previews) preview.classList.toggle('show-safe-zone', shouldShow)
+        event.currentTarget.textContent = shouldShow
+          ? 'Скрий безопасните зони'
+          : 'Покажи безопасните зони'
+      })
+
+      document.querySelector('#copy-link').addEventListener('click', async () => {
+        persistEdits()
+
+        try {
+          await navigator.clipboard.writeText(window.location.href)
+          saveStatus.textContent = 'Линкът с промените е копиран.'
+        } catch {
+          saveStatus.textContent = 'Копирай линка от адресната лента.'
+        }
+      })
+
+      document.querySelector('#reset-copy').addEventListener('click', () => {
+        if (!window.confirm('Да върна ли всички текстове към първоначалния им вариант?')) return
+
+        try {
+          localStorage.removeItem(storageKey)
+        } catch {
+          // Reloading without the hash still restores the original copy.
+        }
+
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+        window.location.reload()
+      })
+    </script>
+  </body>
+</html>
