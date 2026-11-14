@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
 import { buildShopifyCartPermalink } from '@/lib/shopify'
 import { getAttributionParams } from '@/lib/attribution'
+import { useConsentCheckout } from '@/hooks/useConsentCheckout'
 import { cn } from '@/lib/utils'
 import { formatEuro, type PromoBundle } from './promo-data'
 
@@ -84,6 +85,7 @@ function SavingsTooltip({ bundle }: PromoBundleCardProps) {
 
 export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
   const { t } = useTranslation()
+  const onCheckoutClick = useConsentCheckout()
   const title = t(`${bundle.copyKey}.title`)
   const detailItems = t(`${bundle.copyKey}.details`, { returnObjects: true }) as readonly string[]
   const offerLabel =
@@ -182,6 +184,7 @@ export function PromoBundleCard({ bundle }: PromoBundleCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${t('promo.cta')} — ${title}`}
+            onClick={(event) => onCheckoutClick(event, cartUrl)}
           >
             {t('promo.cta')}
             <ArrowRight

@@ -46,6 +46,33 @@ Set environment variables in Vercel dashboard:
 3. Add all required variables
 4. Redeploy for changes to take effect
 
+
+## Cookie consent and Shopify Customer Privacy
+
+The React banner stores the visitor's choice locally and attempts to register it
+with Shopify through the supported Customer Privacy API. Values below are public
+by design; never put a Shopify Admin API token or shared secret in a `VITE_`
+variable.
+
+- `VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN` - public Storefront API token passed as
+  `storefrontAccessToken` for Shopify's documented custom-storefront
+  `setTrackingConsent` call. **The store owner must supply this.** Without it,
+  the site still collects the local choice and relies on Shopify's checkout
+  cookie banner as the enforcement fallback.
+- `VITE_SHOPIFY_CHECKOUT_ROOT_DOMAIN` - checkout root domain (for example the
+  shop's primary domain root).
+- `VITE_SHOPIFY_STOREFRONT_ROOT_DOMAIN` - storefront root domain.
+- `VITE_SHOPIFY_CONSENT_API_URL` - optional, opt-in URL of Shopify's consent
+  bundle. Leave empty: the React app runs on the Vercel origin, where Shopify
+  does not inject the API, and Shopify documents Hydrogen analytics as the
+  supported custom-storefront installation.
+- `VITE_SHOPIFY_CONSENT_TIMEOUT_MS` - bounded callback wait (default 1500 ms).
+
+See `reports` note in the workspace: the checkout-side banner must also be
+enabled in Shopify admin (Settings > Customer privacy > Cookie banner > "Show
+cookie banner in checkout"), because a cart permalink opens the Shopify origin
+directly and cannot inherit this page's JavaScript context.
+
 ## Security Notes
 
 - ⚠️ **Never commit `.env.local` or `.env` files**

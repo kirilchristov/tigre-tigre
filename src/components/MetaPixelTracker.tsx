@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { env } from '@/lib/env'
+import { useConsent } from '@/context/ConsentContext'
 
 const META_PIXEL_SCRIPT_ID = 'meta-pixel-script'
 const META_PIXEL_SCRIPT_SRC = 'https://connect.facebook.net/en_US/fbevents.js'
@@ -65,25 +66,47 @@ function ensureMetaPixelLoaded(pixelId: string) {
   return fbq
 }
 
+/** Test-only helper: reset module-level dedupe state between tests. */
+export function __resetMetaPixelTrackerForTests(): void {
+  initializedPixelIds.clear()
+  lastTrackedPath = null
+}
+
 export function MetaPixelTracker() {
   const location = useLocation()
   const pixelId = env.analytics.metaPixelId?.trim()
+  const { choice } = useConsent()
+  const marketingAllowed = choice.marketing === true
 
   useEffect(() => {
     if (!pixelId) {
       return
     }
 
+    // Marketing consent is required before the first network request. On
+    // withdrawal, tell Meta to stop delivery if the pixel is already loaded.
+    if (!marketingAllowed) {
+      if (window.fbq) {
+        window.fbq('consent', 'revoke')
+      }
+      return
+    }
+
     const fbq = ensureMetaPixelLoaded(pixelId)
+    // Restores delivery after a previous revoke. No-op on first grant.
+    fbq('consent', 'grant')
+
     const currentPath = `${location.pathname}${location.search}${location.hash}`
 
+    // Dedupe key survives consent toggles: re-granting on the same page must
+    // not produce a second PageView.
     if (currentPath === lastTrackedPath) {
       return
     }
 
     fbq('track', 'PageView')
     lastTrackedPath = currentPath
-  }, [location.hash, location.pathname, location.search, pixelId])
+  }, [location.hash, location.pathname, location.search, pixelId, marketingAllowed])
 
   return null
 }

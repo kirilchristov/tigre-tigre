@@ -5,6 +5,7 @@ import { QuantityStepper } from '@/components/ui/quantity-stepper'
 import { cn } from '@/lib/utils'
 import { buildShopifyCartPermalink } from '@/lib/shopify'
 import { getAttributionParams } from '@/lib/attribution'
+import { useConsentCheckout } from '@/hooks/useConsentCheckout'
 import { SINGLE_JAR_PRODUCT } from '@/lib/product-config'
 import { ArrowRight } from 'lucide-react'
 
@@ -28,6 +29,7 @@ interface ProductCTAProps {
 export function ProductCTA({ className, compact = false }: ProductCTAProps) {
   const { t } = useTranslation()
   const [quantity, setQuantity] = useState(1)
+  const onCheckoutClick = useConsentCheckout()
 
   const promo = getPromo(quantity)
   const discountPerItem = floorMoney(BASE_PRICE * promo.discount)
@@ -114,7 +116,12 @@ export function ProductCTA({ className, compact = false }: ProductCTAProps) {
             size={compact ? 'default' : 'lg'}
             className="w-full group"
           >
-            <a href={cartUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              href={cartUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => onCheckoutClick(event, cartUrl)}
+            >
               {t('productCTA.multiple.button')}
               <ArrowRight
                 aria-hidden="true"

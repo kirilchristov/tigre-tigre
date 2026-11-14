@@ -1,10 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
 import './lib/i18n'
 import i18n from './lib/i18n'
 import { captureAndStoreAttribution } from './lib/attribution'
+import { installGoogleConsentDefault } from './lib/analytics'
+import { env } from './lib/env'
+import { ConsentProvider } from './context/ConsentContext'
+import { ConsentGatedTelemetry } from './components/consent/ConsentGatedTelemetry'
 import './styles/index.css'
 import App from './App.tsx'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -17,7 +19,14 @@ console.log(`tigre-tigre v${__APP_VERSION__}: grrrrrrr :)`, import.meta.env.MODE
 
 // Persist marketing attribution params (utm_*, gclid, fbclid, …) from the
 // landing URL so cart permalinks can re-attach them for Shopify journeys.
+// First-party, session-scoped and erased when the visitor rejects marketing.
 captureAndStoreAttribution(window.location.search)
+
+// Consent Mode v2 defaults must be queued before gtag.js can load. The GA
+// tracker later pushes the real per-category update.
+if (env.analytics.gaId) {
+  installGoogleConsentDefault()
+}
 
 const isTruthyFlag = (value: string | undefined) => {
   if (!value) return false
@@ -70,9 +79,10 @@ if (isPreview || isDev) {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
-      <Analytics />
-      <SpeedInsights />
+      <ConsentProvider>
+        <App />
+        <ConsentGatedTelemetry />
+      </ConsentProvider>
     </ErrorBoundary>
   </StrictMode>
 )
