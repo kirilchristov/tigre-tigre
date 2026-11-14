@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout'
 import { GoogleAnalyticsTracker } from '@/components/GoogleAnalyticsTracker'
 import { MetaPixelTracker } from '@/components/MetaPixelTracker'
+import { CookieConsentBanner } from '@/components/consent/CookieConsentBanner'
 import { PageMetadata } from '@/components/PageMetadata'
 
 import { NotFound } from '@/components/NotFound'
@@ -34,9 +35,7 @@ const SubHeroTextRollerSection = lazy(() =>
 )
 
 const WhatIsItSection = lazy(() =>
-  import('@/components/sections/WhatIsItSection').then((mod) => ({
-    default: mod.WhatIsItSection,
-  }))
+  import('@/components/sections/WhatIsItSection').then((mod) => ({ default: mod.WhatIsItSection }))
 )
 
 const HowToEatScrollHighlightSection = lazy(() =>
@@ -46,9 +45,7 @@ const HowToEatScrollHighlightSection = lazy(() =>
 )
 
 const ContentsSection = lazy(() =>
-  import('@/components/sections/ContentsSection').then((mod) => ({
-    default: mod.ContentsSection,
-  }))
+  import('@/components/sections/ContentsSection').then((mod) => ({ default: mod.ContentsSection }))
 )
 
 const TestimonialsSection = lazy(() =>
@@ -102,6 +99,7 @@ function App() {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CookieConsentBanner />
     </BrowserRouter>
   )
 }

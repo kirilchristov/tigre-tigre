@@ -193,25 +193,39 @@
       "note": "More jars, less thinking about the next delivery.",
       "single": {
         "title": "1 jar",
-        "details": ["to give it a try"],
+        "details": [
+          "to give it a try"
+        ],
         "promo": "0% off",
         "imageAlt": "One jar of tigre tigre chili crunch"
       },
       "duo": {
         "title": "2 jars",
-        "details": ["to save on delivery", "a backup jar", "brief peace of mind"],
+        "details": [
+          "to save on delivery",
+          "a backup jar",
+          "brief peace of mind"
+        ],
         "promo": "free delivery",
         "imageAlt": "Two jars of tigre tigre chili crunch"
       },
       "trio": {
         "title": "3 jars",
-        "details": ["10% off", "three’s a charm", "to last longer"],
+        "details": [
+          "10% off",
+          "three’s a charm",
+          "to last longer"
+        ],
         "promo": "10% off + free delivery",
         "imageAlt": "Three jars of tigre tigre chili crunch"
       },
       "six": {
         "title": "6 jars",
-        "details": ["15% off", "save 6 deliveries", "enough left to share"],
+        "details": [
+          "15% off",
+          "save 6 deliveries",
+          "enough left to share"
+        ],
         "promo": "15% off + free delivery",
         "imageAlt": "Six jars of tigre tigre chili crunch"
       }
@@ -270,5 +284,30 @@
     "title": "Page Not Found",
     "description": "The page you're looking for doesn't exist or has been moved.",
     "button": "Back to Home"
+  },
+  "consent": {
+    "title": "We use cookies",
+    "description": "We use necessary cookies to run the site and optional analytics and marketing cookies to understand usage and measure advertising. You can accept all, reject non-essential cookies, or choose yourself.",
+    "policyLink": "Privacy policy",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject non-essential",
+    "customize": "Customize",
+    "save": "Save choices",
+    "saving": "Saving…",
+    "back": "Back",
+    "close": "Close",
+    "settings": "Cookie settings",
+    "necessary": {
+      "title": "Necessary (always on)",
+      "description": "Required for the site to work: language, theme, cart and security. These cannot be disabled."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Help us understand which pages are used. Includes Google Analytics and Vercel Analytics when configured."
+    },
+    "marketing": {
+      "title": "Marketing",
+      "description": "Used to measure advertising and retargeting, including Meta Pixel. Turning this off stops those cookies."
+    }
   }
 }

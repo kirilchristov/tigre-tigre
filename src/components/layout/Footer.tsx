@@ -1,13 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { buildShopifyPolicyLinks } from '@/lib/shopify'
+import { CookieSettingsButton } from '@/components/consent/CookieConsentBanner'
 import { navItems, resolveNavHref } from './nav-items'
 
 export function Footer() {
   const { t, i18n } = useTranslation()
   const location = useLocation()
   const currentYear = new Date().getFullYear()
-  const policyLinks = buildShopifyPolicyLinks(i18n.resolvedLanguage ?? i18n.language)
+  const policyLinks = buildShopifyPolicyLinks(i18n.resolvedLanguage ?? i18n.language).filter(
+    (link) => link.key !== 'cookiePreferences'
+  )
 
   return (
     <footer className="py-12 border-t border-border bg-background/80">
@@ -50,6 +53,7 @@ export function Footer() {
               {t(`footer.policies.${link.key}`)}
             </a>
           ))}
+          <CookieSettingsButton />
         </nav>
       </div>
     </footer>
