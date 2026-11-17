@@ -1,5 +1,35 @@
 # Promo bundle landing page
 
+## Advertising creative folder convention
+
+Each new advertising concept (vision) must have its own descriptive folder under
+`public/promo-ad-creatives/<year>/<month-number>-<month-name>/<concept-name>/`, with its own `index.html` and
+concept-specific styles and assets. Shared styles and reusable photos live in
+`public/promo-ad-creatives/shared/`. Use the creation month for new concepts;
+existing concepts were organized under November 2026. Maintain the ad library
+at `public/promo-ad-creatives/index.html` with links to each concept. Keep square, portrait, and story variants of
+the same concept together in that folder. Do not add a new concept only as a
+query-string option in another concept's page.
+
+Provide a localhost preview link with an explicit `index.html`, for example
+`http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-maria-crunch/index.html`, using the
+actual running server port. This is the user's standing preference for future
+creative work.
+
+### Preview link list — required maintenance
+
+The short entry URL is `http://localhost:5173/ads.html`. It opens the ad library
+where users can navigate to every creative. Keep `public/ads.html` pointing to
+the library if its location changes.
+
+Keep [ad-preview-links.txt](./ad-preview-links.txt) updated every time an ad is
+created, renamed, moved, or removed, or its available formats change. Include
+the library URL, each concept's all-formats URL, and its square, portrait, and
+story URLs as plain text on separate lines for easy copying. Group entries by
+year and month with human-readable names. Use explicit `index.html` paths and
+the current local preview port (default `5173`). Update this file and the
+library index in the same change as the creative; do not leave stale links.
+
 ## Status
 
 Implemented specification for the `/promo` campaign page.

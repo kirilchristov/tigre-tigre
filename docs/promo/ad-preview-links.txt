@@ -1,0 +1,40 @@
+TIGRE TIGRE — AD PREVIEW LINKS
+
+Local server must be running. Default port: 5173.
+
+ALL ADS
+http://localhost:5173/ads.html
+Direct library URL:
+http://localhost:5173/promo-ad-creatives/index.html
+
+2026 / NOVEMBER
+
+Maria — Crunch testimonial (yellow)
+All formats:
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-maria-crunch/index.html
+Square (1080 × 1080):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-maria-crunch/index.html?format=square
+Portrait (1080 × 1350):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-maria-crunch/index.html?format=portrait
+Story (1080 × 1920):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-maria-crunch/index.html?format=story
+
+Nadya — Spicy testimonial (red)
+All formats:
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-nadya-spicy/index.html
+Square (1080 × 1080):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-nadya-spicy/index.html?format=square
+Portrait (1080 × 1350):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-nadya-spicy/index.html?format=portrait
+Story (1080 × 1920):
+http://localhost:5173/promo-ad-creatives/2026/11-november/testimonial-nadya-spicy/index.html?format=story
+
+Two-jar offer — square, portrait and story
+All formats:
+http://localhost:5173/promo-ad-creatives/2026/11-november/bundle-offers/index.html
+Square (1080 × 1080):
+http://localhost:5173/promo-ad-creatives/2026/11-november/bundle-offers/index.html?format=square
+Portrait (1080 × 1350):
+http://localhost:5173/promo-ad-creatives/2026/11-november/bundle-offers/index.html?format=portrait
+Story (1080 × 1920):
+http://localhost:5173/promo-ad-creatives/2026/11-november/bundle-offers/index.html?format=story

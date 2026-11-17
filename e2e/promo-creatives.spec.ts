@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-const previewRoute = '/promo-ad-creatives/'
+const previewRoute = '/promo-ad-creatives/2026/11-november/bundle-offers/index.html'
 
 test('hidden creative editor renders all nine Bulgarian previews with the approved fonts', async ({
   page,
@@ -92,3 +92,18 @@ test('hostile filters and shared text are handled without markup injection', asy
   ])
   await expect(page.locator('img[src="x"]')).toHaveCount(0)
 })
+
+for (const [format, height] of [['square', 1080], ['portrait', 1350], ['story', 1920]] as const) {
+  test(`testimonial ${format} exports at full resolution with the original jar`, async ({ page }) => {
+    await page.goto(`/promo-ad-creatives/2026/11-november/testimonial-nadya-spicy/index.html?format=${format}&export=1`)
+    const creative = page.locator('.creative')
+    await expect(creative).toHaveCount(1)
+    await expect(creative).toContainText('Уж не ям люто,')
+    await expect(creative).toContainText('Надя, 30 г.')
+    const bounds = await creative.boundingBox()
+    expect(bounds?.width).toBe(1080)
+    expect(bounds?.height).toBe(height)
+    await expect(creative.locator('img')).toHaveAttribute('src', '../../../shared/assets/testimonial-jar.png')
+    expect(await creative.locator('img').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+  })
+}

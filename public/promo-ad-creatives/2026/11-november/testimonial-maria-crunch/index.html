@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    <title>tigre tigre — Мария, хрупкавото</title>
+    <link rel="stylesheet" href="../../../shared/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="preview-header">
+      <div class="preview-header__main">
+        <p class="preview-header__eyebrow">tigre tigre</p>
+        <h1>Хрупкавото — Мария, 29 г.</h1>
+        <p class="preview-header__hint">
+          Щракни върху всеки текст във визиите, за да го редактираш. Промените се
+          синхронизират между трите формата.
+        </p>
+        <div class="preview-actions" aria-label="Инструменти за редакция">
+          <button id="download-pngs" type="button">Изтегли 3 PNG файла</button>
+          <button id="copy-link" type="button">Копирай линк с промените</button>
+          <button id="safe-toggle" type="button">Покажи безопасните зони</button>
+          <button id="reset-copy" type="button" class="preview-actions__secondary">
+            Нулирай текста
+          </button>
+          <span id="save-status" role="status">Промените се пазят автоматично.</span>
+        </div>
+      </div>
+      <p>1 отзив × 3 формата · Meta и Instagram</p>
+    </header>
+
+    <main id="gallery" class="gallery" aria-label="Рекламни визии"></main>
+
+    <script>
+      const bundle = Object.freeze({
+        bundleLabel: 'МАРИЯ — ХРУПКАВОТО',
+        rating: '5/5',
+        quote: '"Не знаех, че хрупкавото\nе толкова важна част\nот вкусното."',
+        author: '- Мария, 29 г.',
+        image: '../../../shared/assets/testimonial-jar.png',
+        imageAlt: 'Буркан tigre tigre чили крънч',
+      })
+
+      const formats = Object.freeze({
+        square: Object.freeze({ label: 'Квадратен фийд · 1080 × 1080', width: 1080, height: 1080 }),
+        portrait: Object.freeze({ label: 'Вертикален фийд · 1080 × 1350', width: 1080, height: 1350 }),
+        story: Object.freeze({ label: 'Стори / Рийл · 1080 × 1920', width: 1080, height: 1920 }),
+      })
+
+      const params = new URLSearchParams(window.location.search)
+      const requestedFormat = params.get('format')
+      const hasOwn = (record, key) => key !== null && Object.hasOwn(record, key)
+      const selectedFormat = hasOwn(formats, requestedFormat) ? requestedFormat : null
+      const exportMode = params.get('export') === '1'
+      const showSafeZone = params.get('safe') === '1'
+      const hasInvalidFilter =
+        (requestedFormat !== null && selectedFormat === null)
+
+      const formatEntries = selectedFormat
+        ? [[selectedFormat, formats[selectedFormat]]]
+        : Object.entries(formats)
+
+      if (exportMode) document.body.classList.add('is-exporting')
+
+      function editableAttributes(key) {
+        return `contenteditable="true" spellcheck="true" data-editable data-edit-key="${key}"`
+      }
+
+      function testimonialMarkup(bundle, formatName, format) {
+        return `
+          <section class="artboard-shell"
+            style="--artboard-width:${format.width}px;--artboard-height:${format.height}px"
+            aria-label="${bundle.bundleLabel}, ${format.label}">
+            <p class="artboard-shell__label">${bundle.bundleLabel} · ${format.label}</p>
+            <article class="creative creative--${formatName} creative--testimonial${showSafeZone ? ' show-safe-zone' : ''}"
+              data-bundle="testimonial" data-format="${formatName}">
+              <div class="creative__safe-guide" aria-hidden="true">БЕЗОПАСНА ЗОНА</div>
+              <div class="testimonial__frame">
+                <div class="testimonial__rating">
+                  <span class="testimonial__stars" aria-label="5 от 5 звезди">★★★★★</span>
+                  <span ${editableAttributes('testimonial.rating')}>${bundle.rating}</span>
+                </div>
+                <blockquote class="testimonial__quote" ${editableAttributes('testimonial.quote')}>${bundle.quote}</blockquote>
+                <p class="testimonial__author" ${editableAttributes('testimonial.author')}>${bundle.author}</p>
+              </div>
+              <img class="testimonial__jar" src="${bundle.image}" alt="${bundle.imageAlt}" />
+            </article>
+          </section>
+        `
+      }
+
+      document.querySelector('#gallery').innerHTML = formatEntries
+        .map(([formatName, format]) => testimonialMarkup(bundle, formatName, format))
+        .join('')
+
+      const storageKey = 'tigre-tigre-testimonial-maria-edits-v1'
+      const editableElements = [...document.querySelectorAll('[data-edit-key]')]
+      const saveStatus = document.querySelector('#save-status')
+
+      if (hasInvalidFilter) {
+        document.body.dataset.invalidFilters = 'true'
+        saveStatus.textContent = 'Невалиден филтър — показани са всички визии.'
+      }
+
+      function readJson(value) {
+        try {
+          const parsed = JSON.parse(value)
+          return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {}
+        } catch {
+          return {}
+        }
+      }
+
+      function readStoredEdits() {
+        try {
+          return readJson(localStorage.getItem(storageKey) ?? '{}')
+        } catch {
+          return {}
+        }
+      }
+
+      function readSharedEdits() {
+        const value = new URLSearchParams(window.location.hash.slice(1)).get('edits')
+        return value ? readJson(value) : {}
+      }
+
+      let edits = Object.freeze({ ...readStoredEdits(), ...readSharedEdits() })
+
+      function updateMatchingElements(key, value, source) {
+        for (const element of editableElements) {
+          if (element !== source && element.dataset.editKey === key) element.textContent = value
+        }
+      }
+
+      function persistEdits() {
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(edits))
+        } catch {
+          // The shareable URL remains the fallback when browser storage is unavailable.
+        }
+
+        const hash = new URLSearchParams()
+        if (Object.keys(edits).length > 0) hash.set('edits', JSON.stringify(edits))
+        const nextUrl = `${window.location.pathname}${window.location.search}${hash.size ? `#${hash}` : ''}`
+        window.history.replaceState(null, '', nextUrl)
+        saveStatus.textContent = 'Промените са запазени в този линк.'
+      }
+
+      for (const element of editableElements) {
+        const savedValue = edits[element.dataset.editKey]
+        if (typeof savedValue === 'string') element.textContent = savedValue
+
+        element.addEventListener('paste', (event) => {
+          event.preventDefault()
+          document.execCommand('insertText', false, event.clipboardData.getData('text/plain'))
+        })
+
+        element.addEventListener('input', () => {
+          const key = element.dataset.editKey
+          const value = element.innerText.replaceAll('\r', '')
+          edits = Object.freeze({ ...edits, [key]: value })
+          updateMatchingElements(key, value, element)
+          persistEdits()
+        })
+
+        element.addEventListener('blur', () => {
+          const value = element.innerText.replaceAll('\r', '')
+          element.textContent = value
+        })
+      }
+
+      document.querySelector('#safe-toggle').addEventListener('click', (event) => {
+        const previews = document.querySelectorAll('.creative')
+        const shouldShow = !previews[0]?.classList.contains('show-safe-zone')
+        for (const preview of previews) preview.classList.toggle('show-safe-zone', shouldShow)
+        event.currentTarget.textContent = shouldShow
+          ? 'Скрий безопасните зони'
+          : 'Покажи безопасните зони'
+      })
+
+      document.querySelector('#copy-link').addEventListener('click', async () => {
+        persistEdits()
+
+        try {
+          await navigator.clipboard.writeText(window.location.href)
+          saveStatus.textContent = 'Линкът с промените е копиран.'
+        } catch {
+          saveStatus.textContent = 'Копирай линка от адресната лента.'
+        }
+      })
+
+      document.querySelector('#reset-copy').addEventListener('click', () => {
+        if (!window.confirm('Да върна ли всички текстове към първоначалния им вариант?')) return
+
+        try {
+          localStorage.removeItem(storageKey)
+        } catch {
+          // Reloading without the hash still restores the original copy.
+        }
+
+        window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+        window.location.reload()
+      })
+    </script>
+    <script type="module" src="../../../shared/ad-exporter.js"></script>
+  </body>
+</html>

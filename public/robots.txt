@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /ads.html
+Disallow: /promo-ad-creatives/
 
 Sitemap: https://www.tigre-tigre.com/sitemap.xml

@@ -1,0 +1,19 @@
+.creative[data-bundle='duo'] .creative__offer {
+  grid-template-columns: 1fr;
+}
+
+.creative[data-bundle='duo'] .creative__bundle-label {
+  font-size: 26px;
+}
+
+.creative[data-bundle='duo'] .creative__price {
+  font-size: 68px;
+}
+
+.creative[data-bundle='duo'] .creative__savings {
+  font-size: 24px;
+}
+
+.creative[data-bundle='duo'] {
+  background: linear-gradient(145deg, #fff 0 60%, #f8f3e9 60% 100%);
+}
